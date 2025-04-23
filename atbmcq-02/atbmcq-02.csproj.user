@@ -4,10 +4,10 @@
     <Compile Update="Connection.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Home.cs">
-      <SubType>Form</SubType>
+    <Compile Update="Grant_Privileges.cs">
+      <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="MainForm.cs">
+    <Compile Update="Home.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="User_Management.cs">

@@ -51,26 +51,6 @@ namespace atbmcq_02
             TrangThai = new ColumnHeader();
             NgayTao = new ColumnHeader();
             btnRefresh = new Button();
-            tabPrivileges = new TabPage();
-            grpPrivileges = new GroupBox();
-            chkUpdate = new CheckBox();
-            chkDelete = new CheckBox();
-            chkInsert = new CheckBox();
-            chkSelect = new CheckBox();
-            pnlColumn = new Panel();
-            txtColumn = new TextBox();
-            lblColumn = new Label();
-            lblGrantee = new Label();
-            txtGrantee = new TextBox();
-            lblObject = new Label();
-            txtObject = new TextBox();
-            btnGrant = new Button();
-            btnRevoke = new Button();
-            lstPrivileges = new ListView();
-            UserOrRole = new ColumnHeader();
-            Quyen = new ColumnHeader();
-            DoiTuong = new ColumnHeader();
-            QLoai = new ColumnHeader();
             tabTablespaces = new TabPage();
             grpTablespaces = new GroupBox();
             lblTablespace = new Label();
@@ -98,9 +78,6 @@ namespace atbmcq_02
             tabManage.SuspendLayout();
             grpUserRole.SuspendLayout();
             tabList.SuspendLayout();
-            tabPrivileges.SuspendLayout();
-            grpPrivileges.SuspendLayout();
-            pnlColumn.SuspendLayout();
             tabTablespaces.SuspendLayout();
             grpTablespaces.SuspendLayout();
             tabAudit.SuspendLayout();
@@ -111,7 +88,6 @@ namespace atbmcq_02
             // 
             tabControl.Controls.Add(tabManage);
             tabControl.Controls.Add(tabList);
-            tabControl.Controls.Add(tabPrivileges);
             tabControl.Controls.Add(tabTablespaces);
             tabControl.Controls.Add(tabAudit);
             tabControl.Dock = DockStyle.Fill;
@@ -320,199 +296,6 @@ namespace atbmcq_02
             btnRefresh.TabIndex = 2;
             btnRefresh.Text = "Refresh List";
             // 
-            // tabPrivileges
-            // 
-            tabPrivileges.Controls.Add(grpPrivileges);
-            tabPrivileges.Location = new Point(4, 38);
-            tabPrivileges.Margin = new Padding(6, 3, 6, 3);
-            tabPrivileges.Name = "tabPrivileges";
-            tabPrivileges.Size = new Size(1584, 493);
-            tabPrivileges.TabIndex = 2;
-            tabPrivileges.Text = "Privilege Management";
-            // 
-            // grpPrivileges
-            // 
-            grpPrivileges.Controls.Add(chkUpdate);
-            grpPrivileges.Controls.Add(chkDelete);
-            grpPrivileges.Controls.Add(chkInsert);
-            grpPrivileges.Controls.Add(chkSelect);
-            grpPrivileges.Controls.Add(pnlColumn);
-            grpPrivileges.Controls.Add(lblGrantee);
-            grpPrivileges.Controls.Add(txtGrantee);
-            grpPrivileges.Controls.Add(lblObject);
-            grpPrivileges.Controls.Add(txtObject);
-            grpPrivileges.Controls.Add(btnGrant);
-            grpPrivileges.Controls.Add(btnRevoke);
-            grpPrivileges.Controls.Add(lstPrivileges);
-            grpPrivileges.Location = new Point(20, 14);
-            grpPrivileges.Margin = new Padding(6, 3, 6, 3);
-            grpPrivileges.Name = "grpPrivileges";
-            grpPrivileges.Padding = new Padding(6, 3, 6, 3);
-            grpPrivileges.Size = new Size(1547, 456);
-            grpPrivileges.TabIndex = 0;
-            grpPrivileges.TabStop = false;
-            grpPrivileges.Text = "Privilege Management";
-            // 
-            // chkUpdate
-            // 
-            chkUpdate.AutoSize = true;
-            chkUpdate.Location = new Point(560, 155);
-            chkUpdate.Name = "chkUpdate";
-            chkUpdate.Size = new Size(113, 33);
-            chkUpdate.TabIndex = 20;
-            chkUpdate.Text = "Update";
-            chkUpdate.UseVisualStyleBackColor = true;
-            chkUpdate.CheckedChanged += panel_CheckedChanged;
-            chkUpdate.CheckedChanged += chkUpdate_CheckedChanged;
-            // 
-            // chkDelete
-            // 
-            chkDelete.AutoSize = true;
-            chkDelete.Location = new Point(390, 155);
-            chkDelete.Name = "chkDelete";
-            chkDelete.Size = new Size(107, 33);
-            chkDelete.TabIndex = 19;
-            chkDelete.Text = "Delete";
-            chkDelete.UseVisualStyleBackColor = true;
-            chkDelete.CheckedChanged += panel_CheckedChanged;
-            chkDelete.CheckedChanged += chkDelete_CheckedChanged;
-            // 
-            // chkInsert
-            // 
-            chkInsert.AutoSize = true;
-            chkInsert.Location = new Point(220, 155);
-            chkInsert.Name = "chkInsert";
-            chkInsert.Size = new Size(98, 33);
-            chkInsert.TabIndex = 18;
-            chkInsert.Text = "Insert";
-            chkInsert.UseVisualStyleBackColor = true;
-            chkInsert.CheckedChanged += panel_CheckedChanged;
-            chkInsert.CheckedChanged += chkInsert_CheckedChanged;
-            // 
-            // chkSelect
-            // 
-            chkSelect.AutoSize = true;
-            chkSelect.Location = new Point(39, 155);
-            chkSelect.Name = "chkSelect";
-            chkSelect.Size = new Size(102, 33);
-            chkSelect.TabIndex = 17;
-            chkSelect.Text = "Select";
-            chkSelect.UseVisualStyleBackColor = true;
-            chkSelect.CheckedChanged += panel_CheckedChanged;
-            chkSelect.CheckedChanged += chkSelect_CheckedChanged;
-            // 
-            // pnlColumn
-            // 
-            pnlColumn.Controls.Add(txtColumn);
-            pnlColumn.Controls.Add(lblColumn);
-            pnlColumn.Location = new Point(682, 29);
-            pnlColumn.Name = "pnlColumn";
-            pnlColumn.Size = new Size(599, 60);
-            pnlColumn.TabIndex = 12;
-            pnlColumn.Visible = false;
-            // 
-            // txtColumn
-            // 
-            txtColumn.Location = new Point(136, 12);
-            txtColumn.Name = "txtColumn";
-            txtColumn.Size = new Size(428, 37);
-            txtColumn.TabIndex = 2;
-            // 
-            // lblColumn
-            // 
-            lblColumn.AutoSize = true;
-            lblColumn.Location = new Point(35, 15);
-            lblColumn.Name = "lblColumn";
-            lblColumn.Size = new Size(95, 29);
-            lblColumn.TabIndex = 0;
-            lblColumn.Text = "Column";
-            // 
-            // lblGrantee
-            // 
-            lblGrantee.AutoSize = true;
-            lblGrantee.Location = new Point(39, 44);
-            lblGrantee.Margin = new Padding(6, 0, 6, 0);
-            lblGrantee.Name = "lblGrantee";
-            lblGrantee.Size = new Size(122, 29);
-            lblGrantee.TabIndex = 0;
-            lblGrantee.Text = "User/Role:";
-            // 
-            // txtGrantee
-            // 
-            txtGrantee.Location = new Point(245, 41);
-            txtGrantee.Margin = new Padding(6, 3, 6, 3);
-            txtGrantee.Name = "txtGrantee";
-            txtGrantee.Size = new Size(428, 37);
-            txtGrantee.TabIndex = 1;
-            // 
-            // lblObject
-            // 
-            lblObject.AutoSize = true;
-            lblObject.Location = new Point(39, 97);
-            lblObject.Margin = new Padding(6, 0, 6, 0);
-            lblObject.Name = "lblObject";
-            lblObject.Size = new Size(124, 29);
-            lblObject.TabIndex = 4;
-            lblObject.Text = "Object:";
-            // 
-            // txtObject
-            // 
-            txtObject.Location = new Point(245, 94);
-            txtObject.Margin = new Padding(6, 3, 6, 3);
-            txtObject.Name = "txtObject";
-            txtObject.Size = new Size(428, 37);
-            txtObject.TabIndex = 5;
-            // 
-            // btnGrant
-            // 
-            btnGrant.Location = new Point(717, 142);
-            btnGrant.Margin = new Padding(6, 3, 6, 3);
-            btnGrant.Name = "btnGrant";
-            btnGrant.Size = new Size(245, 46);
-            btnGrant.TabIndex = 6;
-            btnGrant.Text = "Grant";
-            // 
-            // btnRevoke
-            // 
-            btnRevoke.AutoSize = true;
-            btnRevoke.Location = new Point(1001, 142);
-            btnRevoke.Margin = new Padding(6, 3, 6, 3);
-            btnRevoke.Name = "btnRevoke";
-            btnRevoke.Size = new Size(245, 46);
-            btnRevoke.TabIndex = 7;
-            btnRevoke.Text = "Revoke";
-            // 
-            // lstPrivileges
-            // 
-            lstPrivileges.Columns.AddRange(new ColumnHeader[] { UserOrRole, Quyen, DoiTuong, QLoai });
-            lstPrivileges.Location = new Point(39, 208);
-            lstPrivileges.Margin = new Padding(6, 3, 6, 3);
-            lstPrivileges.Name = "lstPrivileges";
-            lstPrivileges.Size = new Size(1468, 241);
-            lstPrivileges.TabIndex = 8;
-            lstPrivileges.UseCompatibleStateImageBehavior = false;
-            lstPrivileges.View = View.Details;
-            // 
-            // UserOrRole
-            // 
-            UserOrRole.Text = "User/Role";
-            UserOrRole.Width = 367;
-            // 
-            // Quyen
-            // 
-            Quyen.Text = "Privilege";
-            Quyen.Width = 367;
-            // 
-            // DoiTuong
-            // 
-            DoiTuong.Text = "Object";
-            DoiTuong.Width = 367;
-            // 
-            // QLoai
-            // 
-            QLoai.Text = "Type";
-            QLoai.Width = 367;
-            // 
             // tabTablespaces
             // 
             tabTablespaces.Controls.Add(grpTablespaces);
@@ -712,12 +495,9 @@ namespace atbmcq_02
             btnRefresh.Click += LoadUserList;
             cboFilter.SelectedIndexChanged += LoadUserList;
             //chkExisting.CheckedChanged += txtUserPass.Enabled = !chkExisting.Checked;
-            btnGrant.Click += GrantPrivilege;
-            btnRevoke.Click += RevokePrivilege;
             btnCreateTS.Click += CreateTablespace;
             btnDropTS.Click += DropTablespace;
             btnResizeTS.Click += ResizeTablespace;
-            btnRefreshAudit.Click += LoadAuditLog;
             // 
             // User_Management
             // 
@@ -734,11 +514,6 @@ namespace atbmcq_02
             grpUserRole.PerformLayout();
             tabList.ResumeLayout(false);
             tabList.PerformLayout();
-            tabPrivileges.ResumeLayout(false);
-            grpPrivileges.ResumeLayout(false);
-            grpPrivileges.PerformLayout();
-            pnlColumn.ResumeLayout(false);
-            pnlColumn.PerformLayout();
             tabTablespaces.ResumeLayout(false);
             grpTablespaces.ResumeLayout(false);
             grpTablespaces.PerformLayout();
@@ -771,19 +546,6 @@ namespace atbmcq_02
         private ColumnHeader TrangThai;
         private ColumnHeader NgayTao;
         private Button btnRefresh;
-        private TabPage tabPrivileges;
-        private GroupBox grpPrivileges;
-        private Label lblGrantee;
-        private TextBox txtGrantee;
-        private Label lblObject;
-        private TextBox txtObject;
-        private Button btnGrant;
-        private Button btnRevoke;
-        private ListView lstPrivileges;
-        private ColumnHeader UserOrRole;
-        private ColumnHeader Quyen;
-        private ColumnHeader DoiTuong;
-        private ColumnHeader QLoai;
         private TabPage tabTablespaces;
         private GroupBox grpTablespaces;
         private Label lblTablespace;
@@ -807,12 +569,5 @@ namespace atbmcq_02
         private ColumnHeader TDDoiTuong;
         private ColumnHeader TDTrangThai;
         private Button btnRefreshAudit;
-        private Panel pnlColumn;
-        private TextBox txtColumn;
-        private Label lblColumn;
-        private CheckBox chkUpdate;
-        private CheckBox chkDelete;
-        private CheckBox chkInsert;
-        private CheckBox chkSelect;
     }
 }

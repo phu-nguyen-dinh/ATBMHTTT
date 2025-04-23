@@ -41,7 +41,10 @@ namespace atbmcq_02
 
         private void grantPrivileges_Click(object sender, EventArgs e)
         {
-
+            panelContent.Controls.Clear();
+            var uc = new Grant_Privileges(_connection);
+            uc.Dock = DockStyle.Fill;
+            panelContent.Controls.Add(uc);
         }
     }
 }
