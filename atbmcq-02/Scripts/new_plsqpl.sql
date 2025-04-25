@@ -7,6 +7,15 @@ CREATE TABLE audit_log (
     privilege     VARCHAR2(50),
     timestamp     TIMESTAMP DEFAULT SYSTIMESTAMP
 );
+
+-- Xóa procedure get_privileges_list nếu đã tồn tại
+BEGIN
+    EXECUTE IMMEDIATE 'DROP PROCEDURE get_privileges_list';
+EXCEPTION
+    WHEN OTHERS THEN NULL;
+END;
+/
+
 -- =====================================
 CREATE OR REPLACE PROCEDURE create_user_proc(
     p_username IN VARCHAR2,
@@ -368,6 +377,7 @@ END;
 /
 
 
+
 -- ==============================
 CREATE OR REPLACE PROCEDURE get_tablespaces_list(
     p_cursor OUT SYS_REFCURSOR
@@ -407,6 +417,82 @@ BEGIN
         FROM audit_log
         WHERE admin_user = USER  
         ORDER BY timestamp DESC;
+END;
+/
+
+
+
+-- Test cases for User Management
+BEGIN
+    -- Create multiple test users with different names
+    create_user_proc('C##USER_MANAGER', 'password123');
+    create_user_proc('C##USER_AUDITOR', 'password456');
+    create_user_proc('C##USER_REPORTER', 'password789');
+END;
+/
+
+BEGIN
+    -- Create multiple test roles with different names
+    create_role_proc('C##ROLE_ADMIN');
+    create_role_proc('C##ROLE_VIEWER');
+    create_role_proc('C##ROLE_EDITOR');
+END;
+/
+
+BEGIN
+    -- Test changing passwords for some users
+    alter_user_password_proc('C##USER_MANAGER', 'newpassword123');
+    alter_user_password_proc('C##USER_AUDITOR', 'newpassword456');
+END;
+/
+
+-- Test cases for Privilege Management
+BEGIN
+    -- Grant various privileges to users
+    grant_privilege_proc(
+        p_grantee => 'C##USER_MANAGER',
+        p_table_name => 'AUDIT_LOG',
+        p_grant_select => TRUE,
+        p_grant_insert => TRUE
+    );
+    
+    grant_privilege_proc(
+        p_grantee => 'C##USER_AUDITOR',
+        p_table_name => 'AUDIT_LOG',
+        p_grant_select => TRUE,
+        p_grant_update => TRUE
+    );
+    
+    grant_privilege_proc(
+        p_grantee => 'C##ROLE_ADMIN',
+        p_table_name => 'AUDIT_LOG',
+        p_grant_select => TRUE,
+        p_grant_delete => TRUE
+    );
+END;
+/
+
+-- Test revoking privileges (only revoke privileges that were granted)
+BEGIN
+    revoke_privilege_proc(
+        p_grantee => 'C##USER_MANAGER',
+        p_object_name => 'AUDIT_LOG',
+        p_grant_insert => TRUE
+    );
+    
+    revoke_privilege_proc(
+        p_grantee => 'C##USER_AUDITOR',
+        p_object_name => 'AUDIT_LOG',
+        p_grant_update => TRUE
+    );
+END;
+/
+
+-- Minimal deletion tests (keeping most objects for data)
+BEGIN
+    -- Delete only one user and one role
+    drop_user_proc('C##USER_REPORTER');
+    drop_role_proc('C##ROLE_EDITOR');
 END;
 /
 
