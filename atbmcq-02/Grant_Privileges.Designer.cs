@@ -1,4 +1,5 @@
-﻿using OracleUserManager.Models;
+﻿// Add these using statements if they are missing
+using OracleUserManager.Models;
 using System.Data.Common;
 using System.Diagnostics;
 using System.Windows.Forms;
@@ -8,12 +9,12 @@ namespace atbmcq_02
 {
     partial class Grant_Privileges
     {
-        /// <summary> 
+        /// <summary>
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary> 
+        /// <summary>
         /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
@@ -28,223 +29,301 @@ namespace atbmcq_02
 
         #region Component Designer generated code
 
-        /// <summary> 
-        /// Required method for Designer support - do not modify 
+        /// <summary>
+        /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
             grpPrivileges = new GroupBox();
-            chkUpdate = new CheckBox();
-            chkDelete = new CheckBox();
-            chkInsert = new CheckBox();
-            chkSelect = new CheckBox();
-            pnlColumn = new Panel();
-            txtColumn = new TextBox();
-            lblColumn = new Label();
+            pnlSYS = new Panel();
+            txtSystemPrivilege = new TextBox();
+            lblSystemPrivilege = new Label();
+            lblGrantType = new Label();
+            cmbGrantType = new ComboBox();
+            pnlObjectDetails = new Panel();
+            lblObjectOwner = new Label();
+            txtObjectOwner = new TextBox();
+            lblObjectName = new Label();
+            txtObjectName = new TextBox();
+            lblObjectPrivilege = new Label();
+            cmbObjectPrivilege = new ComboBox();
+            pnlColumns = new Panel();
+            txtColumns = new TextBox();
+            lblColumns = new Label();
+            chkGrantOption = new CheckBox();
+            chkAdminOption = new CheckBox();
             lblGrantee = new Label();
             txtGrantee = new TextBox();
-            lblObject = new Label();
-            txtObject = new TextBox();
             btnGrant = new Button();
             btnRevoke = new Button();
             lstPrivileges = new ListView();
             UserOrRole = new ColumnHeader();
             Privilege = new ColumnHeader();
             Target = new ColumnHeader();
-            PType = new ColumnHeader();
+            Grantable = new ColumnHeader();
             grpPrivileges.SuspendLayout();
-            pnlColumn.SuspendLayout();
+            pnlSYS.SuspendLayout();
+            pnlObjectDetails.SuspendLayout();
+            pnlColumns.SuspendLayout();
             SuspendLayout();
             // 
             // grpPrivileges
             // 
-            grpPrivileges.Controls.Add(chkUpdate);
-            grpPrivileges.Controls.Add(chkDelete);
-            grpPrivileges.Controls.Add(chkInsert);
-            grpPrivileges.Controls.Add(chkSelect);
-            grpPrivileges.Controls.Add(pnlColumn);
+            grpPrivileges.Controls.Add(pnlSYS);
+            grpPrivileges.Controls.Add(lblGrantType);
+            grpPrivileges.Controls.Add(cmbGrantType);
+            grpPrivileges.Controls.Add(pnlObjectDetails);
+            grpPrivileges.Controls.Add(chkAdminOption);
             grpPrivileges.Controls.Add(lblGrantee);
             grpPrivileges.Controls.Add(txtGrantee);
-            grpPrivileges.Controls.Add(lblObject);
-            grpPrivileges.Controls.Add(txtObject);
             grpPrivileges.Controls.Add(btnGrant);
             grpPrivileges.Controls.Add(btnRevoke);
             grpPrivileges.Controls.Add(lstPrivileges);
             grpPrivileges.Dock = DockStyle.Fill;
             grpPrivileges.Location = new Point(0, 0);
-            grpPrivileges.Margin = new Padding(8, 3, 8, 3);
+            grpPrivileges.Margin = new Padding(5, 3, 5, 3);
             grpPrivileges.Name = "grpPrivileges";
-            grpPrivileges.Padding = new Padding(8, 3, 8, 3);
+            grpPrivileges.Padding = new Padding(5, 3, 5, 3);
             grpPrivileges.Size = new Size(1592, 535);
             grpPrivileges.TabIndex = 0;
             grpPrivileges.TabStop = false;
             grpPrivileges.Text = "Privilege Management";
             // 
-            // chkUpdate
+            // pnlSYS
             // 
-            chkUpdate.AutoSize = true;
-            chkUpdate.Location = new Point(595, 180);
-            chkUpdate.Margin = new Padding(4, 3, 4, 3);
-            chkUpdate.Name = "chkUpdate";
-            chkUpdate.Size = new Size(113, 33);
-            chkUpdate.TabIndex = 20;
-            chkUpdate.Text = "Update";
-            chkUpdate.UseVisualStyleBackColor = true;
-            chkUpdate.CheckedChanged += chkUpdate_CheckedChanged;
-            chkUpdate.CheckedChanged += panel_CheckedChanged;
+            pnlSYS.Controls.Add(txtSystemPrivilege);
+            pnlSYS.Controls.Add(lblSystemPrivilege);
+            pnlSYS.Location = new Point(30, 191);
+            pnlSYS.Name = "pnlSYS";
+            pnlSYS.Size = new Size(476, 65);
+            pnlSYS.TabIndex = 12;
             // 
-            // chkDelete
+            // txtSystemPrivilege
             // 
-            chkDelete.AutoSize = true;
-            chkDelete.Location = new Point(406, 180);
-            chkDelete.Margin = new Padding(4, 3, 4, 3);
-            chkDelete.Name = "chkDelete";
-            chkDelete.Size = new Size(107, 33);
-            chkDelete.TabIndex = 19;
-            chkDelete.Text = "Delete";
-            chkDelete.UseVisualStyleBackColor = true;
-            chkDelete.CheckedChanged += chkDelete_CheckedChanged;
+            txtSystemPrivilege.Location = new Point(161, 14);
+            txtSystemPrivilege.Name = "txtSystemPrivilege";
+            txtSystemPrivilege.Size = new Size(290, 37);
+            txtSystemPrivilege.TabIndex = 1;
             // 
-            // chkInsert
+            // lblSystemPrivilege
             // 
-            chkInsert.AutoSize = true;
-            chkInsert.Location = new Point(229, 180);
-            chkInsert.Margin = new Padding(4, 3, 4, 3);
-            chkInsert.Name = "chkInsert";
-            chkInsert.Size = new Size(98, 33);
-            chkInsert.TabIndex = 18;
-            chkInsert.Text = "Insert";
-            chkInsert.UseVisualStyleBackColor = true;
-            chkInsert.CheckedChanged += chkInsert_CheckedChanged;
+            lblSystemPrivilege.AutoSize = true;
+            lblSystemPrivilege.Location = new Point(0, 22);
+            lblSystemPrivilege.Name = "lblSystemPrivilege";
+            lblSystemPrivilege.Size = new Size(155, 29);
+            lblSystemPrivilege.TabIndex = 0;
+            lblSystemPrivilege.Text = "SYSPrivilege:";
             // 
-            // chkSelect
+            // lblGrantType
             // 
-            chkSelect.AutoSize = true;
-            chkSelect.Location = new Point(55, 180);
-            chkSelect.Margin = new Padding(4, 3, 4, 3);
-            chkSelect.Name = "chkSelect";
-            chkSelect.Size = new Size(102, 33);
-            chkSelect.TabIndex = 17;
-            chkSelect.Text = "Select";
-            chkSelect.UseVisualStyleBackColor = true;
-            chkSelect.CheckedChanged += chkSelect_CheckedChanged;
-            chkSelect.CheckedChanged += panel_CheckedChanged;
+            lblGrantType.AutoSize = true;
+            lblGrantType.Location = new Point(30, 69);
+            lblGrantType.Margin = new Padding(4, 0, 4, 0);
+            lblGrantType.Name = "lblGrantType";
+            lblGrantType.Size = new Size(136, 29);
+            lblGrantType.TabIndex = 1;
+            lblGrantType.Text = "Grant Type:";
             // 
-            // pnlColumn
+            // cmbGrantType
             // 
-            pnlColumn.Controls.Add(txtColumn);
-            pnlColumn.Controls.Add(lblColumn);
-            pnlColumn.Location = new Point(822, 36);
-            pnlColumn.Margin = new Padding(4, 3, 4, 3);
-            pnlColumn.Name = "pnlColumn";
-            pnlColumn.Size = new Size(572, 70);
-            pnlColumn.TabIndex = 12;
-            pnlColumn.Visible = false;
+            cmbGrantType.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbGrantType.FormattingEnabled = true;
+            cmbGrantType.Items.AddRange(new object[] { "Object", "System" });
+            cmbGrantType.Location = new Point(191, 66);
+            cmbGrantType.Margin = new Padding(4, 3, 4, 3);
+            cmbGrantType.Name = "cmbGrantType";
+            cmbGrantType.Size = new Size(290, 37);
+            cmbGrantType.TabIndex = 2;
+            cmbGrantType.SelectedIndexChanged += cmbGrantType_SelectedIndexChanged;
             // 
-            // txtColumn
+            // pnlObjectDetails
             // 
-            txtColumn.Location = new Point(190, 14);
-            txtColumn.Margin = new Padding(4, 3, 4, 3);
-            txtColumn.Name = "txtColumn";
-            txtColumn.Size = new Size(365, 37);
-            txtColumn.TabIndex = 2;
+            pnlObjectDetails.Controls.Add(lblObjectOwner);
+            pnlObjectDetails.Controls.Add(txtObjectOwner);
+            pnlObjectDetails.Controls.Add(lblObjectName);
+            pnlObjectDetails.Controls.Add(txtObjectName);
+            pnlObjectDetails.Controls.Add(lblObjectPrivilege);
+            pnlObjectDetails.Controls.Add(cmbObjectPrivilege);
+            pnlObjectDetails.Controls.Add(pnlColumns);
+            pnlObjectDetails.Controls.Add(chkGrantOption);
+            pnlObjectDetails.Location = new Point(600, 85);
+            pnlObjectDetails.Name = "pnlObjectDetails";
+            pnlObjectDetails.Size = new Size(966, 185);
+            pnlObjectDetails.TabIndex = 5;
+            pnlObjectDetails.Visible = false;
             // 
-            // lblColumn
+            // lblObjectOwner
             // 
-            lblColumn.AutoSize = true;
-            lblColumn.Location = new Point(47, 17);
-            lblColumn.Margin = new Padding(4, 0, 4, 0);
-            lblColumn.Name = "lblColumn";
-            lblColumn.Size = new Size(95, 29);
-            lblColumn.TabIndex = 0;
-            lblColumn.Text = "Column";
+            lblObjectOwner.AutoSize = true;
+            lblObjectOwner.Location = new Point(4, 12);
+            lblObjectOwner.Name = "lblObjectOwner";
+            lblObjectOwner.Size = new Size(167, 29);
+            lblObjectOwner.TabIndex = 0;
+            lblObjectOwner.Text = "Object Owner:";
+            // 
+            // txtObjectOwner
+            // 
+            txtObjectOwner.Location = new Point(177, 9);
+            txtObjectOwner.Name = "txtObjectOwner";
+            txtObjectOwner.Size = new Size(276, 37);
+            txtObjectOwner.TabIndex = 1;
+            // 
+            // lblObjectName
+            // 
+            lblObjectName.AutoSize = true;
+            lblObjectName.Location = new Point(4, 77);
+            lblObjectName.Name = "lblObjectName";
+            lblObjectName.Size = new Size(158, 29);
+            lblObjectName.TabIndex = 2;
+            lblObjectName.Text = "Object Name:";
+            // 
+            // txtObjectName
+            // 
+            txtObjectName.Location = new Point(177, 74);
+            txtObjectName.Name = "txtObjectName";
+            txtObjectName.Size = new Size(276, 37);
+            txtObjectName.TabIndex = 3;
+            // 
+            // lblObjectPrivilege
+            // 
+            lblObjectPrivilege.AutoSize = true;
+            lblObjectPrivilege.Location = new Point(4, 142);
+            lblObjectPrivilege.Name = "lblObjectPrivilege";
+            lblObjectPrivilege.Size = new Size(108, 29);
+            lblObjectPrivilege.TabIndex = 4;
+            lblObjectPrivilege.Text = "Privilege:";
+            // 
+            // cmbObjectPrivilege
+            // 
+            cmbObjectPrivilege.FormattingEnabled = true;
+            cmbObjectPrivilege.Items.AddRange(new object[] { "SELECT", "INSERT", "UPDATE", "DELETE", "EXECUTE", "REFERENCES" });
+            cmbObjectPrivilege.Location = new Point(177, 134);
+            cmbObjectPrivilege.Name = "cmbObjectPrivilege";
+            cmbObjectPrivilege.Size = new Size(276, 37);
+            cmbObjectPrivilege.TabIndex = 5;
+            cmbObjectPrivilege.SelectedIndexChanged += cmbObjectPrivilege_SelectedIndexChanged;
+            cmbObjectPrivilege.TextChanged += cmbObjectPrivilege_TextChanged;
+            // 
+            // pnlColumns
+            // 
+            pnlColumns.Controls.Add(txtColumns);
+            pnlColumns.Controls.Add(lblColumns);
+            pnlColumns.Location = new Point(569, 3);
+            pnlColumns.Margin = new Padding(4, 3, 4, 3);
+            pnlColumns.Name = "pnlColumns";
+            pnlColumns.Size = new Size(334, 54);
+            pnlColumns.TabIndex = 6;
+            pnlColumns.Visible = false;
+            // 
+            // txtColumns
+            // 
+            txtColumns.Location = new Point(102, 5);
+            txtColumns.Margin = new Padding(4, 3, 4, 3);
+            txtColumns.Name = "txtColumns";
+            txtColumns.Size = new Size(215, 37);
+            txtColumns.TabIndex = 1;
+            // 
+            // lblColumns
+            // 
+            lblColumns.AutoSize = true;
+            lblColumns.Location = new Point(4, 9);
+            lblColumns.Margin = new Padding(4, 0, 4, 0);
+            lblColumns.Name = "lblColumns";
+            lblColumns.Size = new Size(111, 29);
+            lblColumns.TabIndex = 0;
+            lblColumns.Text = "Columns:";
+            // 
+            // chkGrantOption
+            // 
+            chkGrantOption.AutoSize = true;
+            chkGrantOption.Location = new Point(569, 85);
+            chkGrantOption.Name = "chkGrantOption";
+            chkGrantOption.Size = new Size(231, 33);
+            chkGrantOption.TabIndex = 7;
+            chkGrantOption.Text = "With Grant Option";
+            chkGrantOption.UseVisualStyleBackColor = true;
+            // 
+            // chkAdminOption
+            // 
+            chkAdminOption.AutoSize = true;
+            chkAdminOption.Location = new Point(600, 36);
+            chkAdminOption.Name = "chkAdminOption";
+            chkAdminOption.Size = new Size(242, 33);
+            chkAdminOption.TabIndex = 8;
+            chkAdminOption.Text = "With Admin Option";
+            chkAdminOption.UseVisualStyleBackColor = true;
+            chkAdminOption.Visible = false;
             // 
             // lblGrantee
             // 
             lblGrantee.AutoSize = true;
-            lblGrantee.Location = new Point(55, 51);
-            lblGrantee.Margin = new Padding(8, 0, 8, 0);
+            lblGrantee.Location = new Point(30, 141);
+            lblGrantee.Margin = new Padding(4, 0, 4, 0);
             lblGrantee.Name = "lblGrantee";
             lblGrantee.Size = new Size(122, 29);
-            lblGrantee.TabIndex = 0;
+            lblGrantee.TabIndex = 3;
             lblGrantee.Text = "User/Role:";
             // 
             // txtGrantee
             // 
-            txtGrantee.Location = new Point(343, 48);
-            txtGrantee.Margin = new Padding(8, 3, 8, 3);
+            txtGrantee.Location = new Point(191, 138);
+            txtGrantee.Margin = new Padding(4, 3, 4, 3);
             txtGrantee.Name = "txtGrantee";
-            txtGrantee.Size = new Size(365, 37);
-            txtGrantee.TabIndex = 1;
-            // 
-            // lblObject
-            // 
-            lblObject.AutoSize = true;
-            lblObject.Location = new Point(55, 113);
-            lblObject.Margin = new Padding(8, 0, 8, 0);
-            lblObject.Name = "lblObject";
-            lblObject.Size = new Size(88, 29);
-            lblObject.TabIndex = 4;
-            lblObject.Text = "Object:";
-            // 
-            // txtObject
-            // 
-            txtObject.Location = new Point(343, 109);
-            txtObject.Margin = new Padding(8, 3, 8, 3);
-            txtObject.Name = "txtObject";
-            txtObject.Size = new Size(365, 37);
-            txtObject.TabIndex = 5;
+            txtGrantee.Size = new Size(290, 37);
+            txtGrantee.TabIndex = 4;
             // 
             // btnGrant
             // 
-            btnGrant.Location = new Point(822, 160);
-            btnGrant.Margin = new Padding(8, 3, 8, 3);
+            btnGrant.Location = new Point(1169, 30);
+            btnGrant.Margin = new Padding(4, 3, 4, 3);
             btnGrant.Name = "btnGrant";
-            btnGrant.Size = new Size(215, 53);
-            btnGrant.TabIndex = 6;
+            btnGrant.Size = new Size(174, 43);
+            btnGrant.TabIndex = 9;
             btnGrant.Text = "Grant";
+            btnGrant.Click += btnGrant_Click;
             // 
             // btnRevoke
             // 
             btnRevoke.AutoSize = true;
-            btnRevoke.Location = new Point(1179, 160);
-            btnRevoke.Margin = new Padding(8, 3, 8, 3);
+            btnRevoke.Location = new Point(1392, 30);
+            btnRevoke.Margin = new Padding(4, 3, 4, 3);
             btnRevoke.Name = "btnRevoke";
-            btnRevoke.Size = new Size(215, 53);
-            btnRevoke.TabIndex = 7;
+            btnRevoke.Size = new Size(174, 43);
+            btnRevoke.TabIndex = 10;
             btnRevoke.Text = "Revoke";
+            btnRevoke.Click += RevokePrivilege;
             // 
             // lstPrivileges
             // 
-            lstPrivileges.Columns.AddRange(new ColumnHeader[] { UserOrRole, Privilege, Target, PType });
-            lstPrivileges.Location = new Point(55, 241);
-            lstPrivileges.Margin = new Padding(8, 3, 8, 3);
+            lstPrivileges.Columns.AddRange(new ColumnHeader[] { UserOrRole, Privilege, Target, Grantable });
+            lstPrivileges.Location = new Point(30, 290);
+            lstPrivileges.Margin = new Padding(4, 3, 4, 3);
             lstPrivileges.Name = "lstPrivileges";
-            lstPrivileges.Size = new Size(1480, 279);
-            lstPrivileges.TabIndex = 8;
+            lstPrivileges.Size = new Size(1536, 239);
+            lstPrivileges.TabIndex = 11;
             lstPrivileges.UseCompatibleStateImageBehavior = false;
             lstPrivileges.View = View.Details;
             // 
             // UserOrRole
             // 
             UserOrRole.Text = "User/Role";
-            UserOrRole.Width = 370;
+            UserOrRole.Width = 384;
             // 
             // Privilege
             // 
             Privilege.Text = "Privilege";
-            Privilege.Width = 370;
+            Privilege.Width = 384;
             // 
             // Target
             // 
-            Target.Text = "Object";
-            Target.Width = 370;
+            Target.Text = "Object/Details";
+            Target.Width = 384;
             // 
-            // PType
+            // Grantable
             // 
-            PType.Text = "Type";
-            PType.Width = 370;
+            Grantable.Text = "Grantable";
+            Grantable.Width = 384;
             // 
             // Grant_Privileges
             // 
@@ -255,10 +334,15 @@ namespace atbmcq_02
             Margin = new Padding(4, 3, 4, 3);
             Name = "Grant_Privileges";
             Size = new Size(1592, 535);
+            Load += Grant_Privileges_Load;
             grpPrivileges.ResumeLayout(false);
             grpPrivileges.PerformLayout();
-            pnlColumn.ResumeLayout(false);
-            pnlColumn.PerformLayout();
+            pnlSYS.ResumeLayout(false);
+            pnlSYS.PerformLayout();
+            pnlObjectDetails.ResumeLayout(false);
+            pnlObjectDetails.PerformLayout();
+            pnlColumns.ResumeLayout(false);
+            pnlColumns.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -266,23 +350,31 @@ namespace atbmcq_02
 
         private OracleDbConnection _connection;
         private GroupBox grpPrivileges;
-        private CheckBox chkUpdate;
-        private CheckBox chkDelete;
-        private CheckBox chkInsert;
-        private CheckBox chkSelect;
-        private Panel pnlColumn;
-        private TextBox txtColumn;
-        private Label lblColumn;
         private Label lblGrantee;
         private TextBox txtGrantee;
-        private Label lblObject;
-        private TextBox txtObject;
         private Button btnGrant;
         private Button btnRevoke;
         private ListView lstPrivileges;
         private ColumnHeader UserOrRole;
         private ColumnHeader Privilege;
         private ColumnHeader Target;
-        private ColumnHeader PType;
+        private ColumnHeader Grantable;
+        private Label lblGrantType;
+        private ComboBox cmbGrantType;
+        private Panel pnlObjectDetails;
+        private Label lblObjectOwner;
+        private TextBox txtObjectOwner;
+        private Label lblObjectName;
+        private TextBox txtObjectName;
+        private Label lblObjectPrivilege;
+        private ComboBox cmbObjectPrivilege;
+        private Panel pnlColumns;
+        private TextBox txtColumns;
+        private Label lblColumns;
+        private CheckBox chkGrantOption;
+        private Label lblSystemPrivilege;
+        private TextBox txtSystemPrivilege;
+        private CheckBox chkAdminOption;
+        private Panel pnlSYS;
     }
 }

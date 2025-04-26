@@ -1,122 +1,186 @@
 ﻿using Oracle.ManagedDataAccess.Client;
+using Oracle.ManagedDataAccess.Types;
 using OracleUserManager.Models;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Data.Common;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace atbmcq_02
 {
     public partial class Grant_Privileges : UserControl
     {
+        private enum GrantType
+        {
+            Object,
+            System,
+            Role
+        }
+
         public Grant_Privileges(OracleDbConnection _connect)
         {
             InitializeComponent();
             _connection = _connect;
         }
 
-        private void GrantPrivilege(object sender, EventArgs e)
+        private void Grant_Privileges_Load(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtGrantee.Text) || (chkSelect.Checked == false && chkInsert.Checked == false && chkDelete.Checked == false && chkUpdate.Checked == false) || string.IsNullOrWhiteSpace(txtObject.Text))
+            cmbGrantType.SelectedIndex = 0;
+            UpdateGrantUI();
+            LoadPrivileges(sender, e);
+        }
+
+        private void cmbGrantType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateGrantUI();
+        }
+
+        private void UpdateGrantUI()
+        {
+            GrantType selectedType;
+
+            if (cmbGrantType.SelectedIndex == 1)
             {
-                MessageBox.Show("Vui lòng nhập đầy đủ thông tin!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                selectedType = GrantType.System;
+            }
+            else
+            {
+                selectedType = GrantType.Object;
             }
 
-            try
+            if (selectedType == GrantType.System)
             {
-                using var conn = new OracleConnection(_connection.GetConnectionString());
-                conn.Open();
+                pnlObjectDetails.ForeColor = Color.Gray;
+                pnlObjectDetails.Enabled = false;
 
-                string grantee = txtGrantee.Text.Trim();
-                string tableName = txtObject.Text.Trim();
-                bool grantInsert = chkInsert.Checked;
-                bool grantSelect = chkSelect.Checked;
-                bool grantUpdate = chkUpdate.Checked;
-                bool grantDelete = chkDelete.Checked;
-                string grantCols = string.IsNullOrWhiteSpace(txtColumn.Text) ? null : txtColumn.Text.Trim();
-                string selectCols = null;
-                string updateCols = null;
-                if (grantInsert)
-                {
-                    selectCols = grantCols;
-                }
-
-                if (grantSelect)
-                {
-                    selectCols = grantCols;
-                }
-
-                using var cmd = new OracleCommand("grant_privilege_proc", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                cmd.Parameters.Add("p_grantee", OracleDbType.Varchar2).Value = grantee;
-                cmd.Parameters.Add("p_table_name", OracleDbType.Varchar2).Value = tableName;
-                cmd.Parameters.Add("p_select_cols", OracleDbType.Varchar2).Value = (object)selectCols ?? DBNull.Value;
-                cmd.Parameters.Add("p_update_cols", OracleDbType.Varchar2).Value = (object)updateCols ?? DBNull.Value;
-                cmd.Parameters.Add("p_grant_insert", OracleDbType.Boolean).Value = grantInsert;
-                cmd.Parameters.Add("p_grant_delete", OracleDbType.Boolean).Value = grantDelete;
-                cmd.Parameters.Add("p_grant_select", OracleDbType.Boolean).Value = grantSelect;
-                cmd.Parameters.Add("p_grant_update", OracleDbType.Boolean).Value = grantUpdate;
-
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("Cấp quyền thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LoadPrivileges(sender, e);
+                chkAdminOption.ForeColor = SystemColors.ControlText;
+                pnlSYS.ForeColor = SystemColors.ControlText;
+                pnlSYS.Enabled = true;
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                pnlObjectDetails.ForeColor = SystemColors.ControlText;
+                pnlObjectDetails.Enabled = true;
+
+                chkAdminOption.ForeColor = Color.Gray;
+                pnlSYS.ForeColor = Color.Gray;
+                pnlSYS.Enabled = false;
             }
         }
 
-        private void RevokePrivilege(object sender, EventArgs e)
+        private void cmbObjectPrivilege_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtGrantee.Text) || (chkSelect.Checked == false && chkInsert.Checked == false && chkDelete.Checked == false && chkUpdate.Checked == false) || string.IsNullOrWhiteSpace(txtObject.Text))
+            UpdateColumnPanelVisibility();
+        }
+        private void cmbObjectPrivilege_TextChanged(object sender, EventArgs e)
+        {
+            UpdateColumnPanelVisibility();
+        }
+
+        private void UpdateColumnPanelVisibility()
+        {
+            string selectedPriv = cmbObjectPrivilege.Text.Trim().ToUpperInvariant();
+            pnlColumns.Visible = (selectedPriv == "SELECT" || selectedPriv == "UPDATE");
+            if (!pnlColumns.Visible) 
+            {  
+                txtColumns.Clear(); 
+            }
+        }
+
+        private void btnGrant_Click(object sender, EventArgs e)
+        {
+            string grantee = txtGrantee.Text.Trim();
+            string grantType = cmbGrantType.SelectedItem.ToString();
+
+            if (string.IsNullOrWhiteSpace(grantee))
             {
-                MessageBox.Show("Vui lòng nhập đầy đủ thông tin!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please enter the User/Role to grant privileges to.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtGrantee.Focus();
                 return;
             }
+
+            if (string.IsNullOrWhiteSpace(grantType))
+            {
+                MessageBox.Show("Please enter the Grant Type to grant privileges.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                cmbGrantType.Focus();
+                return;
+            }
+
+            GrantType selectedType;
+
+            if (cmbGrantType.SelectedIndex == 1) selectedType = GrantType.System;
+            else selectedType = GrantType.Object;
 
             try
             {
                 using var conn = new OracleConnection(_connection.GetConnectionString());
                 conn.Open();
 
-                string grantee = txtGrantee.Text.Trim();
-                string tableName = txtObject.Text.Trim();
-                bool grantInsert = chkInsert.Checked;
-                bool grantSelect = chkSelect.Checked;
-                bool grantUpdate = chkUpdate.Checked;
-                bool grantDelete = chkDelete.Checked;
+                OracleCommand cmd = null;
 
-                using var cmd = new OracleCommand("revoke_privilege_proc", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
+                switch (selectedType)
+                {
+                    case GrantType.System:
+                        string sysPrivilege = txtSystemPrivilege.Text.Trim();
 
-                cmd.Parameters.Add("p_grantee", OracleDbType.Varchar2).Value = grantee;
-                cmd.Parameters.Add("p_table_name", OracleDbType.Varchar2).Value = tableName;
-                cmd.Parameters.Add("p_grant_insert", OracleDbType.Boolean).Value = grantInsert;
-                cmd.Parameters.Add("p_grant_delete", OracleDbType.Boolean).Value = grantDelete;
-                cmd.Parameters.Add("p_grant_select", OracleDbType.Boolean).Value = grantSelect;
-                cmd.Parameters.Add("p_grant_update", OracleDbType.Boolean).Value = grantUpdate;
+                        if (string.IsNullOrWhiteSpace(sysPrivilege)) 
+                        {
+                            MessageBox.Show("Please enter the SYSPrivilege to grant.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            txtSystemPrivilege.Focus();
+                            return; 
+                        }
 
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("Thu hồi quyền thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LoadPrivileges(sender, e);
+                        cmd = new OracleCommand("grant_sys_priv_proc", conn);
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        cmd.Parameters.Add("p_privilege", OracleDbType.Varchar2).Value = sysPrivilege;
+                        cmd.Parameters.Add("p_grantee", OracleDbType.Varchar2).Value = grantee;
+                        cmd.Parameters.Add("p_with_admin_option", OracleDbType.Int32).Value = chkAdminOption.Checked ? 1 : 0;
+                        break;
+
+                    case GrantType.Object:
+                        string objectOwner = txtObjectOwner.Text.Trim();
+                        string objectName = txtObjectName.Text.Trim();
+                        string objectPrivilege = cmbObjectPrivilege.Text.Trim();
+                        string columns = string.IsNullOrWhiteSpace(txtColumns.Text) ? null : txtColumns.Text.Trim();
+
+                        if (string.IsNullOrWhiteSpace(objectOwner) || string.IsNullOrWhiteSpace(objectName) || string.IsNullOrWhiteSpace(objectPrivilege)) 
+                        {
+                            MessageBox.Show("Please enter the information fully to grant privilege.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return; 
+                        }
+
+                        string upperPriv = objectPrivilege.ToUpperInvariant();
+
+                        cmd = new OracleCommand("grant_object_priv_proc", conn);
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        cmd.Parameters.Add("p_privilege", OracleDbType.Varchar2).Value = objectPrivilege;
+                        cmd.Parameters.Add("p_grantee", OracleDbType.Varchar2).Value = grantee;
+                        cmd.Parameters.Add("p_object_owner", OracleDbType.Varchar2).Value = objectOwner;
+                        cmd.Parameters.Add("p_object_name", OracleDbType.Varchar2).Value = objectName;
+                        cmd.Parameters.Add("p_columns", OracleDbType.Varchar2).Value = (object)columns ?? DBNull.Value;
+                        cmd.Parameters.Add("p_with_grant_option", OracleDbType.Int32).Value = chkGrantOption.Checked ? 1 : 0;
+                        break;
+                }
+
+                if (cmd != null)
+                {
+                    using (cmd)
+                    {
+                        cmd.ExecuteNonQuery();
+                        MessageBox.Show("Grant successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LoadPrivileges(sender, e);
+                    }
+                }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            catch (OracleException ox) { MessageBox.Show($"Oracle Error: {ox.Message}\n(Error Code: {ox.Number})", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+            catch (Exception ex) { MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
         }
 
         private void LoadPrivileges(object sender, EventArgs e)
         {
+            lstPrivileges.Items.Clear();
             try
             {
                 using var conn = new OracleConnection(_connection.GetConnectionString());
@@ -126,7 +190,6 @@ namespace atbmcq_02
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add("p_cursor", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
 
-                lstPrivileges.Items.Clear();
                 using var reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
@@ -134,113 +197,17 @@ namespace atbmcq_02
                     item.SubItems.Add(reader["privilege"].ToString());
                     item.SubItems.Add(reader["table_name"].ToString());
                     item.SubItems.Add(reader["grantable"].ToString());
+
                     lstPrivileges.Items.Add(item);
                 }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            catch (OracleException ox) { MessageBox.Show($"Oracle Error loading privileges: {ox.Message}\n(Error Code: {ox.Number})", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+            catch (Exception ex) { MessageBox.Show($"Error loading privileges: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
         }
 
-        private void panel_CheckedChanged(object sender, EventArgs e)
+        private void RevokePrivilege(object sender, EventArgs e)
         {
-            if (chkSelect.Checked || chkUpdate.Checked)
-            {
-                pnlColumn.Visible = true;
-            }
-            else
-            {
-                pnlColumn.Visible = false;
-            }
-        }
-
-        private void chkSelect_CheckedChanged(object sender, EventArgs e)
-        {
-            if (chkSelect.Checked)
-            {
-                chkInsert.ForeColor = Color.Gray;
-                chkDelete.ForeColor = Color.Gray;
-                chkUpdate.ForeColor = Color.Gray;
-                chkInsert.Enabled = false;
-                chkDelete.Enabled = false;
-                chkUpdate.Enabled = false;
-            }
-            else
-            {
-                chkInsert.ForeColor = SystemColors.ControlText;
-                chkDelete.ForeColor = SystemColors.ControlText;
-                chkUpdate.ForeColor = SystemColors.ControlText;
-                chkInsert.Enabled = true;
-                chkDelete.Enabled = true;
-                chkUpdate.Enabled = true;
-            }
-        }
-
-        private void chkInsert_CheckedChanged(object sender, EventArgs e)
-        {
-            if (chkInsert.Checked)
-            {
-                chkSelect.ForeColor = Color.Gray;
-                chkDelete.ForeColor = Color.Gray;
-                chkUpdate.ForeColor = Color.Gray;
-                chkSelect.Enabled = false;
-                chkDelete.Enabled = false;
-                chkUpdate.Enabled = false;
-            }
-            else
-            {
-                chkSelect.ForeColor = SystemColors.ControlText;
-                chkDelete.ForeColor = SystemColors.ControlText;
-                chkUpdate.ForeColor = SystemColors.ControlText;
-                chkSelect.Enabled = true;
-                chkDelete.Enabled = true;
-                chkUpdate.Enabled = true;
-            }
-        }
-
-        private void chkDelete_CheckedChanged(object sender, EventArgs e)
-        {
-            if (chkDelete.Checked)
-            {
-                chkInsert.ForeColor = Color.Gray;
-                chkSelect.ForeColor = Color.Gray;
-                chkUpdate.ForeColor = Color.Gray;
-                chkInsert.Enabled = false;
-                chkSelect.Enabled = false;
-                chkUpdate.Enabled = false;
-            }
-            else
-            {
-                chkInsert.ForeColor = SystemColors.ControlText;
-                chkSelect.ForeColor = SystemColors.ControlText;
-                chkUpdate.ForeColor = SystemColors.ControlText;
-                chkInsert.Enabled = true;
-                chkSelect.Enabled = true;
-                chkUpdate.Enabled = true;
-            }
-        }
-
-        private void chkUpdate_CheckedChanged(object sender, EventArgs e)
-        {
-            if (chkUpdate.Checked)
-            {
-                chkInsert.ForeColor = Color.Gray;
-                chkDelete.ForeColor = Color.Gray;
-                chkSelect.ForeColor = Color.Gray;
-                chkInsert.Enabled = false;
-                chkDelete.Enabled = false;
-                chkSelect.Enabled = false;
-            }
-            else
-            {
-                chkInsert.ForeColor = SystemColors.ControlText;
-                chkDelete.ForeColor = SystemColors.ControlText;
-                chkSelect.ForeColor = SystemColors.ControlText;
-                chkInsert.Enabled = true;
-                chkDelete.Enabled = true;
-                chkSelect.Enabled = true;
-            }
+            //
         }
     }
 }
