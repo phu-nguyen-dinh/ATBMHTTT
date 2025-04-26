@@ -117,8 +117,20 @@ namespace atbmcq_02
                 cmd.Parameters.Add("p_object_name", OracleDbType.Varchar2).Value = tableName;
 
                 cmd.ExecuteNonQuery();
-                MessageBox.Show("Thu hồi quyền thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
+                // Clear selection and checkboxes
+                txtGrantee.Clear();
+                txtObject.Clear();
+                chkSelect.Checked = false;
+                chkInsert.Checked = false;
+                chkDelete.Checked = false;
+                chkUpdate.Checked = false;
+                
+                // Refresh the list
+                lstPrivileges.Items.Clear();
                 LoadPrivileges(sender, e);
+                
+                MessageBox.Show("Thu hồi quyền thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {

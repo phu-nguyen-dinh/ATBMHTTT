@@ -8,14 +8,6 @@ CREATE TABLE audit_log (
     timestamp     TIMESTAMP DEFAULT SYSTIMESTAMP
 );
 
--- Xóa procedure get_privileges_list nếu đã tồn tại
-BEGIN
-    EXECUTE IMMEDIATE 'DROP PROCEDURE get_privileges_list';
-EXCEPTION
-    WHEN OTHERS THEN NULL;
-END;
-/
-
 -- =====================================
 CREATE OR REPLACE PROCEDURE create_user_proc(
     p_username IN VARCHAR2,
@@ -357,6 +349,14 @@ END;
 
 
 -- ===============================
+-- Xóa procedure get_privileges_list nếu đã tồn tại
+BEGIN
+    EXECUTE IMMEDIATE 'DROP PROCEDURE get_privileges_list';
+EXCEPTION
+    WHEN OTHERS THEN NULL;
+END;
+/
+
 CREATE OR REPLACE PROCEDURE get_privileges_list(
     p_cursor OUT SYS_REFCURSOR
 )
@@ -364,15 +364,26 @@ AUTHID CURRENT_USER
 AS
 BEGIN
     OPEN p_cursor FOR
-        SELECT target_object AS grantee,
-               privilege,
-               object_type AS table_name,
-               'Có thể cấp' AS grantable  -- vì ta cấp, ta toàn quyền
-        FROM audit_log
-        WHERE admin_user = USER
-          AND action_type = 'GRANT'
-          AND object_type = 'TABLE'
-        ORDER BY target_object, privilege;
+        SELECT DISTINCT 
+            al1.target_object AS grantee,
+            al1.privilege,
+            al1.object_type AS table_name,
+            'Có thể cấp' AS grantable
+        FROM audit_log al1
+        WHERE al1.admin_user = USER
+            AND al1.action_type = 'GRANT'
+            AND al1.object_type = 'TABLE'
+            AND NOT EXISTS (
+                SELECT 1
+                FROM audit_log al2
+                WHERE al2.admin_user = USER
+                    AND al2.action_type = 'REVOKE'
+                    AND al2.target_object = al1.target_object
+                    AND al2.privilege = al1.privilege
+                    AND al2.object_type = al1.object_type
+                    AND al2.timestamp > al1.timestamp
+            )
+        ORDER BY al1.target_object, al1.privilege;
 END;
 /
 
