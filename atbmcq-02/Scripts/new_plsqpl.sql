@@ -122,6 +122,14 @@ END;
 
 
 -- ===========================================
+-- Xóa procedure grant_privilege_proc nếu đã tồn tại
+BEGIN
+    EXECUTE IMMEDIATE 'DROP PROCEDURE grant_privilege_proc';
+EXCEPTION
+    WHEN OTHERS THEN NULL;
+END;
+/
+
 CREATE OR REPLACE PROCEDURE grant_privilege_proc (
     p_grantee        IN VARCHAR2,
     p_table_name     IN VARCHAR2,
@@ -135,6 +143,7 @@ CREATE OR REPLACE PROCEDURE grant_privilege_proc (
 AUTHID CURRENT_USER
 AS
 BEGIN
+    -- Kiểm tra quyền SELECT
     IF p_grant_select THEN
         IF p_select_cols IS NOT NULL THEN
             EXECUTE IMMEDIATE 'GRANT SELECT (' || p_select_cols || ') ON ' || p_table_name || ' TO ' || p_grantee;
@@ -142,9 +151,25 @@ BEGIN
             EXECUTE IMMEDIATE 'GRANT SELECT ON ' || p_table_name || ' TO ' || p_grantee;
         END IF;
 
-        INSERT INTO audit_log VALUES (DEFAULT, USER, 'GRANT', p_grantee, 'TABLE', 'SELECT', SYSTIMESTAMP);
+        INSERT INTO audit_log(admin_user, action_type, target_object, object_type, privilege)
+        VALUES (USER, 'GRANT', p_grantee, 'TABLE', 'SELECT');
     END IF;
 
+    -- Kiểm tra quyền INSERT
+    IF p_grant_insert THEN
+        EXECUTE IMMEDIATE 'GRANT INSERT ON ' || p_table_name || ' TO ' || p_grantee;
+        INSERT INTO audit_log(admin_user, action_type, target_object, object_type, privilege)
+        VALUES (USER, 'GRANT', p_grantee, 'TABLE', 'INSERT');
+    END IF;
+
+    -- Kiểm tra quyền DELETE
+    IF p_grant_delete THEN
+        EXECUTE IMMEDIATE 'GRANT DELETE ON ' || p_table_name || ' TO ' || p_grantee;
+        INSERT INTO audit_log(admin_user, action_type, target_object, object_type, privilege)
+        VALUES (USER, 'GRANT', p_grantee, 'TABLE', 'DELETE');
+    END IF;
+
+    -- Kiểm tra quyền UPDATE
     IF p_grant_update THEN
         IF p_update_cols IS NOT NULL THEN
             EXECUTE IMMEDIATE 'GRANT UPDATE (' || p_update_cols || ') ON ' || p_table_name || ' TO ' || p_grantee;
@@ -152,17 +177,8 @@ BEGIN
             EXECUTE IMMEDIATE 'GRANT UPDATE ON ' || p_table_name || ' TO ' || p_grantee;
         END IF;
 
-        INSERT INTO audit_log VALUES (DEFAULT, USER, 'GRANT', p_grantee, 'TABLE', 'UPDATE', SYSTIMESTAMP);
-    END IF;
-
-    IF p_grant_insert THEN
-        EXECUTE IMMEDIATE 'GRANT INSERT ON ' || p_table_name || ' TO ' || p_grantee;
-        INSERT INTO audit_log VALUES (DEFAULT, USER, 'GRANT', p_grantee, 'TABLE', 'INSERT', SYSTIMESTAMP);
-    END IF;
-
-    IF p_grant_delete THEN
-        EXECUTE IMMEDIATE 'GRANT DELETE ON ' || p_table_name || ' TO ' || p_grantee;
-        INSERT INTO audit_log VALUES (DEFAULT, USER, 'GRANT', p_grantee, 'TABLE', 'DELETE', SYSTIMESTAMP);
+        INSERT INTO audit_log(admin_user, action_type, target_object, object_type, privilege)
+        VALUES (USER, 'GRANT', p_grantee, 'TABLE', 'UPDATE');
     END IF;
 
     COMMIT;
@@ -364,26 +380,27 @@ AUTHID CURRENT_USER
 AS
 BEGIN
     OPEN p_cursor FOR
-        SELECT DISTINCT 
-            al1.target_object AS grantee,
-            al1.privilege,
-            al1.object_type AS table_name,
+        WITH privilege_counts AS (
+            SELECT 
+                target_object,
+                privilege,
+                object_type,
+                COUNT(CASE WHEN action_type = 'GRANT' THEN 1 END) as grant_count,
+                COUNT(CASE WHEN action_type = 'REVOKE' THEN 1 END) as revoke_count
+            FROM audit_log
+            WHERE admin_user = USER
+                AND object_type = 'TABLE'
+                AND action_type IN ('GRANT', 'REVOKE')
+            GROUP BY target_object, privilege, object_type
+        )
+        SELECT 
+            target_object AS grantee,
+            privilege,
+            object_type AS table_name,
             'Có thể cấp' AS grantable
-        FROM audit_log al1
-        WHERE al1.admin_user = USER
-            AND al1.action_type = 'GRANT'
-            AND al1.object_type = 'TABLE'
-            AND NOT EXISTS (
-                SELECT 1
-                FROM audit_log al2
-                WHERE al2.admin_user = USER
-                    AND al2.action_type = 'REVOKE'
-                    AND al2.target_object = al1.target_object
-                    AND al2.privilege = al1.privilege
-                    AND al2.object_type = al1.object_type
-                    AND al2.timestamp > al1.timestamp
-            )
-        ORDER BY al1.target_object, al1.privilege;
+        FROM privilege_counts
+        WHERE grant_count > revoke_count
+        ORDER BY target_object, privilege;
 END;
 /
 

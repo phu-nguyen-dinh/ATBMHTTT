@@ -50,14 +50,15 @@ namespace atbmcq_02
                 string grantCols = string.IsNullOrWhiteSpace(txtColumn.Text) ? null : txtColumn.Text.Trim();
                 string selectCols = null;
                 string updateCols = null;
-                if (grantInsert)
-                {
-                    selectCols = grantCols;
-                }
 
                 if (grantSelect)
                 {
                     selectCols = grantCols;
+                }
+
+                if (grantUpdate)
+                {
+                    updateCols = grantCols;
                 }
 
                 using var cmd = new OracleCommand("grant_privilege_proc", conn);
@@ -67,9 +68,9 @@ namespace atbmcq_02
                 cmd.Parameters.Add("p_table_name", OracleDbType.Varchar2).Value = tableName;
                 cmd.Parameters.Add("p_select_cols", OracleDbType.Varchar2).Value = (object)selectCols ?? DBNull.Value;
                 cmd.Parameters.Add("p_update_cols", OracleDbType.Varchar2).Value = (object)updateCols ?? DBNull.Value;
+                cmd.Parameters.Add("p_grant_select", OracleDbType.Boolean).Value = grantSelect;
                 cmd.Parameters.Add("p_grant_insert", OracleDbType.Boolean).Value = grantInsert;
                 cmd.Parameters.Add("p_grant_delete", OracleDbType.Boolean).Value = grantDelete;
-                cmd.Parameters.Add("p_grant_select", OracleDbType.Boolean).Value = grantSelect;
                 cmd.Parameters.Add("p_grant_update", OracleDbType.Boolean).Value = grantUpdate;
 
                 cmd.ExecuteNonQuery();
