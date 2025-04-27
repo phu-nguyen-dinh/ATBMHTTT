@@ -204,6 +204,7 @@ namespace atbmcq_02
             btnGrant.Size = new Size(215, 53);
             btnGrant.TabIndex = 6;
             btnGrant.Text = "Grant";
+            btnGrant.Click += GrantPrivilege;
             // 
             // btnRevoke
             // 
@@ -214,6 +215,7 @@ namespace atbmcq_02
             btnRevoke.Size = new Size(215, 53);
             btnRevoke.TabIndex = 7;
             btnRevoke.Text = "Revoke";
+            btnRevoke.Click += RevokePrivilege;
             // 
             // lstPrivileges
             // 
@@ -225,6 +227,7 @@ namespace atbmcq_02
             lstPrivileges.TabIndex = 8;
             lstPrivileges.UseCompatibleStateImageBehavior = false;
             lstPrivileges.View = View.Details;
+            lstPrivileges.ItemSelectionChanged += LstPrivileges_ItemSelectionChanged;
             // 
             // UserOrRole
             // 
@@ -264,7 +267,6 @@ namespace atbmcq_02
 
         #endregion
 
-        private OracleDbConnection _connection;
         private GroupBox grpPrivileges;
         private CheckBox chkUpdate;
         private CheckBox chkDelete;
