@@ -30,4 +30,8 @@
     </EmbeddedResource>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Scripts\YC1\" />
+  </ItemGroup>
+
 </Project>

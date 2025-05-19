@@ -94,6 +94,7 @@ namespace atbmcq_02
             txtUsername.Name = "txtUsername";
             txtUsername.Size = new Size(390, 37);
             txtUsername.TabIndex = 10;
+            txtUsername.Text = "C##ADMIN";
             // 
             // lblRole
             // 
@@ -134,6 +135,7 @@ namespace atbmcq_02
             txtPassword.PasswordChar = '*';
             txtPassword.Size = new Size(390, 37);
             txtPassword.TabIndex = 14;
+            txtPassword.Text = "123456";
             // 
             // bottomPanel
             // 
