@@ -15,23 +15,14 @@ using System.IO;
 
 namespace atbmcq_02
 {
-    public partial class Connection : Form
+    public partial class Loggin : Form
     {
         private OracleDbConnection _connection;
 
-        public Connection()
+        public Loggin()
         {
             InitializeComponent();
             _connection = new OracleDbConnection();
-            
-            // Set default values
-            cboAuthType.SelectedIndex = 0;
-            cboRole.SelectedIndex = 0;
-            cboConnType.SelectedIndex = 0;
-            txtUsername.Text = "C##ADMIN";
-            // Initial radio button state
-            txtSID.Enabled = radSID.Checked;
-            txtServiceName.Enabled = radServiceName.Checked;
 
             // Add event handlers for buttons
             btnTest.Click += BtnTest_Click;
@@ -44,32 +35,17 @@ namespace atbmcq_02
             try
             {
                 // Get connection details
-                _connection.Hostname = cboHostname.Text;
-                _connection.Port = int.Parse(txtPort.Text);
+                _connection.Hostname = "localhost";
+                _connection.Port = 1521;
                 _connection.Username = txtUsername.Text;
                 _connection.Password = txtPassword.Text;
                 _connection.Role = cboRole.SelectedItem?.ToString() ?? "default";
-
-                if (radSID.Checked)
-                {
-                    _connection.SID = txtSID.Text;
-                    _connection.ServiceName = string.Empty;
-                }
-                else
-                {
-                    _connection.ServiceName = txtServiceName.Text;
-                    _connection.SID = string.Empty;
-                }
+                _connection.ServiceName = "xepdb1";
 
                 // Test the connection
                 if (_connection.TestConnection())
                 {
                     MessageBox.Show("Connection test successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    // Add new hostname to the list if it doesn't exist
-                    if (!string.IsNullOrEmpty(cboHostname.Text) && !cboHostname.Items.Contains(cboHostname.Text))
-                    {
-                        cboHostname.Items.Add(cboHostname.Text);
-                    }
                 }
                 else
                 {
@@ -92,32 +68,15 @@ namespace atbmcq_02
         {
             try
             {
-                this._connection.Hostname = cboHostname.Text;
-                this._connection.Port = int.Parse(txtPort.Text);
-                
-                if (radSID.Checked)
-                {
-                    this._connection.SID = txtSID.Text;
-                    this._connection.ServiceName = string.Empty;
-                }
-                else
-                {
-                    this._connection.ServiceName = txtServiceName.Text;
-                    this._connection.SID = string.Empty;
-                }
-                
+                this._connection.Hostname = "localhost";
+                this._connection.Port = 1521;
+                _connection.ServiceName = "xepdb1";
                 this._connection.Username = txtUsername.Text;
                 this._connection.Password = txtPassword.Text;
                 this._connection.Role = cboRole.SelectedItem?.ToString() ?? "default";
 
                 if (_connection.TestConnection())
                 {
-                    // Add new hostname to the list if it doesn't exist
-                    if (!string.IsNullOrEmpty(cboHostname.Text) && !cboHostname.Items.Contains(cboHostname.Text))
-                    {
-                        cboHostname.Items.Add(cboHostname.Text);
-                    }
-
                     MessageBox.Show("Connection successful!", "Notification", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     loadMainForm();
                 }
