@@ -6,7 +6,7 @@ using System.Xml.Linq;
 
 namespace atbmcq_02
 {
-    partial class Grant_Privileges
+    partial class GrantPrivileges
     {
         /// <summary> 
         /// Required designer variable.

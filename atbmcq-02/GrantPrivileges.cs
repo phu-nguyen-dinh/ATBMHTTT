@@ -13,11 +13,11 @@ using System.Windows.Forms;
 
 namespace atbmcq_02
 {
-    public partial class Grant_Privileges : UserControl
+    public partial class GrantPrivileges : UserControl
     {
         private OracleDbConnection _connection;
 
-        public Grant_Privileges(OracleDbConnection _connect)
+        public GrantPrivileges(OracleDbConnection _connect)
         {
             InitializeComponent();
             _connection = _connect;
