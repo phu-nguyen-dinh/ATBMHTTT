@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace atbmcq_02
 {
-    partial class Loggin
+    partial class Login
     {
         /// <summary>
         /// Required designer variable.
@@ -32,7 +32,7 @@ namespace atbmcq_02
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Loggin));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             lblHeader = new Label();
             panel1 = new Panel();
             lblUsername = new Label();
@@ -56,12 +56,12 @@ namespace atbmcq_02
             // 
             lblHeader.AutoSize = true;
             lblHeader.Font = new Font("Arial Rounded MT Bold", 36F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblHeader.Location = new Point(620, 9);
+            lblHeader.Location = new Point(644, 9);
             lblHeader.Margin = new Padding(4, 0, 4, 0);
             lblHeader.Name = "lblHeader";
-            lblHeader.Size = new Size(274, 83);
+            lblHeader.Size = new Size(229, 83);
             lblHeader.TabIndex = 21;
-            lblHeader.Text = "Loggin";
+            lblHeader.Text = "Login";
             lblHeader.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // panel1
@@ -195,7 +195,7 @@ namespace atbmcq_02
             panel2.Size = new Size(1, 465);
             panel2.TabIndex = 23;
             // 
-            // Loggin
+            // Login
             // 
             AutoScaleDimensions = new SizeF(14F, 29F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -208,7 +208,7 @@ namespace atbmcq_02
             Controls.Add(bottomPanel);
             Font = new Font("Times New Roman", 13F, FontStyle.Regular, GraphicsUnit.Point, 0);
             Margin = new Padding(4, 3, 4, 3);
-            Name = "Loggin";
+            Name = "Login";
             Text = "Connection";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

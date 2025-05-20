@@ -15,11 +15,11 @@ using System.IO;
 
 namespace atbmcq_02
 {
-    public partial class Loggin : Form
+    public partial class Login : Form
     {
         private OracleDbConnection _connection;
 
-        public Loggin()
+        public Login()
         {
             InitializeComponent();
             _connection = new OracleDbConnection();
@@ -40,7 +40,7 @@ namespace atbmcq_02
                 _connection.Username = txtUsername.Text;
                 _connection.Password = txtPassword.Text;
                 _connection.Role = cboRole.SelectedItem?.ToString() ?? "default";
-                _connection.ServiceName = "xepdb1";
+                _connection.ServiceName = "project";
 
                 // Test the connection
                 if (_connection.TestConnection())
@@ -70,7 +70,7 @@ namespace atbmcq_02
             {
                 this._connection.Hostname = "localhost";
                 this._connection.Port = 1521;
-                _connection.ServiceName = "xepdb1";
+                _connection.ServiceName = "project";
                 this._connection.Username = txtUsername.Text;
                 this._connection.Password = txtPassword.Text;
                 this._connection.Role = cboRole.SelectedItem?.ToString() ?? "default";
@@ -94,8 +94,8 @@ namespace atbmcq_02
         private void loadMainForm()
         {
             this.Hide();
-            Home home = new Home(_connection);
-            home.ShowDialog();
+            DashBoard dshBrd = new DashBoard(_connection);
+            dshBrd.ShowDialog();
             this.Close();
         }
     }

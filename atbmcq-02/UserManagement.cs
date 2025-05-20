@@ -14,9 +14,9 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace atbmcq_02
 {
-    public partial class User_Management : UserControl
+    public partial class UserManagement : UserControl
     {
-        public User_Management(OracleDbConnection _connect)
+        public UserManagement(OracleDbConnection _connect)
         {
             InitializeComponent();
             _connection = _connect;
