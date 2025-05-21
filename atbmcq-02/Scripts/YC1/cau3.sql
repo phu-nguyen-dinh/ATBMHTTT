@@ -12,6 +12,14 @@ AS
 BEGIN
     v_user := SYS_CONTEXT('USERENV', 'SESSION_USER');
 
+    -- Nếu là C##ADMIN
+    IF v_user = 'C##ADMIN' THEN
+        RETURN '1=1';
+    
+    -- Nếu là sinh viên
+    ELSIF v_user LIKE 'SV%' THEN
+        RETURN 'MASV = ''' || v_user || '''';
+    END IF;
     -- Lấy vai trò và mã đơn vị nếu có
     BEGIN
         SELECT VAITRO, MADV
@@ -22,17 +30,9 @@ BEGIN
         WHEN NO_DATA_FOUND THEN
             v_vaitro := NULL;
     END;
-    
-    -- Nếu là C##ADMIN
-    IF v_user = 'C##ADMIN' THEN
-        RETURN '1=1';
-    
-    -- Nếu là sinh viên
-    ELSIF v_user LIKE 'SV%' THEN
-        RETURN 'MASV = ''' || v_user || '''';
 
     -- Nếu là giảng viên
-    ELSIF v_vaitro LIKE 'GV%' THEN
+    IF v_vaitro LIKE 'GV%' THEN
         RETURN 'KHOA = ''' || v_madv || '''';
 
     -- Nếu là nhân viên phòng CTSV
@@ -81,11 +81,10 @@ END;
 /
 
 
-/*BEGIN -- Xóa policy
+BEGIN -- Xóa policy
     DBMS_RLS.DROP_POLICY(
         object_schema => 'C##ADMIN',
         object_name   => 'SINHVIEN',
         policy_name   => 'VPD_POLICY_SINHVIEN'
     );
 END;
-*/

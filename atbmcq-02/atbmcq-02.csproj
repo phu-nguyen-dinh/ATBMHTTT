@@ -31,6 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Resources\" />
     <Folder Include="Scripts\YC1\" />
   </ItemGroup>
 

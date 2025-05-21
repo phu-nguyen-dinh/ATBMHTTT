@@ -12,13 +12,14 @@ using System.Windows.Forms;
 
 namespace atbmcq_02
 {
-    public partial class Registration : UserControl
+    public partial class Student : UserControl
     {
         public event EventHandler<OracleDbConnection> backClicked;
-        public Registration(OracleDbConnection _connect)
+        public Student(OracleDbConnection _connect)
         {
             InitializeComponent();
             _connection = _connect;
+            LoadStudents();
             LoadRegisteredCourses();
         }
 
@@ -26,20 +27,40 @@ namespace atbmcq_02
         {
             backClicked?.Invoke(this, _connection);
         }
+        private void LoadStudents()
+        {
+            try
+            {
+                using var conn = new OracleConnection(_connection.GetConnectionString());
+                conn.Open();
+
+                string query = "SELECT * FROM C##ADMIN.SINHVIEN";
+                using var cmd = new OracleCommand(query, conn);
+                using var reader = cmd.ExecuteReader();
+
+                dtgvStudent1.Rows.Clear();
+
+                while (reader.Read())
+                {
+                    object[] row = new object[reader.FieldCount];
+                    reader.GetValues(row);
+                    dtgvStudent1.Rows.Add(row);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
         private void LoadRegisteredCourses()
         {
             try
             {
-                string username = _connection.Username.ToUpper();
                 using var conn = new OracleConnection(_connection.GetConnectionString());
                 conn.Open();
-                string query = "SELECT * FROM C##ADMIN.DANGKY";
-                
-                if (username.StartsWith("SV"))
-                {
-                    query = "SELECT * FROM C##ADMIN.DANGKY WHERE MASV= '"+username+"'";
-                }
+
+                string query = "SELECT * FROM C##ADMIN.DANGKY WHERE MASV='SV2274'";
                 using var cmd = new OracleCommand(query, conn);
                 using var reader = cmd.ExecuteReader();
 

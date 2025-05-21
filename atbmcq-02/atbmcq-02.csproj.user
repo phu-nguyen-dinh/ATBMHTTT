@@ -22,6 +22,12 @@
     <Compile Update="Registration.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="Student.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Teacher.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="UserManagement.cs">
       <SubType>UserControl</SubType>
     </Compile>

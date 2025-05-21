@@ -40,7 +40,7 @@ namespace atbmcq_02
                 _connection.Username = txtUsername.Text;
                 _connection.Password = txtPassword.Text;
                 _connection.Role = cboRole.SelectedItem?.ToString() ?? "default";
-                _connection.ServiceName = "project";
+                _connection.ServiceName = "xepdb1";
 
                 // Test the connection
                 if (_connection.TestConnection())
@@ -70,7 +70,7 @@ namespace atbmcq_02
             {
                 this._connection.Hostname = "localhost";
                 this._connection.Port = 1521;
-                _connection.ServiceName = "project";
+                _connection.ServiceName = "xepdb1";
                 this._connection.Username = txtUsername.Text;
                 this._connection.Password = txtPassword.Text;
                 this._connection.Role = cboRole.SelectedItem?.ToString() ?? "default";
@@ -91,12 +91,59 @@ namespace atbmcq_02
             }
         }
 
+        private String getRole()
+        {
+            try
+            {
+                using var conn = new OracleConnection(_connection.GetConnectionString());
+                conn.Open();
+
+                string query = "SELECT VAITRO FROM C##ADMIN.NHANVIEN WHERE MANLD= " + _connection.Username;
+                using var cmd = new OracleCommand(query, conn);
+                using var reader = cmd.ExecuteReader();
+
+                return reader.GetString(0);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return "";
+            }
+        }
+
         private void loadMainForm()
         {
+            //string username = _connection.Username.ToUpper();
+
+            //this.Hide();
+
+            //if (username.StartsWith("SV"))
+            //{
+            //    // Nếu là sinh viên → mở form Student
+            //    Student studentForm = new Student(_connection);
+            //    studentForm.ShowDialog();
+            //}
+            //else
+            //{
+            //    String role = getRole();
+            //    if (role=="GV")
+            //    {
+            //        Teacher teacherform = new Teacher(_connection);
+            //        teacherform.ShowDialog();
+            //    }
+            //    else
+            //    {
+            //        DashBoard dshBrd = new DashBoard(_connection);
+            //        dshBrd.ShowDialog();
+            //    }
+            //}
+            //this.Close();
+
             this.Hide();
             DashBoard dshBrd = new DashBoard(_connection);
             dshBrd.ShowDialog();
             this.Close();
         }
+
     }
 }

@@ -2,7 +2,7 @@
 
 namespace atbmcq_02
 {
-    partial class Registration
+    partial class Student
     {
         /// <summary> 
         /// Required designer variable.
@@ -30,11 +30,23 @@ namespace atbmcq_02
         /// </summary>
         private void InitializeComponent()
         {
-            lblRegistration = new Label();
+            lblStudent = new Label();
             pnlBar = new Panel();
             lblBack = new LinkLabel();
             lblSignOut = new LinkLabel();
             lblSlog = new Label();
+            tabControl1 = new TabControl();
+            tabPage1 = new TabPage();
+            dtgvStudent1 = new DataGridView();
+            ID = new DataGridViewTextBoxColumn();
+            CName = new DataGridViewTextBoxColumn();
+            Gender = new DataGridViewTextBoxColumn();
+            Birthday = new DataGridViewTextBoxColumn();
+            Address = new DataGridViewTextBoxColumn();
+            PhoneNumber = new DataGridViewTextBoxColumn();
+            Department = new DataGridViewTextBoxColumn();
+            Status = new DataGridViewTextBoxColumn();
+            tabPage2 = new TabPage();
             dtgvStudent2 = new DataGridView();
             DK_IDStudent = new DataGridViewTextBoxColumn();
             DK_IDSubject = new DataGridViewTextBoxColumn();
@@ -43,18 +55,22 @@ namespace atbmcq_02
             DK_Fs = new DataGridViewTextBoxColumn();
             DK_SS = new DataGridViewTextBoxColumn();
             pnlBar.SuspendLayout();
+            tabControl1.SuspendLayout();
+            tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dtgvStudent1).BeginInit();
+            tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtgvStudent2).BeginInit();
             SuspendLayout();
             // 
-            // lblRegistration
+            // lblStudent
             // 
-            lblRegistration.AutoSize = true;
-            lblRegistration.Font = new Font("Microsoft Sans Serif", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblRegistration.Location = new Point(519, 73);
-            lblRegistration.Name = "lblRegistration";
-            lblRegistration.Size = new Size(360, 69);
-            lblRegistration.TabIndex = 1;
-            lblRegistration.Text = "Registration";
+            lblStudent.AutoSize = true;
+            lblStudent.Font = new Font("Microsoft Sans Serif", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblStudent.Location = new Point(664, 73);
+            lblStudent.Name = "lblStudent";
+            lblStudent.Size = new Size(243, 69);
+            lblStudent.TabIndex = 1;
+            lblStudent.Text = "Student";
             // 
             // pnlBar
             // 
@@ -65,7 +81,7 @@ namespace atbmcq_02
             pnlBar.Dock = DockStyle.Top;
             pnlBar.Location = new Point(0, 0);
             pnlBar.Name = "pnlBar";
-            pnlBar.Size = new Size(1409, 59);
+            pnlBar.Size = new Size(1648, 59);
             pnlBar.TabIndex = 2;
             // 
             // lblBack
@@ -101,17 +117,117 @@ namespace atbmcq_02
             lblSlog.TabIndex = 0;
             lblSlog.Text = "Welcome to University X!";
             // 
+            // tabControl1
+            // 
+            tabControl1.Controls.Add(tabPage1);
+            tabControl1.Controls.Add(tabPage2);
+            tabControl1.Location = new Point(3, 145);
+            tabControl1.Name = "tabControl1";
+            tabControl1.SelectedIndex = 0;
+            tabControl1.Size = new Size(1645, 708);
+            tabControl1.TabIndex = 3;
+            // 
+            // tabPage1
+            // 
+            tabPage1.Controls.Add(dtgvStudent1);
+            tabPage1.Location = new Point(4, 29);
+            tabPage1.Name = "tabPage1";
+            tabPage1.Padding = new Padding(3);
+            tabPage1.Size = new Size(1637, 675);
+            tabPage1.TabIndex = 0;
+            tabPage1.Text = "Thông tin sinh viên";
+            tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // dtgvStudent1
+            // 
+            dtgvStudent1.BackgroundColor = SystemColors.ButtonHighlight;
+            dtgvStudent1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dtgvStudent1.Columns.AddRange(new DataGridViewColumn[] { ID, CName, Gender, Birthday, Address, PhoneNumber, Department, Status });
+            dtgvStudent1.Dock = DockStyle.Bottom;
+            dtgvStudent1.Location = new Point(3, 233);
+            dtgvStudent1.Name = "dtgvStudent1";
+            dtgvStudent1.RowHeadersWidth = 62;
+            dtgvStudent1.Size = new Size(1631, 439);
+            dtgvStudent1.TabIndex = 1;
+            // 
+            // ID
+            // 
+            ID.HeaderText = "ID";
+            ID.MinimumWidth = 8;
+            ID.Name = "ID";
+            ID.Width = 150;
+            // 
+            // CName
+            // 
+            CName.HeaderText = "Name";
+            CName.MinimumWidth = 8;
+            CName.Name = "CName";
+            CName.Width = 228;
+            // 
+            // Gender
+            // 
+            Gender.HeaderText = "Gender";
+            Gender.MinimumWidth = 8;
+            Gender.Name = "Gender";
+            Gender.Width = 224;
+            // 
+            // Birthday
+            // 
+            Birthday.HeaderText = "Birthday";
+            Birthday.MinimumWidth = 8;
+            Birthday.Name = "Birthday";
+            Birthday.Width = 224;
+            // 
+            // Address
+            // 
+            Address.HeaderText = "Address";
+            Address.MinimumWidth = 8;
+            Address.Name = "Address";
+            Address.Width = 224;
+            // 
+            // PhoneNumber
+            // 
+            PhoneNumber.HeaderText = "Phone Number";
+            PhoneNumber.MinimumWidth = 8;
+            PhoneNumber.Name = "PhoneNumber";
+            PhoneNumber.Width = 224;
+            // 
+            // Department
+            // 
+            Department.HeaderText = "Department";
+            Department.MinimumWidth = 6;
+            Department.Name = "Department";
+            Department.Width = 200;
+            // 
+            // Status
+            // 
+            Status.HeaderText = "Status";
+            Status.MinimumWidth = 6;
+            Status.Name = "Status";
+            Status.Width = 200;
+            // 
+            // tabPage2
+            // 
+            tabPage2.Controls.Add(dtgvStudent2);
+            tabPage2.Location = new Point(4, 29);
+            tabPage2.Name = "tabPage2";
+            tabPage2.Padding = new Padding(3);
+            tabPage2.Size = new Size(1637, 755);
+            tabPage2.TabIndex = 1;
+            tabPage2.Text = "Thông tin đăng ký";
+            tabPage2.UseVisualStyleBackColor = true;
+            // 
             // dtgvStudent2
             // 
             dtgvStudent2.BackgroundColor = SystemColors.ButtonHighlight;
             dtgvStudent2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtgvStudent2.Columns.AddRange(new DataGridViewColumn[] { DK_IDStudent, DK_IDSubject, DK_ps, DK_processS, DK_Fs, DK_SS });
             dtgvStudent2.Dock = DockStyle.Bottom;
-            dtgvStudent2.Location = new Point(0, 200);
+            dtgvStudent2.Location = new Point(3, 313);
             dtgvStudent2.Name = "dtgvStudent2";
             dtgvStudent2.RowHeadersWidth = 62;
-            dtgvStudent2.Size = new Size(1409, 650);
-            dtgvStudent2.TabIndex = 3;
+            dtgvStudent2.Size = new Size(1631, 439);
+            dtgvStudent2.TabIndex = 2;
             // 
             // DK_IDStudent
             // 
@@ -155,31 +271,47 @@ namespace atbmcq_02
             DK_SS.Name = "DK_SS";
             DK_SS.Width = 200;
             // 
-            // Registration
+            // Student
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonHighlight;
-            Controls.Add(dtgvStudent2);
+            Size = new Size(1648, 850);
+            Controls.Add(tabControl1);
             Controls.Add(pnlBar);
-            Controls.Add(lblRegistration);
+            Controls.Add(lblStudent);
             Font = new Font("Cascadia Code", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            Name = "Registration";
-            Size = new Size(1409, 850);
+            Name = "Student";
             pnlBar.ResumeLayout(false);
             pnlBar.PerformLayout();
+            tabControl1.ResumeLayout(false);
+            tabPage1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dtgvStudent1).EndInit();
+            tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dtgvStudent2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-        private Label lblRegistration;
+        private Label lblStudent;
         private Panel pnlBar;
         private LinkLabel lblBack;
         private LinkLabel lblSignOut;
         private Label lblSlog;
         private OracleDbConnection _connection;
+        private TabControl tabControl1;
+        private TabPage tabPage1;
+        private TabPage tabPage2;
+        private DataGridView dtgvStudent1;
+        private DataGridViewTextBoxColumn ID;
+        private DataGridViewTextBoxColumn CName;
+        private DataGridViewTextBoxColumn Gender;
+        private DataGridViewTextBoxColumn Birthday;
+        private DataGridViewTextBoxColumn Address;
+        private DataGridViewTextBoxColumn PhoneNumber;
+        private DataGridViewTextBoxColumn Department;
+        private DataGridViewTextBoxColumn Status;
         private DataGridView dtgvStudent2;
         private DataGridViewTextBoxColumn DK_IDStudent;
         private DataGridViewTextBoxColumn DK_IDSubject;

@@ -32,13 +32,12 @@ namespace atbmcq_02
         {
             dtgvCourse = new DataGridView();
             ID = new DataGridViewTextBoxColumn();
-            InCharge = new DataGridViewTextBoxColumn();
             CName = new DataGridViewTextBoxColumn();
             Credits = new DataGridViewTextBoxColumn();
             Theory = new DataGridViewTextBoxColumn();
             Practice = new DataGridViewTextBoxColumn();
             Department = new DataGridViewTextBoxColumn();
-            label1 = new Label();
+            lblCourse = new Label();
             pnlBar = new Panel();
             lblBack = new LinkLabel();
             lblSignOut = new LinkLabel();
@@ -51,13 +50,12 @@ namespace atbmcq_02
             // 
             dtgvCourse.BackgroundColor = SystemColors.ButtonHighlight;
             dtgvCourse.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgvCourse.Columns.AddRange(new DataGridViewColumn[] { ID, InCharge, CName, Credits, Theory, Practice, Department });
+            dtgvCourse.Columns.AddRange(new DataGridViewColumn[] { ID, CName, Credits, Theory, Practice, Department });
             dtgvCourse.Dock = DockStyle.Bottom;
-            dtgvCourse.Location = new Point(0, 280);
-            dtgvCourse.Margin = new Padding(4, 3, 4, 3);
+            dtgvCourse.Location = new Point(0, 320);
             dtgvCourse.Name = "dtgvCourse";
             dtgvCourse.RowHeadersWidth = 62;
-            dtgvCourse.Size = new Size(1636, 384);
+            dtgvCourse.Size = new Size(1412, 439);
             dtgvCourse.TabIndex = 0;
             // 
             // ID
@@ -66,13 +64,6 @@ namespace atbmcq_02
             ID.MinimumWidth = 8;
             ID.Name = "ID";
             ID.Width = 224;
-            // 
-            // InCharge
-            // 
-            InCharge.HeaderText = "InCharge";
-            InCharge.MinimumWidth = 8;
-            InCharge.Name = "InCharge";
-            InCharge.Width = 224;
             // 
             // CName
             // 
@@ -109,15 +100,15 @@ namespace atbmcq_02
             Department.Name = "Department";
             Department.Width = 224;
             // 
-            // label1
+            // lblCourse
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("VNI-Couri", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(396, 120);
-            label1.Name = "label1";
-            label1.Size = new Size(845, 92);
-            label1.TabIndex = 1;
-            label1.Text = "Assignment Table";
+            lblCourse.AutoSize = true;
+            lblCourse.Font = new Font("VNI-Couri", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblCourse.Location = new Point(505, 137);
+            lblCourse.Name = "lblCourse";
+            lblCourse.Size = new Size(403, 92);
+            lblCourse.TabIndex = 1;
+            lblCourse.Text = "Courses";
             // 
             // pnlBar
             // 
@@ -128,14 +119,14 @@ namespace atbmcq_02
             pnlBar.Dock = DockStyle.Top;
             pnlBar.Location = new Point(0, 0);
             pnlBar.Name = "pnlBar";
-            pnlBar.Size = new Size(1636, 52);
+            pnlBar.Size = new Size(1412, 59);
             pnlBar.TabIndex = 2;
             // 
             // lblBack
             // 
             lblBack.AutoSize = true;
             lblBack.Font = new Font("VNI-Korin", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblBack.Location = new Point(1463, 7);
+            lblBack.Location = new Point(1239, 8);
             lblBack.Name = "lblBack";
             lblBack.Size = new Size(65, 30);
             lblBack.TabIndex = 2;
@@ -147,7 +138,7 @@ namespace atbmcq_02
             // 
             lblSignOut.AutoSize = true;
             lblSignOut.Font = new Font("VNI-Korin", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblSignOut.Location = new Point(1534, 7);
+            lblSignOut.Location = new Point(1310, 8);
             lblSignOut.Name = "lblSignOut";
             lblSignOut.Size = new Size(99, 30);
             lblSignOut.TabIndex = 1;
@@ -158,7 +149,7 @@ namespace atbmcq_02
             // 
             lblSlog.AutoSize = true;
             lblSlog.Font = new Font("VNI-Diudang", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblSlog.Location = new Point(3, 9);
+            lblSlog.Location = new Point(3, 10);
             lblSlog.Name = "lblSlog";
             lblSlog.Size = new Size(211, 29);
             lblSlog.TabIndex = 0;
@@ -166,16 +157,15 @@ namespace atbmcq_02
             // 
             // Courses
             // 
-            AutoScaleDimensions = new SizeF(13F, 21F);
+            AutoScaleDimensions = new SizeF(11F, 24F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonHighlight;
             Controls.Add(pnlBar);
-            Controls.Add(label1);
+            Controls.Add(lblCourse);
             Controls.Add(dtgvCourse);
-            Font = new Font("VNI-Couri", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            Margin = new Padding(4, 3, 4, 3);
+            Font = new Font("Cascadia Code", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             Name = "Courses";
-            Size = new Size(1636, 664);
+            Size = new Size(1412, 759);
             ((System.ComponentModel.ISupportInitialize)dtgvCourse).EndInit();
             pnlBar.ResumeLayout(false);
             pnlBar.PerformLayout();
@@ -186,14 +176,13 @@ namespace atbmcq_02
         #endregion
 
         private DataGridView dtgvCourse;
-        private Label label1;
+        private Label lblCourse;
         private Panel pnlBar;
         private LinkLabel lblBack;
         private LinkLabel lblSignOut;
         private Label lblSlog;
         private OracleDbConnection _connection;
         private DataGridViewTextBoxColumn ID;
-        private DataGridViewTextBoxColumn InCharge;
         private DataGridViewTextBoxColumn CName;
         private DataGridViewTextBoxColumn Credits;
         private DataGridViewTextBoxColumn Theory;
