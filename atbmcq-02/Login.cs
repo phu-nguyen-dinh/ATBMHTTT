@@ -40,7 +40,7 @@ namespace atbmcq_02
                 _connection.Username = txtUsername.Text;
                 _connection.Password = txtPassword.Text;
                 _connection.Role = cboRole.SelectedItem?.ToString() ?? "default";
-                _connection.ServiceName = "project";
+                _connection.ServiceName = "xepdb1";
 
                 // Test the connection
                 if (_connection.TestConnection())
@@ -70,7 +70,7 @@ namespace atbmcq_02
             {
                 this._connection.Hostname = "localhost";
                 this._connection.Port = 1521;
-                _connection.ServiceName = "project";
+                _connection.ServiceName = "xepdb1";
                 this._connection.Username = txtUsername.Text;
                 this._connection.Password = txtPassword.Text;
                 this._connection.Role = cboRole.SelectedItem?.ToString() ?? "default";
@@ -93,10 +93,25 @@ namespace atbmcq_02
 
         private void loadMainForm()
         {
+            string username = _connection.Username.ToUpper();
+
             this.Hide();
-            DashBoard dshBrd = new DashBoard(_connection);
-            dshBrd.ShowDialog();
+
+            if (username.StartsWith("SV"))
+            {
+                // Nếu là sinh viên → mở form Student
+                Student studentForm = new Student(_connection);
+                studentForm.ShowDialog();
+            }
+            else
+            {
+                // Các vai trò khác → mở Dashboard
+                DashBoard dshBrd = new DashBoard(_connection);
+                dshBrd.ShowDialog();
+            }
+
             this.Close();
         }
+
     }
 }
