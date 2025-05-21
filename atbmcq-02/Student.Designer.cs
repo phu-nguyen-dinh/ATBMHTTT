@@ -66,7 +66,7 @@ namespace atbmcq_02
             // 
             lblStudent.AutoSize = true;
             lblStudent.Font = new Font("Microsoft Sans Serif", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblStudent.Location = new Point(505, 137);
+            lblStudent.Location = new Point(664, 73);
             lblStudent.Name = "lblStudent";
             lblStudent.Size = new Size(243, 69);
             lblStudent.TabIndex = 1;
@@ -94,6 +94,7 @@ namespace atbmcq_02
             lblBack.TabIndex = 2;
             lblBack.TabStop = true;
             lblBack.Text = "Back";
+            lblBack.LinkClicked += lblBack_LinkClicked;
             // 
             // lblSignOut
             // 
@@ -120,10 +121,10 @@ namespace atbmcq_02
             // 
             tabControl1.Controls.Add(tabPage1);
             tabControl1.Controls.Add(tabPage2);
-            tabControl1.Location = new Point(3, 65);
+            tabControl1.Location = new Point(3, 145);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(1645, 788);
+            tabControl1.Size = new Size(1645, 708);
             tabControl1.TabIndex = 3;
             // 
             // tabPage1
@@ -132,19 +133,19 @@ namespace atbmcq_02
             tabPage1.Location = new Point(4, 29);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(1637, 755);
+            tabPage1.Size = new Size(1637, 675);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Thông tin sinh viên";
             tabPage1.UseVisualStyleBackColor = true;
             // 
-            // dtgvStudent
+            // dtgvStudent1
             // 
             dtgvStudent1.BackgroundColor = SystemColors.ButtonHighlight;
             dtgvStudent1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtgvStudent1.Columns.AddRange(new DataGridViewColumn[] { ID, CName, Gender, Birthday, Address, PhoneNumber, Department, Status });
             dtgvStudent1.Dock = DockStyle.Bottom;
-            dtgvStudent1.Location = new Point(3, 313);
-            dtgvStudent1.Name = "dtgvStudent";
+            dtgvStudent1.Location = new Point(3, 233);
+            dtgvStudent1.Name = "dtgvStudent1";
             dtgvStudent1.RowHeadersWidth = 62;
             dtgvStudent1.Size = new Size(1631, 439);
             dtgvStudent1.TabIndex = 1;
@@ -223,7 +224,7 @@ namespace atbmcq_02
             dtgvStudent2.Columns.AddRange(new DataGridViewColumn[] { DK_IDStudent, DK_IDSubject, DK_ps, DK_processS, DK_Fs, DK_SS });
             dtgvStudent2.Dock = DockStyle.Bottom;
             dtgvStudent2.Location = new Point(3, 313);
-            dtgvStudent2.Name = "dataGridView1";
+            dtgvStudent2.Name = "dtgvStudent2";
             dtgvStudent2.RowHeadersWidth = 62;
             dtgvStudent2.Size = new Size(1631, 439);
             dtgvStudent2.TabIndex = 2;
@@ -275,7 +276,7 @@ namespace atbmcq_02
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonHighlight;
-            ClientSize = new Size(1648, 850);
+            Size = new Size(1648, 850);
             Controls.Add(tabControl1);
             Controls.Add(pnlBar);
             Controls.Add(lblStudent);

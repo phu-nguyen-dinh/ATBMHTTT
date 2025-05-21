@@ -42,10 +42,13 @@ namespace atbmcq_02
             llblCourses = new LinkLabel();
             llblRegis = new LinkLabel();
             llblOpened = new LinkLabel();
+            picStudent = new PictureBox();
+            linkStudent = new LinkLabel();
             pnlBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picCourse).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picRegis).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picOpened).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picStudent).BeginInit();
             SuspendLayout();
             // 
             // pnlBar
@@ -55,17 +58,19 @@ namespace atbmcq_02
             pnlBar.Controls.Add(lblSlog);
             pnlBar.Dock = DockStyle.Top;
             pnlBar.Location = new Point(0, 0);
+            pnlBar.Margin = new Padding(2);
             pnlBar.Name = "pnlBar";
-            pnlBar.Size = new Size(978, 52);
+            pnlBar.Size = new Size(838, 42);
             pnlBar.TabIndex = 0;
             // 
             // lblSignOut
             // 
             lblSignOut.AutoSize = true;
-            lblSignOut.Font = new Font("VNI-Korin", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblSignOut.Location = new Point(867, 9);
+            lblSignOut.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblSignOut.Location = new Point(694, 7);
+            lblSignOut.Margin = new Padding(2, 0, 2, 0);
             lblSignOut.Name = "lblSignOut";
-            lblSignOut.Size = new Size(99, 30);
+            lblSignOut.Size = new Size(79, 24);
             lblSignOut.TabIndex = 1;
             lblSignOut.TabStop = true;
             lblSignOut.Text = "Sign out";
@@ -73,20 +78,22 @@ namespace atbmcq_02
             // lblSlog
             // 
             lblSlog.AutoSize = true;
-            lblSlog.Font = new Font("VNI-Diudang", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblSlog.Location = new Point(12, 9);
+            lblSlog.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblSlog.Location = new Point(10, 7);
+            lblSlog.Margin = new Padding(2, 0, 2, 0);
             lblSlog.Name = "lblSlog";
-            lblSlog.Size = new Size(211, 29);
+            lblSlog.Size = new Size(220, 24);
             lblSlog.TabIndex = 0;
             lblSlog.Text = "Welcome to University X!";
             // 
             // lblHeader
             // 
             lblHeader.AutoSize = true;
-            lblHeader.Font = new Font("VNI-Couri", 27.9999962F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblHeader.Location = new Point(305, 56);
+            lblHeader.Font = new Font("Microsoft Sans Serif", 27.9999962F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblHeader.Location = new Point(244, 45);
+            lblHeader.Margin = new Padding(2, 0, 2, 0);
             lblHeader.Name = "lblHeader";
-            lblHeader.Size = new Size(390, 71);
+            lblHeader.Size = new Size(262, 54);
             lblHeader.TabIndex = 1;
             lblHeader.Text = "Dashboard";
             // 
@@ -94,17 +101,19 @@ namespace atbmcq_02
             // 
             pnlDSplit.BackColor = SystemColors.Desktop;
             pnlDSplit.Dock = DockStyle.Top;
-            pnlDSplit.Location = new Point(0, 52);
+            pnlDSplit.Location = new Point(0, 42);
+            pnlDSplit.Margin = new Padding(2);
             pnlDSplit.Name = "pnlDSplit";
-            pnlDSplit.Size = new Size(978, 1);
+            pnlDSplit.Size = new Size(838, 1);
             pnlDSplit.TabIndex = 2;
             // 
             // picCourse
             // 
             picCourse.Image = (Image)resources.GetObject("picCourse.Image");
-            picCourse.Location = new Point(100, 177);
+            picCourse.Location = new Point(80, 142);
+            picCourse.Margin = new Padding(2);
             picCourse.Name = "picCourse";
-            picCourse.Size = new Size(200, 200);
+            picCourse.Size = new Size(160, 160);
             picCourse.SizeMode = PictureBoxSizeMode.StretchImage;
             picCourse.TabIndex = 3;
             picCourse.TabStop = false;
@@ -112,9 +121,10 @@ namespace atbmcq_02
             // picRegis
             // 
             picRegis.Image = (Image)resources.GetObject("picRegis.Image");
-            picRegis.Location = new Point(400, 177);
+            picRegis.Location = new Point(320, 142);
+            picRegis.Margin = new Padding(2);
             picRegis.Name = "picRegis";
-            picRegis.Size = new Size(200, 200);
+            picRegis.Size = new Size(160, 160);
             picRegis.SizeMode = PictureBoxSizeMode.StretchImage;
             picRegis.TabIndex = 4;
             picRegis.TabStop = false;
@@ -122,9 +132,10 @@ namespace atbmcq_02
             // picOpened
             // 
             picOpened.Image = (Image)resources.GetObject("picOpened.Image");
-            picOpened.Location = new Point(700, 177);
+            picOpened.Location = new Point(560, 142);
+            picOpened.Margin = new Padding(2);
             picOpened.Name = "picOpened";
-            picOpened.Size = new Size(200, 200);
+            picOpened.Size = new Size(160, 160);
             picOpened.SizeMode = PictureBoxSizeMode.StretchImage;
             picOpened.TabIndex = 5;
             picOpened.TabStop = false;
@@ -132,10 +143,11 @@ namespace atbmcq_02
             // llblCourses
             // 
             llblCourses.AutoSize = true;
-            llblCourses.Font = new Font("VNI-Couri", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            llblCourses.Location = new Point(149, 149);
+            llblCourses.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            llblCourses.Location = new Point(119, 119);
+            llblCourses.Margin = new Padding(2, 0, 2, 0);
             llblCourses.Name = "llblCourses";
-            llblCourses.Size = new Size(101, 21);
+            llblCourses.Size = new Size(65, 18);
             llblCourses.TabIndex = 6;
             llblCourses.TabStop = true;
             llblCourses.Text = "Courses";
@@ -144,32 +156,59 @@ namespace atbmcq_02
             // llblRegis
             // 
             llblRegis.AutoSize = true;
-            llblRegis.Font = new Font("VNI-Couri", 8.999999F);
-            llblRegis.Location = new Point(417, 149);
+            llblRegis.Font = new Font("Microsoft Sans Serif", 8.999999F);
+            llblRegis.Location = new Point(334, 119);
+            llblRegis.Margin = new Padding(2, 0, 2, 0);
             llblRegis.Name = "llblRegis";
-            llblRegis.Size = new Size(166, 21);
+            llblRegis.Size = new Size(87, 18);
             llblRegis.TabIndex = 7;
             llblRegis.TabStop = true;
             llblRegis.Text = "Registration";
+            llblRegis.LinkClicked += llblRegis_LinkClicked;
             // 
             // llblOpened
             // 
             llblOpened.AutoSize = true;
-            llblOpened.Font = new Font("VNI-Couri", 8.999999F);
-            llblOpened.Location = new Point(701, 149);
+            llblOpened.Font = new Font("Microsoft Sans Serif", 8.999999F);
+            llblOpened.Location = new Point(561, 119);
+            llblOpened.Margin = new Padding(2, 0, 2, 0);
             llblOpened.Name = "llblOpened";
-            llblOpened.Size = new Size(198, 21);
+            llblOpened.Size = new Size(121, 18);
             llblOpened.TabIndex = 8;
             llblOpened.TabStop = true;
             llblOpened.Text = "Opened Subjects";
             llblOpened.LinkClicked += llblOpened_LinkClicked;
             // 
+            // picStudent
+            // 
+            picStudent.Image = Properties.Resources.Student;
+            picStudent.Location = new Point(80, 381);
+            picStudent.Name = "picStudent";
+            picStudent.Size = new Size(160, 160);
+            picStudent.SizeMode = PictureBoxSizeMode.StretchImage;
+            picStudent.TabIndex = 9;
+            picStudent.TabStop = false;
+            // 
+            // linkStudent
+            // 
+            linkStudent.AutoSize = true;
+            linkStudent.Font = new Font("Microsoft Sans Serif", 8.999999F);
+            linkStudent.Location = new Point(119, 358);
+            linkStudent.Name = "linkStudent";
+            linkStudent.Size = new Size(60, 20);
+            linkStudent.TabIndex = 10;
+            linkStudent.TabStop = true;
+            linkStudent.Text = "Student";
+            linkStudent.LinkClicked += linkStudent_LinkClicked;
+            // 
             // DashBoard
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonHighlight;
-            ClientSize = new Size(978, 493);
+            ClientSize = new Size(838, 608);
+            Controls.Add(linkStudent);
+            Controls.Add(picStudent);
             Controls.Add(llblOpened);
             Controls.Add(llblRegis);
             Controls.Add(llblCourses);
@@ -179,6 +218,7 @@ namespace atbmcq_02
             Controls.Add(pnlDSplit);
             Controls.Add(lblHeader);
             Controls.Add(pnlBar);
+            Margin = new Padding(2);
             Name = "DashBoard";
             Text = "Dashboard";
             FormClosed += dshBoard_Closed;
@@ -187,6 +227,7 @@ namespace atbmcq_02
             ((System.ComponentModel.ISupportInitialize)picCourse).EndInit();
             ((System.ComponentModel.ISupportInitialize)picRegis).EndInit();
             ((System.ComponentModel.ISupportInitialize)picOpened).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picStudent).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -205,5 +246,7 @@ namespace atbmcq_02
         private LinkLabel llblRegis;
         private LinkLabel llblOpened;
         private OracleDbConnection _connection;
+        private PictureBox picStudent;
+        private LinkLabel linkStudent;
     }
 }

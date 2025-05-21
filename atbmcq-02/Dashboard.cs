@@ -1,14 +1,17 @@
 ﻿using OracleUserManager.Models;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.Common;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace atbmcq_02
 {
@@ -45,6 +48,18 @@ namespace atbmcq_02
         {
             LoadOpenedSubject();
         }
+        private void linkStudent_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            string username = _connection.Username.ToUpper();
+            if (username.StartsWith("SV"))
+            {
+                loadStudent();
+            }
+            else
+            {
+                loadTeacher();
+            }
+        }
 
         private void LoadOpenedSubject()
         {
@@ -62,6 +77,41 @@ namespace atbmcq_02
             this.Controls.Clear();
             InitializeComponent();
             _connection = _connect;
+        }
+
+        private void loadStudent()
+        {
+            var opnd = new Student(_connection);
+
+            opnd.backClicked += opnd_backClicked;
+
+            this.Controls.Clear();
+            this.Controls.Add(opnd);
+            this.ClientSize = opnd.Size;
+        }
+        private void loadTeacher()
+        {
+            var opnd = new Teacher(_connection);
+
+            opnd.backClicked += opnd_backClicked;
+
+            this.Controls.Clear();
+            this.Controls.Add(opnd);
+            this.ClientSize = opnd.Size;
+        }
+        private void llblRegis_LinkClicked(Object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            LoadRegistration();
+        }
+        private void LoadRegistration()
+        {
+            var opnd = new Registration(_connection);
+
+            opnd.backClicked += opnd_backClicked;
+
+            this.Controls.Clear();
+            this.Controls.Add(opnd);
+            this.ClientSize = opnd.Size;
         }
     }
 }

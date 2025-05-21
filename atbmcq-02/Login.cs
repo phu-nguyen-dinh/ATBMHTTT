@@ -91,25 +91,57 @@ namespace atbmcq_02
             }
         }
 
+        private String getRole()
+        {
+            try
+            {
+                using var conn = new OracleConnection(_connection.GetConnectionString());
+                conn.Open();
+
+                string query = "SELECT VAITRO FROM C##ADMIN.NHANVIEN WHERE MANLD= " + _connection.Username;
+                using var cmd = new OracleCommand(query, conn);
+                using var reader = cmd.ExecuteReader();
+
+                return reader.GetString(0);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return "";
+            }
+        }
+
         private void loadMainForm()
         {
-            string username = _connection.Username.ToUpper();
+            //string username = _connection.Username.ToUpper();
+
+            //this.Hide();
+
+            //if (username.StartsWith("SV"))
+            //{
+            //    // Nếu là sinh viên → mở form Student
+            //    Student studentForm = new Student(_connection);
+            //    studentForm.ShowDialog();
+            //}
+            //else
+            //{
+            //    String role = getRole();
+            //    if (role=="GV")
+            //    {
+            //        Teacher teacherform = new Teacher(_connection);
+            //        teacherform.ShowDialog();
+            //    }
+            //    else
+            //    {
+            //        DashBoard dshBrd = new DashBoard(_connection);
+            //        dshBrd.ShowDialog();
+            //    }
+            //}
+            //this.Close();
 
             this.Hide();
-
-            if (username.StartsWith("SV"))
-            {
-                // Nếu là sinh viên → mở form Student
-                Student studentForm = new Student(_connection);
-                studentForm.ShowDialog();
-            }
-            else
-            {
-                // Các vai trò khác → mở Dashboard
-                DashBoard dshBrd = new DashBoard(_connection);
-                dshBrd.ShowDialog();
-            }
-
+            DashBoard dshBrd = new DashBoard(_connection);
+            dshBrd.ShowDialog();
             this.Close();
         }
 
