@@ -1,4 +1,5 @@
-﻿using OracleUserManager.Models;
+﻿using Oracle.ManagedDataAccess.Client;
+using OracleUserManager.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,11 +21,38 @@ namespace atbmcq_02
         {
             InitializeComponent();
             _connection = _connect;
+            LoadCourses();
         }
 
         private void lblBack_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             backClicked?.Invoke(this, _connection);
+        }
+
+        private void LoadCourses()
+        {
+            try
+            {
+                using var conn = new OracleConnection(_connection.GetConnectionString());
+                conn.Open();
+
+                string query = "SELECT * FROM C##ADMIN.HOCPHAN";
+                using var cmd = new OracleCommand(query, conn);
+                using var reader = cmd.ExecuteReader();
+
+                dtgvCourse.Rows.Clear();
+
+                while (reader.Read())
+                {
+                    object[] row = new object[reader.FieldCount];
+                    reader.GetValues(row);
+                    dtgvCourse.Rows.Add(row);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
