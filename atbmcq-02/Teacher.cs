@@ -30,61 +30,49 @@ namespace atbmcq_02
             backClicked?.Invoke(this, _connection);
         }
 
-        private void LoadStudents()
+        private void LoadStudents()    {        try        {            using var conn = new OracleConnection(_connection.GetConnectionString());            conn.Open();            string query = "SELECT * FROM C##ADMIN.SINHVIEN";            using var cmd = new OracleCommand(query, conn);            using var reader = cmd.ExecuteReader();            dtgvStudentInfo.Rows.Clear();            while (reader.Read())            {                object[] row = new object[reader.FieldCount];                reader.GetValues(row);                dtgvStudentInfo.Rows.Add(row);            }        }        catch (Exception ex)        {            MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);        }    }
+
+        private void LoadTeacher()    {        try        {            using var conn = new OracleConnection(_connection.GetConnectionString());            conn.Open();            string query = "SELECT * FROM C##ADMIN.VW_NHANVIEN_SELF";            using var cmd = new OracleCommand(query, conn);            using var reader = cmd.ExecuteReader();            dtgvTeacherInfo.Rows.Clear();            while (reader.Read())            {                object[] row = new object[reader.FieldCount];                reader.GetValues(row);                dtgvTeacherInfo.Rows.Add(row);            }        }        catch(Exception ex)        {            MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);        }    }
+
+        private void lblSignOut_LinkClicked(Object sender, LinkLabelLinkClickedEventArgs e)
         {
+            Application.Restart();
+        }
+
+        private void btnEditPhone_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtNewPhone.Text))
+            {
+                MessageBox.Show("Vui lòng nhập số điện thoại mới!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             try
             {
                 using var conn = new OracleConnection(_connection.GetConnectionString());
                 conn.Open();
 
-                string query = "SELECT * FROM C##ADMIN.SINHVIEN";
+                string query = "UPDATE C##ADMIN.VW_NHANVIEN_SELF SET DT = :phone";
                 using var cmd = new OracleCommand(query, conn);
-                using var reader = cmd.ExecuteReader();
-
-                dtgvTeacher.Rows.Clear();
-
-                while (reader.Read())
+                cmd.Parameters.Add(new OracleParameter("phone", txtNewPhone.Text));
+                
+                int result = cmd.ExecuteNonQuery();
+                
+                if (result > 0)
                 {
-                    object[] row = new object[reader.FieldCount];
-                    reader.GetValues(row);
-                    dtgvTeacher.Rows.Add(row);
+                    MessageBox.Show("Cập nhật số điện thoại thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadTeacher(); // Tải lại thông tin sau khi cập nhật
+                    txtNewPhone.Clear();
+                }
+                else
+                {
+                    MessageBox.Show("Không thể cập nhật số điện thoại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void LoadTeacher()
-        {
-            try
-            {
-                string username = _connection.Username.ToUpper();
-                using var conn = new OracleConnection(_connection.GetConnectionString());
-                conn.Open();
-
-                string query = "SELECT * FROM C##ADMIN.NHANVIEN WHERE MANLD= '"+ username+"'";
-                using var cmd = new OracleCommand(query, conn);
-                using var reader = cmd.ExecuteReader();
-
-                dtgvStudent1.Rows.Clear();
-
-                while (reader.Read())
-                {
-                    object[] row = new object[reader.FieldCount];
-                    reader.GetValues(row);
-                    dtgvStudent1.Rows.Add(row);
-                }
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-        private void lblSignOut_LinkClicked(Object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            Application.Restart();
         }
     }
 }

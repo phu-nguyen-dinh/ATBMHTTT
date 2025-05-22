@@ -37,9 +37,12 @@ namespace atbmcq_02
             lblSlog = new Label();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
-            dtgvTeacher = new DataGridView();
+            dtgvStudentInfo = new DataGridView();
             tabPage2 = new TabPage();
-            dtgvStudent1 = new DataGridView();
+            dtgvTeacherInfo = new DataGridView();
+            btnEditPhone = new Button();
+            txtNewPhone = new TextBox();
+            lblNewPhone = new Label();
             GV_ID = new DataGridViewTextBoxColumn();
             GV_Name = new DataGridViewTextBoxColumn();
             GV_Gender = new DataGridViewTextBoxColumn();
@@ -60,9 +63,9 @@ namespace atbmcq_02
             pnlBar.SuspendLayout();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dtgvTeacher).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dtgvStudentInfo).BeginInit();
             tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dtgvStudent1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dtgvTeacherInfo).BeginInit();
             SuspendLayout();
             // 
             // lblTeacher
@@ -133,7 +136,7 @@ namespace atbmcq_02
             // 
             // tabPage1
             // 
-            tabPage1.Controls.Add(dtgvTeacher);
+            tabPage1.Controls.Add(dtgvStudentInfo);
             tabPage1.Location = new Point(4, 29);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
@@ -143,20 +146,14 @@ namespace atbmcq_02
             tabPage1.UseVisualStyleBackColor = true;
             // 
             // dataGridView1
-            // 
-            dtgvTeacher.BackgroundColor = SystemColors.ButtonHighlight;
-            dtgvTeacher.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgvTeacher.Columns.AddRange(new DataGridViewColumn[] { ID, CName, Genre, Birthday, Adddress, PhoneNum, Department, Status });
-            dtgvTeacher.Dock = DockStyle.Bottom;
-            dtgvTeacher.Location = new Point(3, 113);
-            dtgvTeacher.Name = "dtgvTeacher";
-            dtgvTeacher.RowHeadersWidth = 62;
-            dtgvTeacher.Size = new Size(1380, 382);
-            dtgvTeacher.TabIndex = 4;
+            //             dtgvStudentInfo.BackgroundColor = SystemColors.ButtonHighlight;            dtgvStudentInfo.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;            dtgvStudentInfo.Columns.AddRange(new DataGridViewColumn[] { ID, CName, Genre, Birthday, Adddress, PhoneNum, Department, Status });            dtgvStudentInfo.Dock = DockStyle.Bottom;            dtgvStudentInfo.Location = new Point(3, 113);            dtgvStudentInfo.Name = "dtgvStudentInfo";            dtgvStudentInfo.RowHeadersWidth = 62;            dtgvStudentInfo.Size = new Size(1380, 382);            dtgvStudentInfo.TabIndex = 4;
             // 
             // tabPage2
             // 
-            tabPage2.Controls.Add(dtgvStudent1);
+            tabPage2.Controls.Add(lblNewPhone);
+            tabPage2.Controls.Add(txtNewPhone);
+            tabPage2.Controls.Add(btnEditPhone);
+            tabPage2.Controls.Add(dtgvTeacherInfo);
             tabPage2.Location = new Point(4, 29);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
@@ -165,17 +162,9 @@ namespace atbmcq_02
             tabPage2.Text = "Thông tin giáo viên";
             tabPage2.UseVisualStyleBackColor = true;
             // 
-            // dtgvStudent1
-            // 
-            dtgvStudent1.BackgroundColor = SystemColors.ButtonHighlight;
-            dtgvStudent1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgvStudent1.Columns.AddRange(new DataGridViewColumn[] { GV_ID, GV_Name, GV_Gender, GV_Birthday, GV_Address, GV_Bonus, GV_PhoneNumber, GV_Role, GV_Unit });
-            dtgvStudent1.Dock = DockStyle.Bottom;
-            dtgvStudent1.Location = new Point(3, 113);
-            dtgvStudent1.Name = "dtgvStudent1";
-            dtgvStudent1.RowHeadersWidth = 62;
-            dtgvStudent1.Size = new Size(1380, 382);
-            dtgvStudent1.TabIndex = 4;
+            // dtgvTeacherInfo
+            //  
+            dtgvTeacherInfo.BackgroundColor = SystemColors.ButtonHighlight;            dtgvTeacherInfo.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;            dtgvTeacherInfo.Columns.AddRange(new DataGridViewColumn[] { GV_ID, GV_Name, GV_Gender, GV_Birthday, GV_Address, GV_Bonus, GV_PhoneNumber, GV_Role, GV_Unit });            dtgvTeacherInfo.Dock = DockStyle.Bottom;            dtgvTeacherInfo.Location = new Point(3, 113);            dtgvTeacherInfo.Name = "dtgvTeacherInfo";            dtgvTeacherInfo.RowHeadersWidth = 62;            dtgvTeacherInfo.Size = new Size(1380, 382);            dtgvTeacherInfo.TabIndex = 4;
             // 
             // GV_ID
             // 
@@ -296,6 +285,32 @@ namespace atbmcq_02
             Status.Name = "Status";
             Status.Width = 200;
             // 
+            // btnEditPhone
+            // 
+            btnEditPhone.Location = new Point(300, 70);
+            btnEditPhone.Name = "btnEditPhone";
+            btnEditPhone.Size = new Size(133, 29);
+            btnEditPhone.TabIndex = 5;
+            btnEditPhone.Text = "Cập nhật SĐT";
+            btnEditPhone.UseVisualStyleBackColor = true;
+            btnEditPhone.Click += btnEditPhone_Click;
+            
+            // txtNewPhone
+            // 
+            txtNewPhone.Location = new Point(132, 70);
+            txtNewPhone.Name = "txtNewPhone";
+            txtNewPhone.Size = new Size(150, 27);
+            txtNewPhone.TabIndex = 6;
+            
+            // lblNewPhone
+            // 
+            lblNewPhone.AutoSize = true;
+            lblNewPhone.Location = new Point(20, 73);
+            lblNewPhone.Name = "lblNewPhone";
+            lblNewPhone.Size = new Size(106, 20);
+            lblNewPhone.TabIndex = 7;
+            lblNewPhone.Text = "SĐT mới:";
+            // 
             // Teacher
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
@@ -311,9 +326,9 @@ namespace atbmcq_02
             pnlBar.PerformLayout();
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dtgvTeacher).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dtgvStudentInfo).EndInit();
             tabPage2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dtgvStudent1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dtgvTeacherInfo).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -327,9 +342,12 @@ namespace atbmcq_02
         private OracleDbConnection _connection;
         private TabControl tabControl1;
         private TabPage tabPage1;
-        private DataGridView dtgvTeacher;
+        private DataGridView dtgvStudentInfo;
         private TabPage tabPage2;
-        private DataGridView dtgvStudent1;
+        private DataGridView dtgvTeacherInfo;
+        private Button btnEditPhone;
+        private TextBox txtNewPhone;
+        private Label lblNewPhone;
         private DataGridViewTextBoxColumn GV_ID;
         private DataGridViewTextBoxColumn GV_Name;
         private DataGridViewTextBoxColumn GV_Gender;
