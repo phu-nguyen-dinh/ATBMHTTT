@@ -17,6 +17,7 @@ namespace atbmcq_02
 {
     public partial class DashBoard : Form
     {
+        //public event EventHandler BackClicked;
         public DashBoard(OracleDbConnection _connect)
         {
             InitializeComponent();
@@ -112,6 +113,11 @@ namespace atbmcq_02
             this.Controls.Clear();
             this.Controls.Add(opnd);
             this.ClientSize = opnd.Size;
+        }
+
+        private void lblSignOut_LinkClicked(Object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Application.Restart();
         }
     }
 }

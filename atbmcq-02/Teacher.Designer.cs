@@ -109,6 +109,7 @@ namespace atbmcq_02
             lblSignOut.TabIndex = 1;
             lblSignOut.TabStop = true;
             lblSignOut.Text = "Sign out";
+            lblSignOut.LinkClicked += lblSignOut_LinkClicked;
             // 
             // lblSlog
             // 

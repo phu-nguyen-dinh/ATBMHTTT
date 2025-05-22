@@ -35,8 +35,6 @@ namespace atbmcq_02
             lblBack = new LinkLabel();
             lblSignOut = new LinkLabel();
             lblSlog = new Label();
-            tabControl1 = new TabControl();
-            tabPage1 = new TabPage();
             dtgvStudent1 = new DataGridView();
             ID = new DataGridViewTextBoxColumn();
             CName = new DataGridViewTextBoxColumn();
@@ -46,20 +44,8 @@ namespace atbmcq_02
             PhoneNumber = new DataGridViewTextBoxColumn();
             Department = new DataGridViewTextBoxColumn();
             Status = new DataGridViewTextBoxColumn();
-            tabPage2 = new TabPage();
-            dtgvStudent2 = new DataGridView();
-            DK_IDStudent = new DataGridViewTextBoxColumn();
-            DK_IDSubject = new DataGridViewTextBoxColumn();
-            DK_ps = new DataGridViewTextBoxColumn();
-            DK_processS = new DataGridViewTextBoxColumn();
-            DK_Fs = new DataGridViewTextBoxColumn();
-            DK_SS = new DataGridViewTextBoxColumn();
             pnlBar.SuspendLayout();
-            tabControl1.SuspendLayout();
-            tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtgvStudent1).BeginInit();
-            tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dtgvStudent2).BeginInit();
             SuspendLayout();
             // 
             // lblStudent
@@ -106,6 +92,7 @@ namespace atbmcq_02
             lblSignOut.TabIndex = 1;
             lblSignOut.TabStop = true;
             lblSignOut.Text = "Sign out";
+            lblSignOut.LinkClicked += lblSignOut_LinkClicked;
             // 
             // lblSlog
             // 
@@ -117,38 +104,17 @@ namespace atbmcq_02
             lblSlog.TabIndex = 0;
             lblSlog.Text = "Welcome to University X!";
             // 
-            // tabControl1
-            // 
-            tabControl1.Controls.Add(tabPage1);
-            tabControl1.Controls.Add(tabPage2);
-            tabControl1.Location = new Point(3, 145);
-            tabControl1.Name = "tabControl1";
-            tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(1645, 708);
-            tabControl1.TabIndex = 3;
-            // 
-            // tabPage1
-            // 
-            tabPage1.Controls.Add(dtgvStudent1);
-            tabPage1.Location = new Point(4, 29);
-            tabPage1.Name = "tabPage1";
-            tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(1637, 675);
-            tabPage1.TabIndex = 0;
-            tabPage1.Text = "Thông tin sinh viên";
-            tabPage1.UseVisualStyleBackColor = true;
-            // 
             // dtgvStudent1
             // 
             dtgvStudent1.BackgroundColor = SystemColors.ButtonHighlight;
             dtgvStudent1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtgvStudent1.Columns.AddRange(new DataGridViewColumn[] { ID, CName, Gender, Birthday, Address, PhoneNumber, Department, Status });
             dtgvStudent1.Dock = DockStyle.Bottom;
-            dtgvStudent1.Location = new Point(3, 233);
+            dtgvStudent1.Location = new Point(0, 237);
             dtgvStudent1.Name = "dtgvStudent1";
             dtgvStudent1.RowHeadersWidth = 62;
-            dtgvStudent1.Size = new Size(1631, 439);
-            dtgvStudent1.TabIndex = 1;
+            dtgvStudent1.Size = new Size(1648, 613);
+            dtgvStudent1.TabIndex = 3;
             // 
             // ID
             // 
@@ -206,89 +172,20 @@ namespace atbmcq_02
             Status.Name = "Status";
             Status.Width = 200;
             // 
-            // tabPage2
-            // 
-            tabPage2.Controls.Add(dtgvStudent2);
-            tabPage2.Location = new Point(4, 29);
-            tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(1637, 755);
-            tabPage2.TabIndex = 1;
-            tabPage2.Text = "Thông tin đăng ký";
-            tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // dtgvStudent2
-            // 
-            dtgvStudent2.BackgroundColor = SystemColors.ButtonHighlight;
-            dtgvStudent2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgvStudent2.Columns.AddRange(new DataGridViewColumn[] { DK_IDStudent, DK_IDSubject, DK_ps, DK_processS, DK_Fs, DK_SS });
-            dtgvStudent2.Dock = DockStyle.Bottom;
-            dtgvStudent2.Location = new Point(3, 313);
-            dtgvStudent2.Name = "dtgvStudent2";
-            dtgvStudent2.RowHeadersWidth = 62;
-            dtgvStudent2.Size = new Size(1631, 439);
-            dtgvStudent2.TabIndex = 2;
-            // 
-            // DK_IDStudent
-            // 
-            DK_IDStudent.HeaderText = "ID_Student";
-            DK_IDStudent.MinimumWidth = 8;
-            DK_IDStudent.Name = "DK_IDStudent";
-            DK_IDStudent.Width = 150;
-            // 
-            // DK_IDSubject
-            // 
-            DK_IDSubject.HeaderText = "ID_Subject";
-            DK_IDSubject.MinimumWidth = 8;
-            DK_IDSubject.Name = "DK_IDSubject";
-            DK_IDSubject.Width = 228;
-            // 
-            // DK_ps
-            // 
-            DK_ps.HeaderText = "Practice score";
-            DK_ps.MinimumWidth = 8;
-            DK_ps.Name = "DK_ps";
-            DK_ps.Width = 224;
-            // 
-            // DK_processS
-            // 
-            DK_processS.HeaderText = "Process score";
-            DK_processS.MinimumWidth = 8;
-            DK_processS.Name = "DK_processS";
-            DK_processS.Width = 224;
-            // 
-            // DK_Fs
-            // 
-            DK_Fs.HeaderText = "Final score";
-            DK_Fs.MinimumWidth = 8;
-            DK_Fs.Name = "DK_Fs";
-            DK_Fs.Width = 224;
-            // 
-            // DK_SS
-            // 
-            DK_SS.HeaderText = "Sumary Score";
-            DK_SS.MinimumWidth = 6;
-            DK_SS.Name = "DK_SS";
-            DK_SS.Width = 200;
-            // 
             // Student
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonHighlight;
-            Size = new Size(1648, 850);
-            Controls.Add(tabControl1);
+            Controls.Add(dtgvStudent1);
             Controls.Add(pnlBar);
             Controls.Add(lblStudent);
             Font = new Font("Cascadia Code", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             Name = "Student";
+            Size = new Size(1648, 850);
             pnlBar.ResumeLayout(false);
             pnlBar.PerformLayout();
-            tabControl1.ResumeLayout(false);
-            tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dtgvStudent1).EndInit();
-            tabPage2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dtgvStudent2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -300,9 +197,6 @@ namespace atbmcq_02
         private LinkLabel lblSignOut;
         private Label lblSlog;
         private OracleDbConnection _connection;
-        private TabControl tabControl1;
-        private TabPage tabPage1;
-        private TabPage tabPage2;
         private DataGridView dtgvStudent1;
         private DataGridViewTextBoxColumn ID;
         private DataGridViewTextBoxColumn CName;
@@ -312,12 +206,5 @@ namespace atbmcq_02
         private DataGridViewTextBoxColumn PhoneNumber;
         private DataGridViewTextBoxColumn Department;
         private DataGridViewTextBoxColumn Status;
-        private DataGridView dtgvStudent2;
-        private DataGridViewTextBoxColumn DK_IDStudent;
-        private DataGridViewTextBoxColumn DK_IDSubject;
-        private DataGridViewTextBoxColumn DK_ps;
-        private DataGridViewTextBoxColumn DK_processS;
-        private DataGridViewTextBoxColumn DK_Fs;
-        private DataGridViewTextBoxColumn DK_SS;
     }
 }

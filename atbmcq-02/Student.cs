@@ -20,7 +20,6 @@ namespace atbmcq_02
             InitializeComponent();
             _connection = _connect;
             LoadStudents();
-            LoadRegisteredCourses();
         }
 
         private void lblBack_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -52,31 +51,9 @@ namespace atbmcq_02
                 MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        private void LoadRegisteredCourses()
+        private void lblSignOut_LinkClicked(Object sender, LinkLabelLinkClickedEventArgs e)
         {
-            try
-            {
-                using var conn = new OracleConnection(_connection.GetConnectionString());
-                conn.Open();
-
-                string query = "SELECT * FROM C##ADMIN.DANGKY WHERE MASV='SV2274'";
-                using var cmd = new OracleCommand(query, conn);
-                using var reader = cmd.ExecuteReader();
-
-                dtgvStudent2.Rows.Clear();
-
-                while (reader.Read())
-                {
-                    object[] row = new object[reader.FieldCount];
-                    reader.GetValues(row);
-                    dtgvStudent2.Rows.Add(row);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            Application.Restart();
         }
     }
 }
