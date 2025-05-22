@@ -11,7 +11,7 @@ namespace atbmcq_02
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new Connection());
+            Application.Run(new Login());
         }
     }
 }

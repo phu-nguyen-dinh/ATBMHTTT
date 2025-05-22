@@ -15,23 +15,14 @@ using System.IO;
 
 namespace atbmcq_02
 {
-    public partial class Connection : Form
+    public partial class Login : Form
     {
         private OracleDbConnection _connection;
 
-        public Connection()
+        public Login()
         {
             InitializeComponent();
             _connection = new OracleDbConnection();
-            
-            // Set default values
-            cboAuthType.SelectedIndex = 0;
-            cboRole.SelectedIndex = 0;
-            cboConnType.SelectedIndex = 0;
-            txtUsername.Text = "C##ADMIN";
-            // Initial radio button state
-            txtSID.Enabled = radSID.Checked;
-            txtServiceName.Enabled = radServiceName.Checked;
 
             // Add event handlers for buttons
             btnTest.Click += BtnTest_Click;
@@ -44,32 +35,17 @@ namespace atbmcq_02
             try
             {
                 // Get connection details
-                _connection.Hostname = cboHostname.Text;
-                _connection.Port = int.Parse(txtPort.Text);
+                _connection.Hostname = "localhost";
+                _connection.Port = 1521;
                 _connection.Username = txtUsername.Text;
                 _connection.Password = txtPassword.Text;
                 _connection.Role = cboRole.SelectedItem?.ToString() ?? "default";
-
-                if (radSID.Checked)
-                {
-                    _connection.SID = txtSID.Text;
-                    _connection.ServiceName = string.Empty;
-                }
-                else
-                {
-                    _connection.ServiceName = txtServiceName.Text;
-                    _connection.SID = string.Empty;
-                }
+                _connection.ServiceName = "xepdb1";
 
                 // Test the connection
                 if (_connection.TestConnection())
                 {
                     MessageBox.Show("Connection test successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    // Add new hostname to the list if it doesn't exist
-                    if (!string.IsNullOrEmpty(cboHostname.Text) && !cboHostname.Items.Contains(cboHostname.Text))
-                    {
-                        cboHostname.Items.Add(cboHostname.Text);
-                    }
                 }
                 else
                 {
@@ -92,32 +68,15 @@ namespace atbmcq_02
         {
             try
             {
-                this._connection.Hostname = cboHostname.Text;
-                this._connection.Port = int.Parse(txtPort.Text);
-                
-                if (radSID.Checked)
-                {
-                    this._connection.SID = txtSID.Text;
-                    this._connection.ServiceName = string.Empty;
-                }
-                else
-                {
-                    this._connection.ServiceName = txtServiceName.Text;
-                    this._connection.SID = string.Empty;
-                }
-                
+                this._connection.Hostname = "localhost";
+                this._connection.Port = 1521;
+                _connection.ServiceName = "xepdb1";
                 this._connection.Username = txtUsername.Text;
                 this._connection.Password = txtPassword.Text;
                 this._connection.Role = cboRole.SelectedItem?.ToString() ?? "default";
 
                 if (_connection.TestConnection())
                 {
-                    // Add new hostname to the list if it doesn't exist
-                    if (!string.IsNullOrEmpty(cboHostname.Text) && !cboHostname.Items.Contains(cboHostname.Text))
-                    {
-                        cboHostname.Items.Add(cboHostname.Text);
-                    }
-
                     MessageBox.Show("Connection successful!", "Notification", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     loadMainForm();
                 }
@@ -132,12 +91,77 @@ namespace atbmcq_02
             }
         }
 
+        private String getRole()
+        {
+            try
+            {
+                using var conn = new OracleConnection(_connection.GetConnectionString());
+                conn.Open();
+
+                string query = "SELECT VAITRO FROM C##ADMIN.NHANVIEN WHERE MANLD= '" + _connection.Username+"'";
+                using var cmd = new OracleCommand(query, conn);
+                using var reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    return reader.GetString(0);
+                }
+                return "";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return "";
+            }
+        }
+
         private void loadMainForm()
         {
+            string username = _connection.Username.ToUpper();
             this.Hide();
-            Home home = new Home(_connection);
-            home.ShowDialog();
+
+            // Phân luồng người dùng theo username
+            if (username == "C##ADMIN" || username == "ADMIN")
+            {
+                // Nếu là admin → mở form Home
+                Home homeForm = new Home(_connection);
+                homeForm.ShowDialog();
+            }
+            //else if (username.StartsWith("SV"))
+            //{
+            //    // Sinh viên → mở Dashboard
+            //    DashBoard dshBrd = new DashBoard(_connection);
+            //    dshBrd.ShowDialog();
+            //}
+            //else if (username.StartsWith("NV"))
+            //{
+            //    // Đối với nhân viên/giáo viên, cần tạo form container cho Teacher
+            //    Form teacherForm = new Form();
+            //    teacherForm.Text = "Giáo viên";
+
+            //    // Tạo UserControl Teacher và thêm vào form
+            //    Official OfficialControl = new Official(_connection);
+            //    OfficialControl.Dock = DockStyle.Fill;
+            //    teacherForm.Controls.Add(OfficialControl);
+
+            //    // Xử lý sự kiện quay lại
+            //    OfficialControl.backClicked += (sender, e) =>
+            //    {
+            //        teacherForm.Close();
+            //        loadMainForm();
+            //    };
+
+            //    teacherForm.ShowDialog();
+            //}
+            else
+            {
+                // Mặc định hiển thị Dashboard
+                DashBoard dshBrd = new DashBoard(_connection);
+                dshBrd.ShowDialog();
+            }
+
             this.Close();
         }
+
     }
 }

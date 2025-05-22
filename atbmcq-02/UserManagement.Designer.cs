@@ -2,7 +2,7 @@
 
 namespace atbmcq_02
 {
-    partial class User_Management
+    partial class UserManagement
     {
         /// <summary> 
         /// Required designer variable.
