@@ -98,11 +98,15 @@ namespace atbmcq_02
                 using var conn = new OracleConnection(_connection.GetConnectionString());
                 conn.Open();
 
-                string query = "SELECT VAITRO FROM C##ADMIN.NHANVIEN WHERE MANLD= " + _connection.Username;
+                string query = "SELECT VAITRO FROM C##ADMIN.NHANVIEN WHERE MANLD = '" + _connection.Username + "'";
                 using var cmd = new OracleCommand(query, conn);
                 using var reader = cmd.ExecuteReader();
 
-                return reader.GetString(0);
+                if (reader.Read())
+                {
+                    return reader.GetString(0);
+                }
+                return "";
             }
             catch (Exception ex)
             {
@@ -113,35 +117,50 @@ namespace atbmcq_02
 
         private void loadMainForm()
         {
-            //string username = _connection.Username.ToUpper();
-
-            //this.Hide();
-
-            //if (username.StartsWith("SV"))
-            //{
-            //    // Nếu là sinh viên → mở form Student
-            //    Student studentForm = new Student(_connection);
-            //    studentForm.ShowDialog();
-            //}
-            //else
-            //{
-            //    String role = getRole();
-            //    if (role=="GV")
-            //    {
-            //        Teacher teacherform = new Teacher(_connection);
-            //        teacherform.ShowDialog();
-            //    }
-            //    else
-            //    {
-            //        DashBoard dshBrd = new DashBoard(_connection);
-            //        dshBrd.ShowDialog();
-            //    }
-            //}
-            //this.Close();
-
+            string username = _connection.Username.ToUpper();
+            
             this.Hide();
-            DashBoard dshBrd = new DashBoard(_connection);
-            dshBrd.ShowDialog();
+
+            // Phân luồng người dùng theo username
+            if (username == "C##ADMIN" || username == "ADMIN")
+            {
+                // Nếu là admin → mở form Home
+                Home homeForm = new Home(_connection);
+                homeForm.ShowDialog();
+            }
+            else if (username.StartsWith("SV"))
+            {
+                // Sinh viên → mở Dashboard
+                DashBoard dshBrd = new DashBoard(_connection);
+                dshBrd.ShowDialog();
+            }
+            else if (username.StartsWith("NV"))
+            {
+                // Đối với nhân viên/giáo viên, cần tạo form container cho Teacher
+                Form teacherForm = new Form();
+                teacherForm.Text = "Giáo viên";
+                
+                // Tạo UserControl Teacher và thêm vào form
+                Teacher teacherControl = new Teacher(_connection);
+                teacherControl.Dock = DockStyle.Fill;
+                teacherForm.Controls.Add(teacherControl);
+                
+                // Xử lý sự kiện quay lại
+                teacherControl.backClicked += (sender, e) => 
+                {
+                    teacherForm.Close();
+                    loadMainForm();
+                };
+                
+                teacherForm.ShowDialog();
+            }
+            else
+            {
+                // Mặc định hiển thị Dashboard
+                DashBoard dshBrd = new DashBoard(_connection);
+                dshBrd.ShowDialog();
+            }
+            
             this.Close();
         }
 

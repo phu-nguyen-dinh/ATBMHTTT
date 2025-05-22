@@ -18,10 +18,13 @@ namespace atbmcq_02
     public partial class DashBoard : Form
     {
         //public event EventHandler BackClicked;
+        // Đã có định nghĩa _connection trong Dashboard.Designer.cs nên không cần khai báo lại
+
         public DashBoard(OracleDbConnection _connect)
         {
             InitializeComponent();
             _connection = _connect;
+            // Không tự động điều hướng nữa, vì Dashboard chỉ dành cho sinh viên
         }
 
         private void llblCourse_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -80,7 +83,7 @@ namespace atbmcq_02
             _connection = _connect;
         }
 
-        private void loadStudent()
+        public void loadStudent()
         {
             var opnd = new Student(_connection);
 
@@ -90,7 +93,7 @@ namespace atbmcq_02
             this.Controls.Add(opnd);
             this.ClientSize = opnd.Size;
         }
-        private void loadTeacher()
+        public void loadTeacher()
         {
             var opnd = new Teacher(_connection);
 
