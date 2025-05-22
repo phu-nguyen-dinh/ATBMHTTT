@@ -16,7 +16,7 @@ namespace atbmcq_02
     public partial class Courses : UserControl
     {
         public event EventHandler<OracleDbConnection> backClicked;
-
+        public event EventHandler<OracleDbConnection> signOutClicked;
         public Courses(OracleDbConnection _connect)
         {
             InitializeComponent();
@@ -27,6 +27,10 @@ namespace atbmcq_02
         private void lblBack_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             backClicked?.Invoke(this, _connection);
+        }
+        private void lblSignOut_LinkClicked(Object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Application.Restart();
         }
 
         private void LoadCourses()

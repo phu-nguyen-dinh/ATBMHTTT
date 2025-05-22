@@ -82,5 +82,9 @@ namespace atbmcq_02
                 MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        private void lblSignOut_LinkClicked(Object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Application.Restart();
+        }
     }
 }

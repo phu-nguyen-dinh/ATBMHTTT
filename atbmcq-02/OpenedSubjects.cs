@@ -29,6 +29,11 @@ namespace atbmcq_02
             backClicked?.Invoke(this, _connection);
         }
 
+        private void lblSignOut_LinkClicked(Object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Application.Restart();
+        }
+
         private void LoadSubjects()
         {
             try
