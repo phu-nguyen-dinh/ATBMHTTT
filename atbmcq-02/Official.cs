@@ -113,6 +113,42 @@ namespace atbmcq_02
                 throw new NotImplementedException();
             }
         }
-        
+
+        private void btnEditPhone_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtNewPhone.Text))
+            {
+                MessageBox.Show("Vui lòng nhập số điện thoại mới!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            try
+            {
+
+                using var conn = new OracleConnection(_connection.GetConnectionString());
+                conn.Open();
+
+                string query = "UPDATE C##ADMIN.NHANVIEN SET DT = :phone";
+                using var cmd = new OracleCommand(query, conn);
+                cmd.Parameters.Add(new OracleParameter("phone", txtNewPhone.Text));
+
+                int result = cmd.ExecuteNonQuery();
+
+                if (result > 0)
+                {
+                    MessageBox.Show("Cập nhật số điện thoại thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadOfficial(); // Tải lại thông tin sau khi cập nhật
+                    txtNewPhone.Clear();
+                }
+                else
+                {
+                    MessageBox.Show("Không thể cập nhật số điện thoại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
     }
 }

@@ -60,6 +60,9 @@ namespace atbmcq_02
             GV_PhoneNumber = new DataGridViewTextBoxColumn();
             GV_Role = new DataGridViewTextBoxColumn();
             GV_Unit = new DataGridViewTextBoxColumn();
+            btnEditPhone = new Button();
+            lblNewPhone = new Label();
+            txtNewPhone = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dtgvStudent).BeginInit();
             pnlBar.SuspendLayout();
             tabControl1.SuspendLayout();
@@ -249,6 +252,9 @@ namespace atbmcq_02
             // 
             // tabPage2
             // 
+            tabPage2.Controls.Add(btnEditPhone);
+            tabPage2.Controls.Add(lblNewPhone);
+            tabPage2.Controls.Add(txtNewPhone);
             tabPage2.Controls.Add(dtgvOfficial);
             tabPage2.Location = new Point(4, 29);
             tabPage2.Name = "tabPage2";
@@ -333,6 +339,32 @@ namespace atbmcq_02
             GV_Unit.Name = "GV_Unit";
             GV_Unit.Width = 200;
             // 
+            // btnEditPhone
+            // 
+            btnEditPhone.Location = new Point(368, 65);
+            btnEditPhone.Name = "btnEditPhone";
+            btnEditPhone.Size = new Size(133, 29);
+            btnEditPhone.TabIndex = 13;
+            btnEditPhone.Text = "Cập nhật SĐT";
+            btnEditPhone.UseVisualStyleBackColor = true;
+            btnEditPhone.Click += btnEditPhone_Click;
+            // 
+            // lblNewPhone
+            // 
+            lblNewPhone.AutoSize = true;
+            lblNewPhone.Location = new Point(47, 69);
+            lblNewPhone.Name = "lblNewPhone";
+            lblNewPhone.Size = new Size(81, 20);
+            lblNewPhone.TabIndex = 12;
+            lblNewPhone.Text = "SĐT mới:";
+            // 
+            // txtNewPhone
+            // 
+            txtNewPhone.Location = new Point(159, 66);
+            txtNewPhone.Name = "txtNewPhone";
+            txtNewPhone.Size = new Size(184, 25);
+            txtNewPhone.TabIndex = 11;
+            // 
             // Official
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
@@ -350,6 +382,7 @@ namespace atbmcq_02
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             tabPage2.ResumeLayout(false);
+            tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dtgvOfficial).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -387,5 +420,8 @@ namespace atbmcq_02
         private Button buttonXOA;
         private Button buttonSUA;
         private Button buttonTHEM;
+        private Button btnEditPhone;
+        private Label lblNewPhone;
+        private TextBox txtNewPhone;
     }
 }
