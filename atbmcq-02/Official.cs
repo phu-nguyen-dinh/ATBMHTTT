@@ -13,15 +13,15 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
 namespace atbmcq_02
 {
-    public partial class Teacher : UserControl
+    public partial class Official : UserControl
     {
         public event EventHandler<OracleDbConnection> backClicked;
 
-        public Teacher(OracleDbConnection _connect)
+        public Official(OracleDbConnection _connect)
         {
             InitializeComponent();
             _connection = _connect;
-            LoadTeacher();
+            LoadOfficial();
             LoadStudents();
         }
 
@@ -41,13 +41,13 @@ namespace atbmcq_02
                 using var cmd = new OracleCommand(query, conn);
                 using var reader = cmd.ExecuteReader();
 
-                dtgvTeacher.Rows.Clear();
+                dtgvStudent.Rows.Clear();
 
                 while (reader.Read())
                 {
                     object[] row = new object[reader.FieldCount];
                     reader.GetValues(row);
-                    dtgvTeacher.Rows.Add(row);
+                    dtgvStudent.Rows.Add(row);
                 }
             }
             catch (Exception ex)
@@ -56,7 +56,7 @@ namespace atbmcq_02
             }
         }
 
-        private void LoadTeacher()
+        private void LoadOfficial()
         {
             try
             {
@@ -68,13 +68,13 @@ namespace atbmcq_02
                 using var cmd = new OracleCommand(query, conn);
                 using var reader = cmd.ExecuteReader();
 
-                dtgvStudent1.Rows.Clear();
+                dtgvOfficial.Rows.Clear();
 
                 while (reader.Read())
                 {
                     object[] row = new object[reader.FieldCount];
                     reader.GetValues(row);
-                    dtgvStudent1.Rows.Add(row);
+                    dtgvOfficial.Rows.Add(row);
                 }
             }
             catch(Exception ex)
@@ -86,5 +86,33 @@ namespace atbmcq_02
         {
             Application.Restart();
         }
+        private void opnd_backClicked(object sender, OracleDbConnection _connect)
+        {
+            this.Controls.Clear();
+            InitializeComponent();
+            _connection = _connect;
+
+            
+            LoadOfficial();
+            LoadStudents();
+        }
+        private void ButtonTHEM_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var opnd = new AddStudent(_connection);
+
+                opnd.backClicked += opnd_backClicked;
+
+                this.Controls.Clear();
+                this.Controls.Add(opnd);
+                this.ClientSize = opnd.Size;
+            }
+            catch
+            {
+                throw new NotImplementedException();
+            }
+        }
+        
     }
 }

@@ -122,4 +122,5 @@ D:\atbm\1905\ATBMHTTT\atbmcq-02\obj\Debug\net8.0-windows\atbmcq_02.OpenedSubject
 D:\atbm\1905\ATBMHTTT\atbmcq-02\obj\Debug\net8.0-windows\atbmcq_02.Registration.resources
 D:\atbm\1905\ATBMHTTT\atbmcq-02\obj\Debug\net8.0-windows\atbmcq_02.UserManagement.resources
 D:\atbm\1905\ATBMHTTT\atbmcq-02\obj\Debug\net8.0-windows\atbmcq_02.Student.resources
-D:\atbm\1905\ATBMHTTT\atbmcq-02\obj\Debug\net8.0-windows\atbmcq_02.Teacher.resources
+D:\atbm\1905\ATBMHTTT\atbmcq-02\obj\Debug\net8.0-windows\atbmcq_02.Official.resources
+D:\atbm\1905\ATBMHTTT\atbmcq-02\obj\Debug\net8.0-windows\atbmcq_02.AddStudent.resources

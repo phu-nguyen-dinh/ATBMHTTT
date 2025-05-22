@@ -92,7 +92,7 @@ namespace atbmcq_02
         }
         private void loadTeacher()
         {
-            var opnd = new Teacher(_connection);
+            var opnd = new Official(_connection);
 
             opnd.backClicked += opnd_backClicked;
 
