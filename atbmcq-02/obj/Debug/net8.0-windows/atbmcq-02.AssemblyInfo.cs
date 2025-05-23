@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("atbmcq-02")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0f4221cfe8b48cf7646c0fa683d5c1047389512e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+99719ba3b9f242250be0ab97aee12bf918257216")]
 [assembly: System.Reflection.AssemblyProductAttribute("atbmcq-02")]
 [assembly: System.Reflection.AssemblyTitleAttribute("atbmcq-02")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -7,6 +7,9 @@
     <Compile Update="Dashboard.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="InsertForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -27,6 +30,9 @@
     </Compile>
     <Compile Update="Teacher.cs">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UpdateForm.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Update="UserManagement.cs">
       <SubType>UserControl</SubType>

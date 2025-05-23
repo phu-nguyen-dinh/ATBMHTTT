@@ -1,6 +1,6 @@
 -- Oracle User Manager Stored Procedures
 -- Chạy script này với tài khoản SYS
-
+ALTER PLUGGABLE DATABASE PROJECT OPEN;
 -- 1. Procedure tạo user mới
 -- Tham số:
 --   p_username: Tên user cần tạo
@@ -365,7 +365,13 @@ GRANT SELECT ON C##ADMIN.HOCPHAN TO SINHVIEN;
 GRANT SELECT ON C##ADMIN.NHANVIEN TO GV;
 GRANT SELECT ON C##ADMIN.NHANVIEN TO TRGDV;
 GRANT SELECT ON C##ADMIN.NHANVIEN TO SINHVIEN;
+GRANT SELECT ON C##ADMIN.SINHVIEN TO GV;
+GRANT SELECT ON C##ADMIN.SINHVIEN TO TRGDV;
+GRANT SELECT ON C##ADMIN.SINHVIEN TO SINHVIEN;
 GRANT SELECT, INSERT, UPDATE, DELETE ON C##ADMIN.MOMON TO NVPDT;
+GRANT SELECT ON C##ADMIN.HOCPHAN TO NVPDT;
+GRANT SELECT ON C##ADMIN.NHANVIEN TO NVPDT;
+GRANT SELECT ON C##ADMIN.SINHVIEN TO NVPDT;
 
 -- Cấp quyền cho người dùng
 -- Trưởng đơn vị
@@ -4647,13 +4653,23 @@ AS
     v_predicate VARCHAR2(4000);
     v_user VARCHAR2(30) := SYS_CONTEXT('USERENV', 'SESSION_USER');
     v_role NVARCHAR2(30);
+    v_current_hk VARCHAR2(10) := SYS_CONTEXT('APP_CTX', 'CURRENT_HK');
+    v_current_nam VARCHAR2(10) := SYS_CONTEXT('APP_CTX', 'CURRENT_NAM');
 BEGIN
     v_role := get_vaitro(v_user);
         
     IF v_role = 'GV' THEN
         v_predicate := 'MAGV = ''' || v_user || '''';
     ELSIF v_role = N'NV PĐT' THEN
-        v_predicate := 'HK = CURRENT_HK AND NAM = CURRENT_NAM';
+        IF v_current_hk = 'All' AND v_current_nam = 'All' THEN
+            v_predicate := '1=1';
+        ELSIF v_current_hk = 'All' THEN
+            v_predicate := 'NAM = ''' || v_current_nam || '''';
+        ELSIF v_current_nam = 'All' THEN
+            v_predicate := 'HK = ''' || v_current_hk || '''';
+        ELSE
+            v_predicate := 'HK = ''' || v_current_hk || ''' AND NAM = ''' || v_current_nam || '''';
+        END IF;
     ELSIF v_role = N'TRGĐV' THEN
         v_predicate := 'MAGV IN (
             SELECT MANLD FROM NHANVIEN
@@ -4676,6 +4692,23 @@ BEGIN
     RETURN v_predicate;
 END;
 /
+
+CREATE OR REPLACE CONTEXT app_ctx USING set_app_ctx_proc;
+/
+
+CREATE OR REPLACE PROCEDURE set_app_ctx_proc(
+    p_hk  IN VARCHAR2,
+    p_nam IN VARCHAR2
+)
+IS
+BEGIN
+    DBMS_SESSION.SET_CONTEXT('app_ctx', 'CURRENT_HK', p_hk);
+    DBMS_SESSION.SET_CONTEXT('app_ctx', 'CURRENT_NAM', p_nam);
+END;
+/
+
+GRANT EXECUTE ON C##ADMIN.set_app_ctx_proc TO NV720;
+GRANT EXECUTE ON C##ADMIN.set_app_ctx_proc TO NV721;
 
 -- Áp policy vào bảng
 BEGIN

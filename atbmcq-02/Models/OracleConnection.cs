@@ -7,6 +7,8 @@ namespace OracleUserManager.Models
 {
     public class OracleDbConnection
     {
+        public OracleConnection conn;
+
         public string Hostname { get; set; } = string.Empty;
         public int Port { get; set; } = 1521;
         public string SID { get; set; } = "xe";  // Default SID for Oracle XE
@@ -33,12 +35,13 @@ namespace OracleUserManager.Models
             return connectionString;
         }
 
-        public bool TestConnection()
+        public bool Connect()
         {
             try
             {
-                using var conn = new OracleConnection(GetConnectionString());
-                conn.Open();
+                this.conn = new OracleConnection(this.GetConnectionString());
+                this.conn.Open();
+
                 return true;
             }
             catch (Exception ex)
@@ -46,6 +49,12 @@ namespace OracleUserManager.Models
                 System.Windows.Forms.MessageBox.Show(ex.Message);
                 return false;
             }
+        }
+
+        ~OracleDbConnection()
+        {
+            this.conn.Close();
+            this.conn.Dispose();
         }
     }
 } 

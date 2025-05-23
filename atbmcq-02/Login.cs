@@ -22,7 +22,7 @@ namespace atbmcq_02
         public Login()
         {
             InitializeComponent();
-            _connection = new OracleDbConnection();
+            this._connection = new OracleDbConnection();
 
             // Add event handlers for buttons
             btnTest.Click += BtnTest_Click;
@@ -34,16 +34,14 @@ namespace atbmcq_02
         {
             try
             {
-                // Get connection details
                 _connection.Hostname = "localhost";
                 _connection.Port = 1521;
                 _connection.Username = txtUsername.Text;
                 _connection.Password = txtPassword.Text;
                 _connection.Role = cboRole.SelectedItem?.ToString() ?? "default";
-                _connection.ServiceName = "xepdb1";
+                _connection.ServiceName = "project";
 
-                // Test the connection
-                if (_connection.TestConnection())
+                if (_connection.Connect())
                 {
                     MessageBox.Show("Connection test successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -51,6 +49,9 @@ namespace atbmcq_02
                 {
                     MessageBox.Show("Connection test failed!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+
+                _connection.conn.Close();
+                _connection.conn.Dispose();
             }
             catch (Exception ex)
             {
@@ -60,7 +61,6 @@ namespace atbmcq_02
 
         private void BtnCancel_Click(object? sender, EventArgs e)
         {
-            // Close the form
             this.Close();
         }
 
@@ -70,12 +70,12 @@ namespace atbmcq_02
             {
                 this._connection.Hostname = "localhost";
                 this._connection.Port = 1521;
-                _connection.ServiceName = "xepdb1";
+                _connection.ServiceName = "project";
                 this._connection.Username = txtUsername.Text;
                 this._connection.Password = txtPassword.Text;
                 this._connection.Role = cboRole.SelectedItem?.ToString() ?? "default";
 
-                if (_connection.TestConnection())
+                if (_connection.Connect())
                 {
                     MessageBox.Show("Connection successful!", "Notification", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     loadMainForm();

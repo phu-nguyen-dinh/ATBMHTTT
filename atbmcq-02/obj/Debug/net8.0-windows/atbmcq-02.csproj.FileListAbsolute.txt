@@ -123,3 +123,7 @@ D:\atbm\1905\ATBMHTTT\atbmcq-02\obj\Debug\net8.0-windows\atbmcq_02.Registration.
 D:\atbm\1905\ATBMHTTT\atbmcq-02\obj\Debug\net8.0-windows\atbmcq_02.UserManagement.resources
 D:\atbm\1905\ATBMHTTT\atbmcq-02\obj\Debug\net8.0-windows\atbmcq_02.Student.resources
 D:\atbm\1905\ATBMHTTT\atbmcq-02\obj\Debug\net8.0-windows\atbmcq_02.Teacher.resources
+D:\Project_ATBMHTTT\ATBMHTTT\atbmcq-02\obj\Debug\net8.0-windows\atbmcq_02.Student.resources
+D:\Project_ATBMHTTT\ATBMHTTT\atbmcq-02\obj\Debug\net8.0-windows\atbmcq_02.Teacher.resources
+D:\Project_ATBMHTTT\ATBMHTTT\atbmcq-02\obj\Debug\net8.0-windows\atbmcq_02.InsertForm.resources
+D:\Project_ATBMHTTT\ATBMHTTT\atbmcq-02\obj\Debug\net8.0-windows\atbmcq_02.UpdateForm.resources
