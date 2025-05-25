@@ -1,0 +1,154 @@
+-- Chạy lệnh này với SYS trong PDB hiện tại
+SELECT VALUE FROM v$option WHERE parameter = 'Oracle Label Security';
+SELECT status FROM dba_ols_status WHERE name = 'OLS_CONFIGURE_STATUS';
+EXEC LBACSYS.CONFIGURE_OLS;
+EXEC LBACSYS.OLS_ENFORCEMENT.ENABLE_OLS;
+SHUTDOWN IMMEDIATE;
+STARTUP;
+
+-- Chạy lệnh này với CDB$ROOT
+ALTER USER lbacsys IDENTIFIED BY lbacsys ACCOUNT UNLOCK;
+
+-- Chạy lệnh này với SYS của PDB
+GRANT UNLIMITED TABLESPACE TO C##ADMIN;
+GRANT SELECT ANY DICTIONARY TO C##ADMIN;
+GRANT CONNECT,RESOURCE TO C##ADMIN;
+GRANT EXECUTE ON LBACSYS.SA_COMPONENTS TO C##ADMIN WITH GRANT OPTION;
+GRANT EXECUTE ON LBACSYS.sa_user_admin TO C##ADMIN WITH GRANT OPTION;
+GRANT EXECUTE ON LBACSYS.sa_label_admin TO C##ADMIN WITH GRANT OPTION;
+GRANT EXECUTE ON sa_policy_admin TO C##ADMIN WITH GRANT OPTION;
+GRANT EXECUTE ON char_to_label TO C##ADMIN WITH GRANT OPTION;
+GRANT LBAC_DBA TO C##ADMIN;
+GRANT EXECUTE ON sa_sysdba TO C##ADMIN;
+GRANT EXECUTE ON TO_LBAC_DATA_LABEL TO C##ADMIN;
+GRANT EXECUTE ON LBACSYS.SA_SYSDBA TO C##ADMIN;
+
+-- Tạo policy
+BEGIN
+  SA_SYSDBA.CREATE_POLICY (
+    policy_name     => 'POL_THONGBAO',
+    column_name     => 'LBL_THONGBAO',
+    default_options => 'READ_CONTROL'
+  );
+END;
+/
+
+-- Tạo Level
+BEGIN
+  SA_COMPONENTS.CREATE_LEVEL('POL_THONGBAO', 100, 'SINHVIEN', 'Sinh vien');
+  SA_COMPONENTS.CREATE_LEVEL('POL_THONGBAO', 200, 'NHANVIEN', 'Nhan vien');
+  SA_COMPONENTS.CREATE_LEVEL('POL_THONGBAO', 300, 'TRGDV', 'Truong don vi');
+END;
+/
+
+-- Tạo Compartment
+BEGIN
+  SA_COMPONENTS.CREATE_COMPARTMENT('POL_THONGBAO', 10, 'TOAN', 'Toan');
+  SA_COMPONENTS.CREATE_COMPARTMENT('POL_THONGBAO', 20, 'LY', 'Ly');
+  SA_COMPONENTS.CREATE_COMPARTMENT('POL_THONGBAO', 30, 'HOA', 'Hoa');
+  SA_COMPONENTS.CREATE_COMPARTMENT('POL_THONGBAO', 40, 'HC', 'Hanh chinh');
+END;
+/
+
+-- Tạo Group
+BEGIN
+  SA_COMPONENTS.CREATE_GROUP('POL_THONGBAO', 1, 'CS1', 'Co so 1');
+  SA_COMPONENTS.CREATE_GROUP('POL_THONGBAO', 2, 'CS2', 'Co so 2');
+END;
+/
+
+-- Tạo bảng
+CREATE TABLE THONGBAO (
+  ID NUMBER PRIMARY KEY,
+  NOIDUNG NVARCHAR2(1000)
+);
+
+-- Áp chính sách
+BEGIN
+  SA_POLICY_ADMIN.APPLY_TABLE_POLICY (
+    policy_name   => 'POL_THONGBAO',
+    schema_name   => 'C##ADMIN',
+    table_name    => 'THONGBAO',
+    table_options => 'READ_CONTROL',
+    predicate => NULL
+  );
+END;
+/
+
+-- Tạo nhãn cho các thông báo
+-- t1: Gửi đến tất cả trưởng đơn vị (mọi lĩnh vực, mọi cơ sở)
+INSERT INTO THONGBAO (ID, NOIDUNG, LBL_THONGBAO)
+VALUES (1, N'Thông báo đến tất cả trưởng đơn vị', CHAR_TO_LABEL('POL_THONGBAO', 'TRGDV:TOAN,LY,HOA,HC:CS1,CS2'));
+
+-- t2: Gửi đến tất cả nhân viên
+INSERT INTO THONGBAO (ID, NOIDUNG, LBL_THONGBAO)
+VALUES (2, N'Thông báo đến tất cả nhân viên', CHAR_TO_LABEL('POL_THONGBAO', 'NHANVIEN:TOAN,LY,HOA,HC:CS1,CS2'));
+
+-- t3: Gửi đến tất cả sinh viên
+INSERT INTO THONGBAO (ID, NOIDUNG, LBL_THONGBAO)
+VALUES (3, N'Thông báo đến tất cả sinh viên', CHAR_TO_LABEL('POL_THONGBAO', 'SINHVIEN:TOAN,LY,HOA,HC:CS1,CS2'));
+
+-- t4: Sinh viên thuộc khoa Hóa ở cơ sở 1
+INSERT INTO THONGBAO (ID, NOIDUNG, LBL_THONGBAO)
+VALUES (4, N'Thông báo cho SV khoa Hóa - CS1', CHAR_TO_LABEL('POL_THONGBAO', 'SINHVIEN:HOA:CS1'));
+
+-- t5: Sinh viên thuộc khoa Hóa ở cơ sở 2
+INSERT INTO THONGBAO (ID, NOIDUNG, LBL_THONGBAO)
+VALUES (5, N'Thông báo cho SV khoa Hóa - CS2', CHAR_TO_LABEL('POL_THONGBAO', 'SINHVIEN:HOA:CS2'));
+
+-- t6: Sinh viên khoa Hóa ở cả 2 cơ sở → tạo nhãn riêng hoặc lặp 2 dòng
+INSERT INTO THONGBAO (ID, NOIDUNG, LBL_THONGBAO)
+VALUES (6, N'Thông báo SV Hóa - CS1', CHAR_TO_LABEL('POL_THONGBAO', 'SINHVIEN:HOA:CS1'));
+
+INSERT INTO THONGBAO (ID, NOIDUNG, LBL_THONGBAO)
+VALUES (7, N'Thông báo SV Hóa - CS2', CHAR_TO_LABEL('POL_THONGBAO', 'SINHVIEN:HOA:CS2'));
+
+-- t7: Tất cả sinh viên cả 2 cơ sở (nếu hệ thống phân biệt cơ sở qua group)
+INSERT INTO THONGBAO (ID, NOIDUNG, LBL_THONGBAO)
+VALUES (8, N'Thông báo SV toàn trường', CHAR_TO_LABEL('POL_THONGBAO', 'SINHVIEN:TOAN,LY,HOA,HC:CS1,CS2'));
+
+-- t8: Trưởng khoa Hóa tại cơ sở 1
+INSERT INTO THONGBAO (ID, NOIDUNG, LBL_THONGBAO)
+VALUES (9, N'Thông báo Trưởng khoa Hóa - CS1', CHAR_TO_LABEL('POL_THONGBAO', 'TRGDV:HOA:CS1'));
+
+-- t9: Trưởng khoa Hóa tại CS1 và CS2 → tạo 2 dòng
+INSERT INTO THONGBAO (ID, NOIDUNG, LBL_THONGBAO)
+VALUES (10, N'Thông báo Trưởng khoa Hóa - CS1', CHAR_TO_LABEL('POL_THONGBAO', 'TRGDV:HOA:CS1'));
+
+INSERT INTO THONGBAO (ID, NOIDUNG, LBL_THONGBAO)
+VALUES (11, N'Thông báo Trưởng khoa Hóa - CS2', CHAR_TO_LABEL('POL_THONGBAO', 'TRGDV:HOA:CS2'));
+
+-- Tạo nhãn cho user
+BEGIN
+  -- u1: Trưởng đơn vị có thể đọc toàn bộ thông báo
+  SA_USER_ADMIN.SET_USER_LABELS('POL_THONGBAO', 'NV011', 'TRGDV:TOAN,LY,HOA,HC:CS1,CS2');
+
+  -- u2: Trưởng đơn vị phụ trách khoa Hóa tại cơ sở 2
+  SA_USER_ADMIN.SET_USER_LABELS('POL_THONGBAO', 'NV001', 'TRGDV:HOA:CS2');
+
+  -- u3: Trưởng đơn vị phụ trách khoa Lý tại cơ sở 2
+  SA_USER_ADMIN.SET_USER_LABELS('POL_THONGBAO', 'NV003', 'TRGDV:LY:CS2');
+
+  -- u4: Nhân viên thuộc khoa Hóa tại cơ sở 2
+  SA_USER_ADMIN.SET_USER_LABELS('POL_THONGBAO', 'NV026', 'NHANVIEN:HOA:CS2');
+
+  -- u5: Sinh viên khoa Hóa tại cơ sở 2
+  SA_USER_ADMIN.SET_USER_LABELS('POL_THONGBAO', 'SV1242', 'SINHVIEN:HOA:CS2');
+
+  -- u6: Trưởng đơn vị có thể đọc các thông báo về Hành chính (ở tất cả cơ sở)
+  SA_USER_ADMIN.SET_USER_LABELS('POL_THONGBAO', 'NV018', 'TRGDV:HC:CS1,CS2');
+
+  -- u7: Nhân viên đọc được tất cả thông báo dành cho nhân viên
+  SA_USER_ADMIN.SET_USER_LABELS('POL_THONGBAO', 'NV250', 'NHANVIEN:TOAN,LY,HOA,HC:CS1,CS2');
+
+  -- u8: Nhân viên có thể đọc thông báo về Hành chính tại cơ sở 1
+  SA_USER_ADMIN.SET_USER_LABELS('POL_THONGBAO', 'NV252', 'NHANVIEN:HC:CS1');
+END;
+/
+
+GRANT SELECT ON C##ADMIN.THONGBAO TO NV011;
+GRANT SELECT ON C##ADMIN.THONGBAO TO NV026;
+
+UPDATE THONGBAO
+SET NOIDUNG = NOIDUNG;
+COMMIT;
