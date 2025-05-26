@@ -58,7 +58,7 @@ namespace atbmcq_02
             }
             else
             {
-                loadTeacher();
+                loadOfficial();
             }
         }
 
@@ -90,7 +90,7 @@ namespace atbmcq_02
             this.Controls.Add(opnd);
             this.ClientSize = opnd.Size;
         }
-        private void loadTeacher()
+        private void loadOfficial()
         {
             var opnd = new Official(_connection);
 
