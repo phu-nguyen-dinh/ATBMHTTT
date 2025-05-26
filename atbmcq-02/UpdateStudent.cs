@@ -21,7 +21,6 @@ namespace atbmcq_02
         {
             InitializeComponent();
             _connection = _connect;
-
         }
 
         private void lblBack_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -32,6 +31,44 @@ namespace atbmcq_02
         {
             Application.Restart();
         }
+        private void UpdateStudent_Load(object sender, EventArgs e)
+        {
+            LoadOfficial();
+        }
+
+        private void LoadOfficial()
+        {
+            try
+            {
+                string username = _connection.Username.ToUpper();
+                using var conn = new OracleConnection(_connection.GetConnectionString());
+                conn.Open();
+
+                string query = "SELECT * FROM C##ADMIN.NHANVIEN WHERE MANLD= '" + username + "'";
+                using var cmd = new OracleCommand(query, conn);
+                using var reader = cmd.ExecuteReader();
+
+                // Ẩn/hiện nút theo vai trò
+                if (reader.Read())
+                {
+                    string vaitro = reader["VAITRO"].ToString();
+                    if (vaitro == "NV PĐT")
+                    {
+                        comboBoxStatus.Visible = true;
+                    }
+                    else
+                    {
+                        comboBoxStatus.Visible = false;
+                    }
+                }
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void ButtonUpdate_Click(object sender, EventArgs e)
         {
             try

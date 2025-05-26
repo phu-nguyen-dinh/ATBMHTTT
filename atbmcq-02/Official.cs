@@ -146,6 +146,24 @@ namespace atbmcq_02
             }
         }
 
+        private void buttonXOA_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var opnd = new DeleteStudent(_connection);
+
+                opnd.backClicked += opnd_backClicked;
+
+                this.Controls.Clear();
+                this.Controls.Add(opnd);
+                this.ClientSize = opnd.Size;
+            }
+            catch
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         private void btnEditPhone_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtNewPhone.Text))

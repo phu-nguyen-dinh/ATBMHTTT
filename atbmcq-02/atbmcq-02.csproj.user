@@ -10,6 +10,9 @@
     <Compile Update="Dashboard.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="DeleteStudent.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="InsertForm.cs">
       <SubType>Form</SubType>
     </Compile>
