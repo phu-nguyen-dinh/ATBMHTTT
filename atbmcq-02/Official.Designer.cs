@@ -238,6 +238,7 @@ namespace atbmcq_02
             buttonSUA.TabIndex = 6;
             buttonSUA.Text = "UPDATE";
             buttonSUA.UseVisualStyleBackColor = false;
+            buttonSUA.Click += buttonSUA_Click;
             // 
             // buttonTHEM
             // 

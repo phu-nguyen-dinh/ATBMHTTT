@@ -75,6 +75,21 @@ namespace atbmcq_02
                     object[] row = new object[reader.FieldCount];
                     reader.GetValues(row);
                     dtgvOfficial.Rows.Add(row);
+
+                    // Ẩn/hiện nút theo vai trò
+                    string vaitro = reader["VAITRO"].ToString();
+                    if (vaitro == "NV CTSV" || vaitro == "NV PĐT")
+                    {
+                        buttonTHEM.Visible = true;
+                        buttonSUA.Visible = true;
+                        buttonXOA.Visible = true;
+                    }
+                    else
+                    {
+                        buttonTHEM.Visible = false;
+                        buttonSUA.Visible = false;
+                        buttonXOA.Visible = false;
+                    }
                 }
             }
             catch(Exception ex)
@@ -114,6 +129,23 @@ namespace atbmcq_02
             }
         }
 
+        private void buttonSUA_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var opnd = new UpdateStudent(_connection);
+
+                opnd.backClicked += opnd_backClicked;
+
+                this.Controls.Clear();
+                this.Controls.Add(opnd);
+                this.ClientSize = opnd.Size;
+            }
+            catch { 
+                throw new NotImplementedException();
+            }
+        }
+
         private void btnEditPhone_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtNewPhone.Text))
@@ -148,6 +180,22 @@ namespace atbmcq_02
             {
                 MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private String getRole()
+        {
+            using var conn = new OracleConnection(_connection.GetConnectionString());
+            conn.Open();
+            string role = "";
+            string query = "SELECT VAITRO FROM C##ADMIN.NHANHVIEN WHERE MANLD= '"+_connection.Username.ToUpper()+"'";
+            using var cmd = new OracleCommand(query, conn);
+            using var reader = cmd.ExecuteReader();
+            if (reader.Read())
+            {
+                role = reader.GetString(0);
+            }
+
+            return role;
         }
 
     }
