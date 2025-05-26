@@ -84,6 +84,8 @@ namespace atbmcq_02
 
                 using (var cmd = new OracleCommand(query, _connection.conn))
                 {
+                    cmd.BindByName = true;
+                    cmd.Parameters.Clear();
                     cmd.Parameters.Add(new OracleParameter("idcrse", idcrse));
                     cmd.Parameters.Add(new OracleParameter("idtchr", idtchr));
                     cmd.Parameters.Add(new OracleParameter("semes", semes));

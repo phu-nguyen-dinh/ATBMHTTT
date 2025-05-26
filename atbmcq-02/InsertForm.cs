@@ -28,11 +28,11 @@ namespace atbmcq_02
             {
                 if (row.IsNewRow) continue;
 
-                string idcrse = Convert.ToString(row.Cells["Course"].Value)?.Trim();
-                string idsbj = Convert.ToString(row.Cells["Subject"].Value)?.Trim();
-                string idtchr = Convert.ToString(row.Cells["InCharge"].Value)?.Trim();
-                string semes = Convert.ToString(row.Cells["Semester"].Value)?.Trim();
-                string year = Convert.ToString(row.Cells["Year"].Value)?.Trim();
+                string idcrse = row.Cells["Course"].Value?.ToString().Trim();
+                string idsbj = row.Cells["Subject"].Value?.ToString().Trim();
+                string idtchr = row.Cells["InCharge"].Value?.ToString().Trim();
+                string semes = row.Cells["Semester"].Value?.ToString().Trim();
+                string year = row.Cells["Year"].Value?.ToString().Trim();
 
                 if (string.IsNullOrEmpty(idcrse) || string.IsNullOrEmpty(idsbj) || string.IsNullOrEmpty(idtchr) || string.IsNullOrEmpty(semes) || string.IsNullOrEmpty(year))
                 {
@@ -64,16 +64,17 @@ namespace atbmcq_02
         {
             try
             {
-                string query = "INSERT INTO C##ADMIN.MOMON (MAMM, MAHP, MAGV, HK, NAM) VALUES ('MM301', 'HP100', 'NV065', 1, 2022)";
+                string query = "INSERT INTO C##ADMIN.MOMON (MAMM, MAHP, MAGV, HK, NAM) VALUES (:mamm, :mahp, :magv, :hk, :nam)";
 
                 using (var cmd = new OracleCommand(query, _connection.conn))
                 {
-                    MessageBox.Show(idcrse + '\\' + idsbj + '\\' + idtchr);
-                    cmd.Parameters.Add(new OracleParameter("mhp", idcrse));
-                    cmd.Parameters.Add(new OracleParameter("mamm", idsbj));
-                    cmd.Parameters.Add(new OracleParameter("magv", idtchr));
-                    cmd.Parameters.Add(new OracleParameter("hk", semes));
-                    cmd.Parameters.Add(new OracleParameter("nam", year));
+                    cmd.BindByName = true;
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.Add("mahp", OracleDbType.Varchar2).Value = idcrse;
+                    cmd.Parameters.Add("mamm", OracleDbType.Varchar2).Value = idsbj;
+                    cmd.Parameters.Add("magv", OracleDbType.Varchar2).Value = idtchr;
+                    cmd.Parameters.Add("hk", OracleDbType.Int32).Value = semes;
+                    cmd.Parameters.Add("nam", OracleDbType.Int32).Value = year;
                     cmd.ExecuteNonQuery();
                 }
                 return true;
