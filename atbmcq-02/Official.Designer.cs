@@ -228,6 +228,7 @@ namespace atbmcq_02
             buttonXOA.TabIndex = 7;
             buttonXOA.Text = "DELETE";
             buttonXOA.UseVisualStyleBackColor = false;
+            buttonXOA.Click += buttonXOA_Click;
             // 
             // buttonSUA
             // 

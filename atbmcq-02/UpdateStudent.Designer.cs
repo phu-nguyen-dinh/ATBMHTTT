@@ -222,7 +222,7 @@ namespace atbmcq_02
             // comboBoxGender
             // 
             comboBoxGender.FormattingEnabled = true;
-            comboBoxGender.Items.AddRange(new object[] { "Man", "Woman" });
+            comboBoxGender.Items.AddRange(new object[] { "Nam", "Nữ" });
             comboBoxGender.Location = new Point(149, 326);
             comboBoxGender.Name = "comboBoxGender";
             comboBoxGender.Size = new Size(151, 28);
@@ -245,6 +245,7 @@ namespace atbmcq_02
             comboBoxStatus.Name = "comboBoxStatus";
             comboBoxStatus.Size = new Size(151, 28);
             comboBoxStatus.TabIndex = 21;
+            comboBoxStatus.Text = "NULL";
             // 
             // buttonUPDATE
             // 
@@ -296,6 +297,7 @@ namespace atbmcq_02
             Font = new Font("Cascadia Code", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             Name = "UpdateStudent";
             Size = new Size(1394, 712);
+            Load += UpdateStudent_Load;
             pnlBar.ResumeLayout(false);
             pnlBar.PerformLayout();
             ResumeLayout(false);
