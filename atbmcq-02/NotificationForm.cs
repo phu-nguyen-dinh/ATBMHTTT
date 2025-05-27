@@ -45,13 +45,13 @@ namespace atbmcq_02
                 // Kiểm tra xem có thông báo hay không
                 if (notificationsTable.Rows.Count == 0)
                 {
-                    MessageBox.Show("Không có thông báo nào cho bạn!", "Thông báo", 
+                    MessageBox.Show("Không có thông báo nào cho bạn!", "Thông báo",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Lỗi khi tải thông báo: {ex.Message}", "Lỗi", 
+                MessageBox.Show($"Lỗi khi tải thông báo: {ex.Message}", "Lỗi",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -60,7 +60,7 @@ namespace atbmcq_02
         {
             this.Close();
         }
-        
+
         private void lstNotifications_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (lstNotifications.SelectedIndex >= 0)
@@ -73,17 +73,22 @@ namespace atbmcq_02
                         // Lấy dữ liệu từ DataRowView
                         DataRow row = rowView.Row;
                         string content = row["NOIDUNG"].ToString();
-                        
+
                         // Hiển thị nội dung thông báo
                         txtNotificationDetail.Text = content;
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Lỗi khi hiển thị chi tiết thông báo: {ex.Message}", "Lỗi", 
+                    MessageBox.Show($"Lỗi khi hiển thị chi tiết thông báo: {ex.Message}", "Lỗi",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

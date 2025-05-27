@@ -31,83 +31,100 @@ namespace atbmcq_02
         /// </summary>
         private void InitializeComponent()
         {
-            this.lstNotifications = new System.Windows.Forms.ListBox();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.lblTitle = new System.Windows.Forms.Label();
-            this.txtNotificationDetail = new System.Windows.Forms.TextBox();
-            this.lblDetail = new System.Windows.Forms.Label();
-            this.SuspendLayout();
+            lstNotifications = new ListBox();
+            btnClose = new Button();
+            lblTitle = new Label();
+            txtNotificationDetail = new TextBox();
+            lblDetail = new Label();
+            label1 = new Label();
+            SuspendLayout();
             // 
             // lstNotifications
             // 
-            this.lstNotifications.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lstNotifications.FormattingEnabled = true;
-            this.lstNotifications.ItemHeight = 23;
-            this.lstNotifications.Location = new System.Drawing.Point(12, 70);
-            this.lstNotifications.Name = "lstNotifications";
-            this.lstNotifications.Size = new System.Drawing.Size(300, 349);
-            this.lstNotifications.TabIndex = 0;
-            this.lstNotifications.SelectedIndexChanged += new System.EventHandler(this.lstNotifications_SelectedIndexChanged);
+            lstNotifications.Font = new Font("Segoe UI", 10F);
+            lstNotifications.FormattingEnabled = true;
+            lstNotifications.ItemHeight = 17;
+            lstNotifications.Location = new Point(10, 69);
+            lstNotifications.Margin = new Padding(3, 2, 3, 2);
+            lstNotifications.Name = "lstNotifications";
+            lstNotifications.Size = new Size(263, 242);
+            lstNotifications.TabIndex = 0;
+            lstNotifications.SelectedIndexChanged += lstNotifications_SelectedIndexChanged;
             // 
             // btnClose
             // 
-            this.btnClose.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnClose.Location = new System.Drawing.Point(350, 435);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(100, 35);
-            this.btnClose.TabIndex = 1;
-            this.btnClose.Text = "Đóng";
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            btnClose.Font = new Font("Segoe UI", 10F);
+            btnClose.Location = new Point(306, 326);
+            btnClose.Margin = new Padding(3, 2, 3, 2);
+            btnClose.Name = "btnClose";
+            btnClose.Size = new Size(88, 26);
+            btnClose.TabIndex = 1;
+            btnClose.Text = "Đóng";
+            btnClose.UseVisualStyleBackColor = true;
+            btnClose.Click += btnClose_Click;
             // 
             // lblTitle
             // 
-            this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblTitle.Location = new System.Drawing.Point(300, 20);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(180, 37);
-            this.lblTitle.TabIndex = 2;
-            this.lblTitle.Text = "THÔNG BÁO";
+            lblTitle.AutoSize = true;
+            lblTitle.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            lblTitle.Location = new Point(264, 9);
+            lblTitle.Name = "lblTitle";
+            lblTitle.Size = new Size(145, 30);
+            lblTitle.TabIndex = 2;
+            lblTitle.Text = "THÔNG BÁO";
             // 
             // txtNotificationDetail
             // 
-            this.txtNotificationDetail.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtNotificationDetail.Location = new System.Drawing.Point(330, 98);
-            this.txtNotificationDetail.Multiline = true;
-            this.txtNotificationDetail.Name = "txtNotificationDetail";
-            this.txtNotificationDetail.ReadOnly = true;
-            this.txtNotificationDetail.Size = new System.Drawing.Size(440, 321);
-            this.txtNotificationDetail.TabIndex = 3;
+            txtNotificationDetail.Font = new Font("Segoe UI", 10F);
+            txtNotificationDetail.Location = new Point(289, 69);
+            txtNotificationDetail.Margin = new Padding(3, 2, 3, 2);
+            txtNotificationDetail.Multiline = true;
+            txtNotificationDetail.Name = "txtNotificationDetail";
+            txtNotificationDetail.ReadOnly = true;
+            txtNotificationDetail.Size = new Size(386, 242);
+            txtNotificationDetail.TabIndex = 3;
             // 
             // lblDetail
             // 
-            this.lblDetail.AutoSize = true;
-            this.lblDetail.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblDetail.Location = new System.Drawing.Point(330, 70);
-            this.lblDetail.Name = "lblDetail";
-            this.lblDetail.Size = new System.Drawing.Size(142, 23);
-            this.lblDetail.TabIndex = 4;
-            this.lblDetail.Text = "Chi tiết thông báo:";
+            lblDetail.AutoSize = true;
+            lblDetail.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            lblDetail.Location = new Point(289, 45);
+            lblDetail.Name = "lblDetail";
+            lblDetail.Size = new Size(133, 19);
+            lblDetail.TabIndex = 4;
+            lblDetail.Text = "Chi tiết thông báo";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            label1.Location = new Point(12, 45);
+            label1.Name = "label1";
+            label1.Size = new Size(133, 19);
+            label1.TabIndex = 5;
+            label1.Text = "Các thông báo";
+            label1.Click += label1_Click;
             // 
             // NotificationForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 490);
-            this.Controls.Add(this.lblDetail);
-            this.Controls.Add(this.txtNotificationDetail);
-            this.Controls.Add(this.lblTitle);
-            this.Controls.Add(this.btnClose);
-            this.Controls.Add(this.lstNotifications);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "NotificationForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Thông báo";
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(700, 368);
+            Controls.Add(label1);
+            Controls.Add(lblDetail);
+            Controls.Add(txtNotificationDetail);
+            Controls.Add(lblTitle);
+            Controls.Add(btnClose);
+            Controls.Add(lstNotifications);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
+            Margin = new Padding(3, 2, 3, 2);
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Name = "NotificationForm";
+            StartPosition = FormStartPosition.CenterParent;
+            Text = "Thông báo";
+            ResumeLayout(false);
+            PerformLayout();
 
         }
 
@@ -118,5 +135,6 @@ namespace atbmcq_02
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.TextBox txtNotificationDetail;
         private System.Windows.Forms.Label lblDetail;
+        private Label label1;
     }
 } 
