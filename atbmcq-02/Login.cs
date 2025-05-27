@@ -120,48 +120,83 @@ namespace atbmcq_02
             string username = _connection.Username.ToUpper();
             this.Hide();
 
-            // Phân luồng người dùng theo username
             if (username == "C##ADMIN" || username == "ADMIN")
             {
-                // Nếu là admin → mở form Home
                 Home homeForm = new Home(_connection);
                 homeForm.ShowDialog();
             }
             else if (username.StartsWith("SV"))
             {
-               // Sinh viên → mở Dashboard
-               DashBoard dshBrd = new DashBoard(_connection);
-               dshBrd.ShowDialog();
+                DashBoard dshBrd = new DashBoard(_connection);
+                dshBrd.ShowDialog();
             }
             else if (username.StartsWith("NV"))
             {
-               // Đối với nhân viên/giáo viên, cần tạo form container cho Teacher
-               Form teacherForm = new Form();
-               teacherForm.Text = "Giáo viên";
+                // Lấy vai trò từ bảng NHANVIEN
+                try
+                {
+                    using var conn = new OracleConnection(_connection.GetConnectionString());
+                    conn.Open();
+                    string roleQuery = $"SELECT VAITRO FROM C##ADMIN.NHANVIEN WHERE MANLD = '{username}'";
 
-               // Tạo UserControl Teacher và thêm vào form
-               Official OfficialControl = new Official(_connection);
-               OfficialControl.Dock = DockStyle.Fill;
-               teacherForm.Controls.Add(OfficialControl);
+                    using var cmd = new OracleCommand(roleQuery, conn);
+                    string vaitro = cmd.ExecuteScalar()?.ToString();
 
-               // Xử lý sự kiện quay lại
-               OfficialControl.backClicked += (sender, e) =>
-               {
-                   teacherForm.Close();
-                   loadMainForm();
-               };
-
-               teacherForm.ShowDialog();
+                    if (vaitro == "GV")
+                    {
+                        Teacher_DashBoard teacherForm = new Teacher_DashBoard(_connection);
+                        teacherForm.ShowDialog();
+                    }
+                    else if(vaitro == "NV PĐT")
+                    {
+                        PDT_DashBoard PDTForm = new PDT_DashBoard(_connection);
+                        PDTForm.ShowDialog();
+                    }
+                    else if(vaitro== "NV CTSV")
+                    {
+                        CTSV_DashBoard CTSVForm = new CTSV_DashBoard(_connection);
+                        CTSVForm.ShowDialog();
+                    }
+                    else if(vaitro== "NVCB")
+                    {
+                        NVCB_DashBoard NVCBForm = new NVCB_DashBoard(_connection);
+                        NVCBForm.ShowDialog();
+                    }
+                    else if(vaitro=="NV PKT")
+                    {
+                        PKT_DashBoard PKTForm = new PKT_DashBoard(_connection);
+                        PKTForm.ShowDialog();
+                    }
+                    else if(vaitro== "NV TCHC")
+                    {
+                        TCHC_DashBoard TCHCForm = new TCHC_DashBoard(_connection);
+                        TCHCForm.ShowDialog();
+                    }
+                    else if(vaitro== "TRGĐV")
+                    {
+                        TRGDV_DashBoard TRGDVForm = new TRGDV_DashBoard(_connection);
+                        TRGDVForm.ShowDialog();
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Do not have any user like that", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        Application.Restart();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Lỗi khi phân quyền: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    DashBoard dshBrd = new DashBoard(_connection);
+                    dshBrd.ShowDialog();
+                }
             }
             else
             {
-                // Mặc định hiển thị Dashboard
                 DashBoard dshBrd = new DashBoard(_connection);
                 dshBrd.ShowDialog();
             }
 
             this.Close();
         }
-
     }
 }

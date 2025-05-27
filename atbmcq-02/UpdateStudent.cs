@@ -76,16 +76,38 @@ namespace atbmcq_02
                 using var conn = new OracleConnection(_connection.GetConnectionString());
                 conn.Open();
 
-                String query = "";
-                String ID = textBoxID.Text;
-                String Name = textBoxName.Text;
-                String Gender = comboBoxGender.Text;
-                String Birthday = dateTimePickerBirthday.Text;
-                String address = textBoxAddress.Text;
-                String PhoneNumber = textBoxPhoneNumber.Text;
-                String Department = comboBoxDepartment.Text;
-                String Status = comboBoxStatus.Text;
-                query = $@"
+                string Username = _connection.Username;
+                string query = $"SELECT VAITRO FROM C##ADMIN.NHANVIEN WHERE USERNAME = '{Username}'";
+                string role = "";
+
+                using (var roleCmd = new OracleCommand(query, conn))
+                using (var reader = roleCmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        role = reader.GetString(0);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Không tìm thấy tài khoản người dùng!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                }
+
+                string ID = textBoxID.Text;
+                string Name = textBoxName.Text;
+                string Gender = comboBoxGender.Text;
+                string Birthday = dateTimePickerBirthday.Text;
+                string address = textBoxAddress.Text;
+                string PhoneNumber = textBoxPhoneNumber.Text;
+                string Department = comboBoxDepartment.Text;
+                string Status = comboBoxStatus.Text;
+
+                string updateQuery;
+
+                if (role == "NV PĐT")
+                {
+                    updateQuery = $@"
                 UPDATE C##ADMIN.SINHVIEN
                 SET
                     HOTEN = N'{Name}',
@@ -96,24 +118,39 @@ namespace atbmcq_02
                     KHOA = '{Department}',
                     TINHTRANG = N'{Status}'
                 WHERE MASV = '{ID}'";
+                }
+                else
+                {
+                    updateQuery = $@"
+                UPDATE C##ADMIN.SINHVIEN
+                SET
+                    HOTEN = N'{Name}',
+                    PHAI = N'{Gender}',
+                    NGSINH = TO_DATE('{dateTimePickerBirthday.Value:yyyy-MM-dd}', 'YYYY-MM-DD'),
+                    DCHI = N'{address}',
+                    DT = '{PhoneNumber}',
+                    KHOA = '{Department}'
+                WHERE MASV = '{ID}'";
+                }
 
-                using var cmd = new OracleCommand(query, conn);
+                using var cmd = new OracleCommand(updateQuery, conn);
                 int rowsAffected = cmd.ExecuteNonQuery();
 
                 if (rowsAffected > 0)
                 {
-                    MessageBox.Show("SUCCESS", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Cập nhật thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    MessageBox.Show("NOT SUCCESS", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Cập nhật không thành công!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"ERROR: {ex.Message}", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void ButtonCANCEL_Click(object sender, EventArgs e)
         {
