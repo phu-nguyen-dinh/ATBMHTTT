@@ -127,32 +127,32 @@ namespace atbmcq_02
                 Home homeForm = new Home(_connection);
                 homeForm.ShowDialog();
             }
-            //else if (username.StartsWith("SV"))
-            //{
-            //    // Sinh viên → mở Dashboard
-            //    DashBoard dshBrd = new DashBoard(_connection);
-            //    dshBrd.ShowDialog();
-            //}
-            //else if (username.StartsWith("NV"))
-            //{
-            //    // Đối với nhân viên/giáo viên, cần tạo form container cho Teacher
-            //    Form teacherForm = new Form();
-            //    teacherForm.Text = "Giáo viên";
+            else if (username.StartsWith("SV"))
+            {
+               // Sinh viên → mở Dashboard
+               DashBoard dshBrd = new DashBoard(_connection);
+               dshBrd.ShowDialog();
+            }
+            else if (username.StartsWith("NV"))
+            {
+               // Đối với nhân viên/giáo viên, cần tạo form container cho Teacher
+               Form teacherForm = new Form();
+               teacherForm.Text = "Giáo viên";
 
-            //    // Tạo UserControl Teacher và thêm vào form
-            //    Official OfficialControl = new Official(_connection);
-            //    OfficialControl.Dock = DockStyle.Fill;
-            //    teacherForm.Controls.Add(OfficialControl);
+               // Tạo UserControl Teacher và thêm vào form
+               Official OfficialControl = new Official(_connection);
+               OfficialControl.Dock = DockStyle.Fill;
+               teacherForm.Controls.Add(OfficialControl);
 
-            //    // Xử lý sự kiện quay lại
-            //    OfficialControl.backClicked += (sender, e) =>
-            //    {
-            //        teacherForm.Close();
-            //        loadMainForm();
-            //    };
+               // Xử lý sự kiện quay lại
+               OfficialControl.backClicked += (sender, e) =>
+               {
+                   teacherForm.Close();
+                   loadMainForm();
+               };
 
-            //    teacherForm.ShowDialog();
-            //}
+               teacherForm.ShowDialog();
+            }
             else
             {
                 // Mặc định hiển thị Dashboard
