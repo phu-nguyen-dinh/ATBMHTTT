@@ -132,7 +132,7 @@ namespace atbmcq_02
             }
             else if (username.StartsWith("NV"))
             {
-                // Lấy vai trò từ bảng ACCOUNT
+                // Lấy vai trò từ bảng NHANVIEN
                 try
                 {
                     using var conn = new OracleConnection(_connection.GetConnectionString());

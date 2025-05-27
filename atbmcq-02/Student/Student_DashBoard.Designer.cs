@@ -44,17 +44,22 @@ namespace atbmcq_02
             llblOpened = new LinkLabel();
             picInfor = new PictureBox();
             linkInfor = new LinkLabel();
+            picNotification = new PictureBox();
+            lblNotification = new LinkLabel();
             pnlBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picCourse).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picRegis).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picOpened).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picInfor).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picNotification).BeginInit();
             SuspendLayout();
             // 
             // pnlBar
             // 
             pnlBar.BackColor = SystemColors.ActiveCaption;
+            pnlBar.Controls.Add(picNotification);
             pnlBar.Controls.Add(lblSignOut);
+            pnlBar.Controls.Add(lblNotification);
             pnlBar.Controls.Add(lblSlog);
             pnlBar.Dock = DockStyle.Top;
             pnlBar.Location = new Point(0, 0);
@@ -67,7 +72,7 @@ namespace atbmcq_02
             // 
             lblSignOut.AutoSize = true;
             lblSignOut.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblSignOut.Location = new Point(750, 8);
+            lblSignOut.Location = new Point(584, 9);
             lblSignOut.Margin = new Padding(2, 0, 2, 0);
             lblSignOut.Name = "lblSignOut";
             lblSignOut.Size = new Size(79, 24);
@@ -202,6 +207,31 @@ namespace atbmcq_02
             linkInfor.Text = "Personal Information";
             linkInfor.LinkClicked += linkInfor_LinkClicked;
             // 
+            // picNotification
+            // 
+            picNotification.Image = Properties.Resources.notification;
+            picNotification.Location = new Point(694, 7);
+            picNotification.Margin = new Padding(2);
+            picNotification.Name = "picNotification";
+            picNotification.Size = new Size(26, 26);
+            picNotification.SizeMode = PictureBoxSizeMode.StretchImage;
+            picNotification.TabIndex = 16;
+            picNotification.TabStop = false;
+            picNotification.Click += picNotification_Click;
+            // 
+            // lblNotification
+            // 
+            lblNotification.AutoSize = true;
+            lblNotification.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblNotification.Location = new Point(724, 8);
+            lblNotification.Margin = new Padding(2, 0, 2, 0);
+            lblNotification.Name = "lblNotification";
+            lblNotification.Size = new Size(103, 24);
+            lblNotification.TabIndex = 15;
+            lblNotification.TabStop = true;
+            lblNotification.Text = "Thông báo";
+            lblNotification.LinkClicked += lblNotification_LinkClicked;
+            // 
             // Student_DashBoard
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -229,6 +259,7 @@ namespace atbmcq_02
             ((System.ComponentModel.ISupportInitialize)picRegis).EndInit();
             ((System.ComponentModel.ISupportInitialize)picOpened).EndInit();
             ((System.ComponentModel.ISupportInitialize)picInfor).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picNotification).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -249,5 +280,7 @@ namespace atbmcq_02
         private OracleDbConnection _connection;
         private PictureBox picInfor;
         private LinkLabel linkInfor;
+        private PictureBox picNotification;
+        private LinkLabel lblNotification;
     }
 }

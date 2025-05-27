@@ -30,7 +30,7 @@ namespace atbmcq_02
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Teacher_DashBoard));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PDT_DashBoard));
             pnlBar = new Panel();
             lblSignOut = new LinkLabel();
             lblSlog = new Label();
@@ -46,18 +46,23 @@ namespace atbmcq_02
             linkInfor = new LinkLabel();
             pictureBox1 = new PictureBox();
             linkStudent = new LinkLabel();
+            picNotification = new PictureBox();
+            lblNotification = new LinkLabel();
             pnlBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picCourse).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picRegis).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picOpened).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picInfor).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picNotification).BeginInit();
             SuspendLayout();
             // 
             // pnlBar
             // 
             pnlBar.BackColor = SystemColors.ActiveCaption;
+            pnlBar.Controls.Add(picNotification);
             pnlBar.Controls.Add(lblSignOut);
+            pnlBar.Controls.Add(lblNotification);
             pnlBar.Controls.Add(lblSlog);
             pnlBar.Dock = DockStyle.Top;
             pnlBar.Location = new Point(0, 0);
@@ -70,7 +75,7 @@ namespace atbmcq_02
             // 
             lblSignOut.AutoSize = true;
             lblSignOut.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblSignOut.Location = new Point(750, 8);
+            lblSignOut.Location = new Point(587, 8);
             lblSignOut.Margin = new Padding(2, 0, 2, 0);
             lblSignOut.Name = "lblSignOut";
             lblSignOut.Size = new Size(79, 24);
@@ -228,7 +233,32 @@ namespace atbmcq_02
             linkStudent.Text = "Student";
             linkStudent.LinkClicked += linkStudent_LinkClicked;
             // 
-            // Teacher_DashBoard
+            // picNotification
+            // 
+            picNotification.Image = Properties.Resources.notification;
+            picNotification.Location = new Point(694, 8);
+            picNotification.Margin = new Padding(2);
+            picNotification.Name = "picNotification";
+            picNotification.Size = new Size(26, 26);
+            picNotification.SizeMode = PictureBoxSizeMode.StretchImage;
+            picNotification.TabIndex = 16;
+            picNotification.TabStop = false;
+            picNotification.Click += picNotification_Click;
+            // 
+            // lblNotification
+            // 
+            lblNotification.AutoSize = true;
+            lblNotification.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblNotification.Location = new Point(724, 9);
+            lblNotification.Margin = new Padding(2, 0, 2, 0);
+            lblNotification.Name = "lblNotification";
+            lblNotification.Size = new Size(103, 24);
+            lblNotification.TabIndex = 15;
+            lblNotification.TabStop = true;
+            lblNotification.Text = "Thông báo";
+            lblNotification.LinkClicked += lblNotification_LinkClicked;
+            // 
+            // PDT_DashBoard
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -248,7 +278,7 @@ namespace atbmcq_02
             Controls.Add(lblHeader);
             Controls.Add(pnlBar);
             Margin = new Padding(2);
-            Name = "Teacher_DashBoard";
+            Name = "PDT_DashBoard";
             Text = "Dashboard";
             FormClosed += dshBoard_Closed;
             pnlBar.ResumeLayout(false);
@@ -258,6 +288,7 @@ namespace atbmcq_02
             ((System.ComponentModel.ISupportInitialize)picOpened).EndInit();
             ((System.ComponentModel.ISupportInitialize)picInfor).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picNotification).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -280,5 +311,7 @@ namespace atbmcq_02
         private LinkLabel linkInfor;
         private PictureBox pictureBox1;
         private LinkLabel linkStudent;
+        private PictureBox picNotification;
+        private LinkLabel lblNotification;
     }
 }

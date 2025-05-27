@@ -49,7 +49,7 @@ namespace atbmcq_02
         {
             LoadOpenedSubject();
         }
-        private void linkInfor_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void linkStudent_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             string username = _connection.Username.ToUpper();
             if (username.StartsWith("SV"))
@@ -118,6 +118,27 @@ namespace atbmcq_02
         private void lblSignOut_LinkClicked(Object sender, LinkLabelLinkClickedEventArgs e)
         {
             Application.Restart();
+        }
+
+        private void lblNotification_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            // Hiển thị form thông báo khi nhấp vào liên kết
+            ShowNotifications();
+        }
+
+        private void picNotification_Click(object sender, EventArgs e)
+        {
+            // Hiển thị form thông báo khi nhấp vào biểu tượng
+            ShowNotifications();
+        }
+
+        private void ShowNotifications()
+        {
+            // Tạo và hiển thị form thông báo
+            using (NotificationForm notificationForm = new NotificationForm(_connection))
+            {
+                notificationForm.ShowDialog(this);
+            }
         }
     }
 }

@@ -32,6 +32,8 @@ namespace atbmcq_02
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DashBoard));
             pnlBar = new Panel();
+            picNotification = new PictureBox();
+            lblNotification = new LinkLabel();
             lblSignOut = new LinkLabel();
             lblSlog = new Label();
             lblHeader = new Label();
@@ -42,35 +44,63 @@ namespace atbmcq_02
             llblCourses = new LinkLabel();
             llblRegis = new LinkLabel();
             llblOpened = new LinkLabel();
-            picInfor = new PictureBox();
-            linkInfor = new LinkLabel();
+            picStudent = new PictureBox();
+            linkStudent = new LinkLabel();
             pnlBar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picNotification).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picCourse).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picRegis).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picOpened).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)picInfor).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picStudent).BeginInit();
             SuspendLayout();
             // 
             // pnlBar
             // 
             pnlBar.BackColor = SystemColors.ActiveCaption;
+            pnlBar.Controls.Add(picNotification);
+            pnlBar.Controls.Add(lblNotification);
             pnlBar.Controls.Add(lblSignOut);
             pnlBar.Controls.Add(lblSlog);
             pnlBar.Dock = DockStyle.Top;
             pnlBar.Location = new Point(0, 0);
-            pnlBar.Margin = new Padding(2);
+            pnlBar.Margin = new Padding(2, 2, 2, 2);
             pnlBar.Name = "pnlBar";
-            pnlBar.Size = new Size(838, 42);
+            pnlBar.Size = new Size(1048, 52);
             pnlBar.TabIndex = 0;
+            // 
+            // picNotification
+            // 
+            picNotification.Image = Properties.Resources.notification;
+            picNotification.Location = new Point(840, 10);
+            picNotification.Margin = new Padding(2, 2, 2, 2);
+            picNotification.Name = "picNotification";
+            picNotification.Size = new Size(32, 32);
+            picNotification.SizeMode = PictureBoxSizeMode.StretchImage;
+            picNotification.TabIndex = 3;
+            picNotification.TabStop = false;
+            picNotification.Click += picNotification_Click;
+            // 
+            // lblNotification
+            // 
+            lblNotification.AutoSize = true;
+            lblNotification.Font = new Font("VNI-Korin", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblNotification.Location = new Point(878, 10);
+            lblNotification.Margin = new Padding(2, 0, 2, 0);
+            lblNotification.Name = "lblNotification";
+            lblNotification.Size = new Size(152, 30);
+            lblNotification.TabIndex = 2;
+            lblNotification.TabStop = true;
+            lblNotification.Text = "Thông báo";
+            lblNotification.LinkClicked += lblNotification_LinkClicked;
             // 
             // lblSignOut
             // 
             lblSignOut.AutoSize = true;
-            lblSignOut.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblSignOut.Location = new Point(750, 8);
+            lblSignOut.Font = new Font("VNI-Korin", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblSignOut.Location = new Point(690, 10);
             lblSignOut.Margin = new Padding(2, 0, 2, 0);
             lblSignOut.Name = "lblSignOut";
-            lblSignOut.Size = new Size(79, 24);
+            lblSignOut.Size = new Size(99, 30);
             lblSignOut.TabIndex = 1;
             lblSignOut.TabStop = true;
             lblSignOut.Text = "Sign out";
@@ -79,22 +109,22 @@ namespace atbmcq_02
             // lblSlog
             // 
             lblSlog.AutoSize = true;
-            lblSlog.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblSlog.Location = new Point(9, 8);
+            lblSlog.Font = new Font("VNI-Korin", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblSlog.Location = new Point(11, 10);
             lblSlog.Margin = new Padding(2, 0, 2, 0);
             lblSlog.Name = "lblSlog";
-            lblSlog.Size = new Size(220, 24);
+            lblSlog.Size = new Size(276, 30);
             lblSlog.TabIndex = 0;
             lblSlog.Text = "Welcome to University X!";
             // 
             // lblHeader
             // 
             lblHeader.AutoSize = true;
-            lblHeader.Font = new Font("Microsoft Sans Serif", 27.9999962F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblHeader.Location = new Point(306, 45);
+            lblHeader.Font = new Font("VNI-Couri", 27.9999962F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblHeader.Location = new Point(382, 56);
             lblHeader.Margin = new Padding(2, 0, 2, 0);
             lblHeader.Name = "lblHeader";
-            lblHeader.Size = new Size(262, 54);
+            lblHeader.Size = new Size(390, 71);
             lblHeader.TabIndex = 1;
             lblHeader.Text = "Dashboard";
             // 
@@ -102,19 +132,19 @@ namespace atbmcq_02
             // 
             pnlDSplit.BackColor = SystemColors.Desktop;
             pnlDSplit.Dock = DockStyle.Top;
-            pnlDSplit.Location = new Point(0, 42);
-            pnlDSplit.Margin = new Padding(2);
+            pnlDSplit.Location = new Point(0, 52);
+            pnlDSplit.Margin = new Padding(2, 2, 2, 2);
             pnlDSplit.Name = "pnlDSplit";
-            pnlDSplit.Size = new Size(838, 1);
+            pnlDSplit.Size = new Size(1048, 1);
             pnlDSplit.TabIndex = 2;
             // 
             // picCourse
             // 
             picCourse.Image = (Image)resources.GetObject("picCourse.Image");
-            picCourse.Location = new Point(94, 143);
-            picCourse.Margin = new Padding(2);
+            picCourse.Location = new Point(118, 179);
+            picCourse.Margin = new Padding(2, 2, 2, 2);
             picCourse.Name = "picCourse";
-            picCourse.Size = new Size(160, 160);
+            picCourse.Size = new Size(200, 200);
             picCourse.SizeMode = PictureBoxSizeMode.StretchImage;
             picCourse.TabIndex = 3;
             picCourse.TabStop = false;
@@ -122,10 +152,10 @@ namespace atbmcq_02
             // picRegis
             // 
             picRegis.Image = (Image)resources.GetObject("picRegis.Image");
-            picRegis.Location = new Point(348, 143);
-            picRegis.Margin = new Padding(2);
+            picRegis.Location = new Point(435, 179);
+            picRegis.Margin = new Padding(2, 2, 2, 2);
             picRegis.Name = "picRegis";
-            picRegis.Size = new Size(160, 160);
+            picRegis.Size = new Size(200, 200);
             picRegis.SizeMode = PictureBoxSizeMode.StretchImage;
             picRegis.TabIndex = 4;
             picRegis.TabStop = false;
@@ -133,10 +163,10 @@ namespace atbmcq_02
             // picOpened
             // 
             picOpened.Image = (Image)resources.GetObject("picOpened.Image");
-            picOpened.Location = new Point(602, 143);
-            picOpened.Margin = new Padding(2);
+            picOpened.Location = new Point(752, 179);
+            picOpened.Margin = new Padding(2, 2, 2, 2);
             picOpened.Name = "picOpened";
-            picOpened.Size = new Size(160, 160);
+            picOpened.Size = new Size(200, 200);
             picOpened.SizeMode = PictureBoxSizeMode.StretchImage;
             picOpened.TabIndex = 5;
             picOpened.TabStop = false;
@@ -145,10 +175,10 @@ namespace atbmcq_02
             // 
             llblCourses.AutoSize = true;
             llblCourses.Font = new Font("Cascadia Code", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            llblCourses.Location = new Point(139, 119);
+            llblCourses.Location = new Point(174, 149);
             llblCourses.Margin = new Padding(2, 0, 2, 0);
             llblCourses.Name = "llblCourses";
-            llblCourses.Size = new Size(72, 20);
+            llblCourses.Size = new Size(87, 24);
             llblCourses.TabIndex = 6;
             llblCourses.TabStop = true;
             llblCourses.Text = "Courses";
@@ -158,10 +188,10 @@ namespace atbmcq_02
             // 
             llblRegis.AutoSize = true;
             llblRegis.Font = new Font("Cascadia Code", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            llblRegis.Location = new Point(371, 119);
+            llblRegis.Location = new Point(464, 149);
             llblRegis.Margin = new Padding(2, 0, 2, 0);
             llblRegis.Name = "llblRegis";
-            llblRegis.Size = new Size(117, 20);
+            llblRegis.Size = new Size(142, 24);
             llblRegis.TabIndex = 7;
             llblRegis.TabStop = true;
             llblRegis.Text = "Registration";
@@ -171,45 +201,47 @@ namespace atbmcq_02
             // 
             llblOpened.AutoSize = true;
             llblOpened.Font = new Font("Cascadia Code", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            llblOpened.Location = new Point(611, 119);
+            llblOpened.Location = new Point(764, 149);
             llblOpened.Margin = new Padding(2, 0, 2, 0);
             llblOpened.Name = "llblOpened";
-            llblOpened.Size = new Size(144, 20);
+            llblOpened.Size = new Size(175, 24);
             llblOpened.TabIndex = 8;
             llblOpened.TabStop = true;
             llblOpened.Text = "Opened Subjects";
             llblOpened.LinkClicked += llblOpened_LinkClicked;
             // 
-            // picInfor
+            // picStudent
             // 
-            picInfor.Image = Properties.Resources.Student;
-            picInfor.Location = new Point(94, 381);
-            picInfor.Name = "picInfor";
-            picInfor.Size = new Size(160, 160);
-            picInfor.SizeMode = PictureBoxSizeMode.StretchImage;
-            picInfor.TabIndex = 9;
-            picInfor.TabStop = false;
+            picStudent.Image = Properties.Resources.Student;
+            picStudent.Location = new Point(118, 476);
+            picStudent.Margin = new Padding(4, 4, 4, 4);
+            picStudent.Name = "picStudent";
+            picStudent.Size = new Size(200, 200);
+            picStudent.SizeMode = PictureBoxSizeMode.StretchImage;
+            picStudent.TabIndex = 9;
+            picStudent.TabStop = false;
             // 
-            // linkInfor
+            // linkStudent
             // 
-            linkInfor.AutoSize = true;
-            linkInfor.Font = new Font("Cascadia Code", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            linkInfor.Location = new Point(121, 358);
-            linkInfor.Name = "linkInfor";
-            linkInfor.Size = new Size(108, 20);
-            linkInfor.TabIndex = 10;
-            linkInfor.TabStop = true;
-            linkInfor.Text = "Information";
-            linkInfor.LinkClicked += linkInfor_LinkClicked;
+            linkStudent.AutoSize = true;
+            linkStudent.Font = new Font("Cascadia Code", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            linkStudent.Location = new Point(174, 448);
+            linkStudent.Margin = new Padding(4, 0, 4, 0);
+            linkStudent.Name = "linkStudent";
+            linkStudent.Size = new Size(87, 24);
+            linkStudent.TabIndex = 10;
+            linkStudent.TabStop = true;
+            linkStudent.Text = "Student";
+            linkStudent.LinkClicked += linkStudent_LinkClicked;
             // 
             // DashBoard
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonHighlight;
-            ClientSize = new Size(838, 608);
-            Controls.Add(linkInfor);
-            Controls.Add(picInfor);
+            ClientSize = new Size(1048, 760);
+            Controls.Add(linkStudent);
+            Controls.Add(picStudent);
             Controls.Add(llblOpened);
             Controls.Add(llblRegis);
             Controls.Add(llblCourses);
@@ -219,16 +251,17 @@ namespace atbmcq_02
             Controls.Add(pnlDSplit);
             Controls.Add(lblHeader);
             Controls.Add(pnlBar);
-            Margin = new Padding(2);
+            Margin = new Padding(2, 2, 2, 2);
             Name = "DashBoard";
             Text = "Dashboard";
             FormClosed += dshBoard_Closed;
             pnlBar.ResumeLayout(false);
             pnlBar.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)picNotification).EndInit();
             ((System.ComponentModel.ISupportInitialize)picCourse).EndInit();
             ((System.ComponentModel.ISupportInitialize)picRegis).EndInit();
             ((System.ComponentModel.ISupportInitialize)picOpened).EndInit();
-            ((System.ComponentModel.ISupportInitialize)picInfor).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picStudent).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -247,7 +280,9 @@ namespace atbmcq_02
         private LinkLabel llblRegis;
         private LinkLabel llblOpened;
         private OracleDbConnection _connection;
-        private PictureBox picInfor;
-        private LinkLabel linkInfor;
+        private PictureBox picStudent;
+        private LinkLabel linkStudent;
+        private PictureBox picNotification;
+        private LinkLabel lblNotification;
     }
 }
