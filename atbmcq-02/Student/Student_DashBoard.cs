@@ -15,10 +15,10 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace atbmcq_02
 {
-    public partial class DashBoard : Form
+    public partial class Student_DashBoard : Form
     {
         //public event EventHandler BackClicked;
-        public DashBoard(OracleDbConnection _connect)
+        public Student_DashBoard(OracleDbConnection _connect)
         {
             InitializeComponent();
             _connection = _connect;
@@ -31,7 +31,7 @@ namespace atbmcq_02
 
         private void LoadCourse()
         {
-            var crse = new Courses(_connection);
+            var crse = new Student_Courses(_connection);
 
             crse.backClicked += opnd_backClicked;
 
@@ -50,21 +50,13 @@ namespace atbmcq_02
             LoadOpenedSubject();
         }
         private void linkInfor_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            string username = _connection.Username.ToUpper();
-            if (username.StartsWith("SV"))
-            {
-                loadStudent();
-            }
-            else
-            {
-                loadOfficial();
-            }
+        { 
+            loadStudent();
         }
 
         private void LoadOpenedSubject()
         {
-            var opnd = new OpenedSubjects(_connection);
+            var opnd = new Student_OpenedSubjects(_connection);
 
             opnd.backClicked += opnd_backClicked;
 
@@ -82,7 +74,7 @@ namespace atbmcq_02
 
         private void loadStudent()
         {
-            var opnd = new Student(_connection);
+            var opnd = new Student_Student(_connection);
 
             opnd.backClicked += opnd_backClicked;
 
@@ -106,7 +98,7 @@ namespace atbmcq_02
         }
         private void LoadRegistration()
         {
-            var opnd = new Registration(_connection);
+            var opnd = new Student_Registration(_connection);
 
             opnd.backClicked += opnd_backClicked;
 

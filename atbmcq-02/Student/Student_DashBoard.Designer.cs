@@ -2,7 +2,7 @@
 
 namespace atbmcq_02
 {
-    partial class DashBoard
+    partial class Student_DashBoard
     {
         /// <summary>
         /// Required designer variable.
@@ -30,7 +30,7 @@ namespace atbmcq_02
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DashBoard));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Student_DashBoard));
             pnlBar = new Panel();
             lblSignOut = new LinkLabel();
             lblSlog = new Label();
@@ -194,15 +194,15 @@ namespace atbmcq_02
             // 
             linkInfor.AutoSize = true;
             linkInfor.Font = new Font("Cascadia Code", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            linkInfor.Location = new Point(121, 358);
+            linkInfor.Location = new Point(77, 358);
             linkInfor.Name = "linkInfor";
-            linkInfor.Size = new Size(108, 20);
+            linkInfor.Size = new Size(189, 20);
             linkInfor.TabIndex = 10;
             linkInfor.TabStop = true;
-            linkInfor.Text = "Information";
+            linkInfor.Text = "Personal Information";
             linkInfor.LinkClicked += linkInfor_LinkClicked;
             // 
-            // DashBoard
+            // Student_DashBoard
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -220,7 +220,7 @@ namespace atbmcq_02
             Controls.Add(lblHeader);
             Controls.Add(pnlBar);
             Margin = new Padding(2);
-            Name = "DashBoard";
+            Name = "Student_DashBoard";
             Text = "Dashboard";
             FormClosed += dshBoard_Closed;
             pnlBar.ResumeLayout(false);

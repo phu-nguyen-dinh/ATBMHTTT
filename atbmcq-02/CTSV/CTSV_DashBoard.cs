@@ -15,63 +15,31 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace atbmcq_02
 {
-    public partial class DashBoard : Form
+    public partial class CTSV_DashBoard : Form
     {
         //public event EventHandler BackClicked;
-        public DashBoard(OracleDbConnection _connect)
+        public CTSV_DashBoard(OracleDbConnection _connect)
         {
             InitializeComponent();
             _connection = _connect;
         }
-
-        private void llblCourse_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            LoadCourse();
-        }
-
-        private void LoadCourse()
-        {
-            var crse = new Courses(_connection);
-
-            crse.backClicked += opnd_backClicked;
-
-            this.Controls.Clear();
-            this.Controls.Add(crse);
-            this.ClientSize = crse.Size;
-        }
-
+      
         private void dshBoard_Closed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
         }
 
-        private void llblOpened_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            LoadOpenedSubject();
-        }
         private void linkInfor_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             string username = _connection.Username.ToUpper();
-            if (username.StartsWith("SV"))
-            {
-                loadStudent();
-            }
-            else
-            {
-                loadOfficial();
-            }
+            loadOfficial(); 
         }
-
-        private void LoadOpenedSubject()
+        private void linkStudent_LinkClicked(Object sender, LinkLabelLinkClickedEventArgs e)
         {
-            var opnd = new OpenedSubjects(_connection);
-
-            opnd.backClicked += opnd_backClicked;
-
-            this.Controls.Clear();
-            this.Controls.Add(opnd);
-            this.ClientSize = opnd.Size;
+            string username = _connection.Username.ToUpper();
+            loadStudent();
         }
+       
 
         private void opnd_backClicked(object sender, OracleDbConnection _connect)
         {
@@ -82,7 +50,7 @@ namespace atbmcq_02
 
         private void loadStudent()
         {
-            var opnd = new Student(_connection);
+            var opnd = new CTSV_Student(_connection);
 
             opnd.backClicked += opnd_backClicked;
 
@@ -92,21 +60,7 @@ namespace atbmcq_02
         }
         private void loadOfficial()
         {
-            var opnd = new Official(_connection);
-
-            opnd.backClicked += opnd_backClicked;
-
-            this.Controls.Clear();
-            this.Controls.Add(opnd);
-            this.ClientSize = opnd.Size;
-        }
-        private void llblRegis_LinkClicked(Object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            LoadRegistration();
-        }
-        private void LoadRegistration()
-        {
-            var opnd = new Registration(_connection);
+            var opnd = new CTSV_Infor(_connection);
 
             opnd.backClicked += opnd_backClicked;
 

@@ -16,10 +16,100 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="TRGDV\TRGDV_DashBoard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="TRGDV\TRGDV_Infor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="TRGDV\TRGDV_OpenedSubjects.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="TCHC\TCHC_DashBoard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="TCHC\TCHC_Infor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="NVCB\NVCB_DashBoard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="NVCB\NVCB_Infor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="CTSV\CTSV_DashBoard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="CTSV\CTSV_Infor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="CTSV\CTSV_Student.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="PKT\PKT_Dashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="PKT\PKT_Infor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="PKT\PKT_Registration.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="PDT\PDT_Student.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Student\Student_Registration.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Student\Student_OpenedSubjects.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Student\Student_Courses.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Student\Student_Student.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Student\Student_DashBoard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="PDT\PDT_Courses.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="PDT\PDT_Dashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="PDT\PDT_Infor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="PDT\PDT_OpenedSubjects.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="PDT\PDT_Registration.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Teacher\Teacher_Student.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Teacher\Teacher_OpenedSubjects.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Teacher\Teacher_Registration.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Teacher\Teacher_Courses.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Teacher\Teacher_Infor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Teacher\Teacher_Dashboard.cs">
+      <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
 
@@ -31,7 +121,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Resources\" />
     <Folder Include="Scripts\YC1\" />
   </ItemGroup>
 

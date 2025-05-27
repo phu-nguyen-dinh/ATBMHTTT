@@ -15,29 +15,13 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace atbmcq_02
 {
-    public partial class DashBoard : Form
+    public partial class TRGDV_DashBoard : Form
     {
         //public event EventHandler BackClicked;
-        public DashBoard(OracleDbConnection _connect)
+        public TRGDV_DashBoard(OracleDbConnection _connect)
         {
             InitializeComponent();
             _connection = _connect;
-        }
-
-        private void llblCourse_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            LoadCourse();
-        }
-
-        private void LoadCourse()
-        {
-            var crse = new Courses(_connection);
-
-            crse.backClicked += opnd_backClicked;
-
-            this.Controls.Clear();
-            this.Controls.Add(crse);
-            this.ClientSize = crse.Size;
         }
 
         private void dshBoard_Closed(object sender, FormClosedEventArgs e)
@@ -52,19 +36,11 @@ namespace atbmcq_02
         private void linkInfor_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             string username = _connection.Username.ToUpper();
-            if (username.StartsWith("SV"))
-            {
-                loadStudent();
-            }
-            else
-            {
-                loadOfficial();
-            }
+            loadOfficial(); 
         }
-
         private void LoadOpenedSubject()
         {
-            var opnd = new OpenedSubjects(_connection);
+            var opnd = new TRGDV_OpenedSubjects(_connection);
 
             opnd.backClicked += opnd_backClicked;
 
@@ -80,19 +56,9 @@ namespace atbmcq_02
             _connection = _connect;
         }
 
-        private void loadStudent()
-        {
-            var opnd = new Student(_connection);
-
-            opnd.backClicked += opnd_backClicked;
-
-            this.Controls.Clear();
-            this.Controls.Add(opnd);
-            this.ClientSize = opnd.Size;
-        }
         private void loadOfficial()
         {
-            var opnd = new Official(_connection);
+            var opnd = new TRGDV_Infor(_connection);
 
             opnd.backClicked += opnd_backClicked;
 
@@ -100,21 +66,6 @@ namespace atbmcq_02
             this.Controls.Add(opnd);
             this.ClientSize = opnd.Size;
         }
-        private void llblRegis_LinkClicked(Object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            LoadRegistration();
-        }
-        private void LoadRegistration()
-        {
-            var opnd = new Registration(_connection);
-
-            opnd.backClicked += opnd_backClicked;
-
-            this.Controls.Clear();
-            this.Controls.Add(opnd);
-            this.ClientSize = opnd.Size;
-        }
-
         private void lblSignOut_LinkClicked(Object sender, LinkLabelLinkClickedEventArgs e)
         {
             Application.Restart();

@@ -2,7 +2,7 @@
 
 namespace atbmcq_02
 {
-    partial class DashBoard
+    partial class PDT_DashBoard
     {
         /// <summary>
         /// Required designer variable.
@@ -30,7 +30,7 @@ namespace atbmcq_02
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DashBoard));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Teacher_DashBoard));
             pnlBar = new Panel();
             lblSignOut = new LinkLabel();
             lblSlog = new Label();
@@ -44,11 +44,14 @@ namespace atbmcq_02
             llblOpened = new LinkLabel();
             picInfor = new PictureBox();
             linkInfor = new LinkLabel();
+            pictureBox1 = new PictureBox();
+            linkStudent = new LinkLabel();
             pnlBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picCourse).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picRegis).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picOpened).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picInfor).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // pnlBar
@@ -194,20 +197,45 @@ namespace atbmcq_02
             // 
             linkInfor.AutoSize = true;
             linkInfor.Font = new Font("Cascadia Code", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            linkInfor.Location = new Point(121, 358);
+            linkInfor.Location = new Point(336, 359);
             linkInfor.Name = "linkInfor";
-            linkInfor.Size = new Size(108, 20);
+            linkInfor.Size = new Size(189, 20);
             linkInfor.TabIndex = 10;
             linkInfor.TabStop = true;
-            linkInfor.Text = "Information";
+            linkInfor.Text = "Personal Information";
             linkInfor.LinkClicked += linkInfor_LinkClicked;
             // 
-            // DashBoard
+            // pictureBox1
+            // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(348, 381);
+            pictureBox1.Margin = new Padding(2);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(160, 160);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 11;
+            pictureBox1.TabStop = false;
+            // 
+            // linkStudent
+            // 
+            linkStudent.AutoSize = true;
+            linkStudent.Font = new Font("Cascadia Code", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            linkStudent.Location = new Point(139, 358);
+            linkStudent.Name = "linkStudent";
+            linkStudent.Size = new Size(72, 20);
+            linkStudent.TabIndex = 12;
+            linkStudent.TabStop = true;
+            linkStudent.Text = "Student";
+            linkStudent.LinkClicked += linkStudent_LinkClicked;
+            // 
+            // Teacher_DashBoard
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonHighlight;
             ClientSize = new Size(838, 608);
+            Controls.Add(linkStudent);
+            Controls.Add(pictureBox1);
             Controls.Add(linkInfor);
             Controls.Add(picInfor);
             Controls.Add(llblOpened);
@@ -220,7 +248,7 @@ namespace atbmcq_02
             Controls.Add(lblHeader);
             Controls.Add(pnlBar);
             Margin = new Padding(2);
-            Name = "DashBoard";
+            Name = "Teacher_DashBoard";
             Text = "Dashboard";
             FormClosed += dshBoard_Closed;
             pnlBar.ResumeLayout(false);
@@ -229,6 +257,7 @@ namespace atbmcq_02
             ((System.ComponentModel.ISupportInitialize)picRegis).EndInit();
             ((System.ComponentModel.ISupportInitialize)picOpened).EndInit();
             ((System.ComponentModel.ISupportInitialize)picInfor).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -249,5 +278,7 @@ namespace atbmcq_02
         private OracleDbConnection _connection;
         private PictureBox picInfor;
         private LinkLabel linkInfor;
+        private PictureBox pictureBox1;
+        private LinkLabel linkStudent;
     }
 }
