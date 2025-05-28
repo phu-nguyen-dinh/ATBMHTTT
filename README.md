@@ -15,4 +15,10 @@ Quân:
 
 Phú:
 1. chạy scripts trong YC1/Câu 3 dể test chức năng sinh viên, giảng viên theo yêu cầu bài
-2. Đăng nhập với tài khoản của Nhân viên Phòng CTSV để test chức năng thêm, xóa, sửa. VD: NV766
+2. Đăng nhập với tài khoản của Nhân viên Phòng CTSV để test chức năng thêm, xóa, sửa. VD: NV7663. 
+3. 
+- Các UI chưa xong:
++ Người dùng có VAITRO là “TRGĐV” có quyền xem các dòng dữ liệu liên quan đến các nhân viên thuộc đơn vị mình làm trưởng, trừ các thuộc tính LUONG và PHUCAP.
++ Người dùng có vai trò “TRGĐV” có quyền xem các dòng phân công giảng dạy của các giảng viên thuộc đơn vị mình làm trưởng.
++ YC1: Câu 4 (chưa làm phần UI cho câu này nhưng có lẽ sẽ tái sử dụng được 1 vài màn hình trước đó)
+Lưu ý: Phú chỉ làm được phần UI nên các câu truy vấn (query) Phú làm theo cảm tính (kiểu ra kết quả là được) nên mng cần sửa lại cho đúng theo các câu mng làm.
