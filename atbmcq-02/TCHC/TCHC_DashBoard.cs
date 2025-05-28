@@ -32,7 +32,12 @@ namespace atbmcq_02
         private void linkInfor_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             string username = _connection.Username.ToUpper();
-            loadOfficial(); 
+            loadInfor(); 
+        }
+        private void linkOfficial_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            string username = _connection.Username.ToUpper();
+            loadOfficial();
         }
 
         private void opnd_backClicked(object sender, OracleDbConnection _connect)
@@ -41,9 +46,20 @@ namespace atbmcq_02
             InitializeComponent();
             _connection = _connect;
         }
-        private void loadOfficial() 
+        private void loadInfor() 
         {
             var opnd = new TCHC_Infor(_connection);
+
+            opnd.backClicked += opnd_backClicked;
+
+            this.Controls.Clear();
+            this.Controls.Add(opnd);
+            this.ClientSize = opnd.Size;
+        }
+
+        private void loadOfficial()
+        {
+            var opnd = new TCHC_Official(_connection);
 
             opnd.backClicked += opnd_backClicked;
 

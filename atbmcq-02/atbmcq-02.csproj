@@ -16,6 +16,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="AddStaff.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="TCHC\TCHC_Official.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="TRGDV\TRGDV_DashBoard.cs">
       <SubType>Form</SubType>
     </Compile>

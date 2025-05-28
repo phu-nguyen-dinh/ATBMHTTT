@@ -23,7 +23,6 @@ namespace atbmcq_02
         {
             InitializeComponent();
             _connection = _connect;
-            LoadUI();
             LoadSubjects();
         }
 
@@ -37,85 +36,10 @@ namespace atbmcq_02
             Application.Restart();
         }
 
-        private string getRole()
-        {
-            string query = @"BEGIN
-                                    SELECT VAITRO INTO :role FROM C##ADMIN.NHANVIEN WHERE MANLD = SYS_CONTEXT('USERENV', 'SESSION_USER');
-                                EXCEPTION
-                                    WHEN NO_DATA_FOUND THEN
-                                        BEGIN
-                                            SELECT 'SINHVIEN' INTO :role FROM C##ADMIN.SINHVIEN WHERE MASV = SYS_CONTEXT('USERENV', 'SESSION_USER');
-                                        EXCEPTION
-                                            WHEN NO_DATA_FOUND THEN
-                                                :role := NULL;
-                                        END;
-                                END;";
-
-            using var cmd = new OracleCommand(query, _connection.conn);
-            cmd.CommandType = CommandType.Text;
-
-            cmd.Parameters.Add("role", OracleDbType.NVarchar2, 30).Direction = ParameterDirection.Output;
-
-            cmd.ExecuteNonQuery();
-
-            string role = cmd.Parameters["role"].Value?.ToString();
-
-            return role;
-        }
-
-        private void LoadUI()
-        {
-            try
-            {
-                string role = getRole();
-
-                if (role == "NV PĐT")
-                {
-                    btnInsert.Enabled = true;
-                    btnDelete.Enabled = true;
-                    btnFind.Enabled = true;
-                    btnUpdate.Enabled = true;
-                    btnFind.Enabled = true;
-                    cbbSemes.Enabled = true;
-                    cbbYear.Enabled = true;
-
-                    btnInsert.Visible = true;
-                    btnDelete.Visible = true;
-                    btnUpdate.Visible = true;
-                    btnFind.Visible = true;
-                    cbbSemes.Visible = true;
-                    cbbYear.Visible = true;
-                }
-                else
-                {
-                    btnInsert.Enabled = false;
-                    btnDelete.Enabled = false;
-                    btnFind.Enabled = false;
-                    btnUpdate.Enabled = false;
-                    btnFind.Enabled = false;
-                    cbbSemes.Enabled = false;
-                    cbbYear.Enabled = false;
-
-                    btnInsert.Visible = false;
-                    btnDelete.Visible = false;
-                    btnUpdate.Visible = false;
-                    btnFind.Visible = false;
-                    cbbSemes.Visible = false;
-                    cbbYear.Visible = false;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
         private void LoadSubjects()
         {
             try
             {
-                if (getRole() == "NV PĐT")
-                {
                     string semes = cbbSemes.SelectedItem?.ToString();
                     string year = cbbYear.SelectedItem?.ToString();
 
@@ -126,26 +50,16 @@ namespace atbmcq_02
                         ctxCmd.Parameters.Add("p_nam", OracleDbType.Varchar2).Value = year;
                         ctxCmd.ExecuteNonQuery();
                     }
-                }
-
                 string column_x = null;
                 string column_y = null;
 
-                if (getRole() == "NV PĐT")
-                {
-                    column_x = "MAHP";
-                    column_y = "MANLD";
-                }
-                else
-                {
-                    column_x = "TENHP";
-                    column_y = "HOTEN";
-                }
+                column_x = "MAHP";
+                column_y = "MANLD";
 
                 string query = $@"SELECT HP.{column_x}, MM.MAMM, NV.{column_y}, MM.HK, MM.NAM FROM C##ADMIN.MOMON MM JOIN C##ADMIN.HOCPHAN HP ON MM.MAHP = HP.MAHP JOIN C##ADMIN.NHANVIEN NV ON MM.MAGV = NV.MANLD";
-                
+
                 using var cmd = new OracleCommand(query, _connection.conn);
-                
+
                 using var reader = cmd.ExecuteReader();
 
                 dtgvSubject.Rows.Clear();
@@ -162,6 +76,7 @@ namespace atbmcq_02
                 MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void btnInsert_Click(object sender, EventArgs e)
         {

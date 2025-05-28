@@ -151,6 +151,7 @@ namespace atbmcq_02
             linkOfficial.TabIndex = 13;
             linkOfficial.TabStop = true;
             linkOfficial.Text = "Official";
+            linkOfficial.LinkClicked += linkOfficial_LinkClicked;
             // 
             // picNotification
             // 

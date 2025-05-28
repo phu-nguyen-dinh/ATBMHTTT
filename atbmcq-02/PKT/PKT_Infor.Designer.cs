@@ -36,19 +36,19 @@ namespace atbmcq_02
             lblSignOut = new LinkLabel();
             lblSlog = new Label();
             tabPage2 = new TabPage();
-            dtgvOfficial = new DataGridView();
-            GV_Unit = new DataGridViewTextBoxColumn();
-            GV_Role = new DataGridViewTextBoxColumn();
-            GV_PhoneNumber = new DataGridViewTextBoxColumn();
-            GV_Bonus = new DataGridViewTextBoxColumn();
-            GV_Address = new DataGridViewTextBoxColumn();
-            GV_Birthday = new DataGridViewTextBoxColumn();
-            GV_Gender = new DataGridViewTextBoxColumn();
-            GV_Name = new DataGridViewTextBoxColumn();
-            GV_ID = new DataGridViewTextBoxColumn();
-            txtNewPhone = new TextBox();
-            lblNewPhone = new Label();
             btnEditPhone = new Button();
+            lblNewPhone = new Label();
+            txtNewPhone = new TextBox();
+            dtgvOfficial = new DataGridView();
+            GV_ID = new DataGridViewTextBoxColumn();
+            GV_Name = new DataGridViewTextBoxColumn();
+            GV_Gender = new DataGridViewTextBoxColumn();
+            GV_Birthday = new DataGridViewTextBoxColumn();
+            GV_Address = new DataGridViewTextBoxColumn();
+            GV_Bonus = new DataGridViewTextBoxColumn();
+            GV_PhoneNumber = new DataGridViewTextBoxColumn();
+            GV_Role = new DataGridViewTextBoxColumn();
+            GV_Unit = new DataGridViewTextBoxColumn();
             tabControl1 = new TabControl();
             pnlBar.SuspendLayout();
             tabPage2.SuspendLayout();
@@ -60,11 +60,11 @@ namespace atbmcq_02
             // 
             lblOfficial.AutoSize = true;
             lblOfficial.Font = new Font("Microsoft Sans Serif", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblOfficial.Location = new Point(602, 81);
+            lblOfficial.Location = new Point(463, 88);
             lblOfficial.Name = "lblOfficial";
-            lblOfficial.Size = new Size(221, 69);
+            lblOfficial.Size = new Size(600, 69);
             lblOfficial.TabIndex = 1;
-            lblOfficial.Text = "Official";
+            lblOfficial.Text = "Personal Information";
             // 
             // pnlBar
             // 
@@ -126,6 +126,32 @@ namespace atbmcq_02
             tabPage2.Text = "Thông tin cá nhân";
             tabPage2.UseVisualStyleBackColor = true;
             // 
+            // btnEditPhone
+            // 
+            btnEditPhone.Location = new Point(368, 65);
+            btnEditPhone.Name = "btnEditPhone";
+            btnEditPhone.Size = new Size(133, 29);
+            btnEditPhone.TabIndex = 13;
+            btnEditPhone.Text = "Cập nhật SĐT";
+            btnEditPhone.UseVisualStyleBackColor = true;
+            btnEditPhone.Click += btnEditPhone_Click;
+            // 
+            // lblNewPhone
+            // 
+            lblNewPhone.AutoSize = true;
+            lblNewPhone.Location = new Point(47, 69);
+            lblNewPhone.Name = "lblNewPhone";
+            lblNewPhone.Size = new Size(81, 20);
+            lblNewPhone.TabIndex = 12;
+            lblNewPhone.Text = "SĐT mới:";
+            // 
+            // txtNewPhone
+            // 
+            txtNewPhone.Location = new Point(159, 66);
+            txtNewPhone.Name = "txtNewPhone";
+            txtNewPhone.Size = new Size(184, 25);
+            txtNewPhone.TabIndex = 11;
+            // 
             // dtgvOfficial
             // 
             dtgvOfficial.BackgroundColor = SystemColors.ButtonHighlight;
@@ -138,54 +164,12 @@ namespace atbmcq_02
             dtgvOfficial.Size = new Size(1380, 382);
             dtgvOfficial.TabIndex = 4;
             // 
-            // GV_Unit
+            // GV_ID
             // 
-            GV_Unit.HeaderText = "Unit";
-            GV_Unit.MinimumWidth = 6;
-            GV_Unit.Name = "GV_Unit";
-            GV_Unit.Width = 200;
-            // 
-            // GV_Role
-            // 
-            GV_Role.HeaderText = "Role";
-            GV_Role.MinimumWidth = 6;
-            GV_Role.Name = "GV_Role";
-            GV_Role.Width = 125;
-            // 
-            // GV_PhoneNumber
-            // 
-            GV_PhoneNumber.HeaderText = "Phone Number";
-            GV_PhoneNumber.MinimumWidth = 8;
-            GV_PhoneNumber.Name = "GV_PhoneNumber";
-            GV_PhoneNumber.Width = 224;
-            // 
-            // GV_Bonus
-            // 
-            GV_Bonus.HeaderText = "Bonus";
-            GV_Bonus.MinimumWidth = 6;
-            GV_Bonus.Name = "GV_Bonus";
-            GV_Bonus.Width = 125;
-            // 
-            // GV_Address
-            // 
-            GV_Address.HeaderText = "Salary";
-            GV_Address.MinimumWidth = 8;
-            GV_Address.Name = "GV_Address";
-            GV_Address.Width = 224;
-            // 
-            // GV_Birthday
-            // 
-            GV_Birthday.HeaderText = "Birthday";
-            GV_Birthday.MinimumWidth = 8;
-            GV_Birthday.Name = "GV_Birthday";
-            GV_Birthday.Width = 224;
-            // 
-            // GV_Gender
-            // 
-            GV_Gender.HeaderText = "Gender";
-            GV_Gender.MinimumWidth = 8;
-            GV_Gender.Name = "GV_Gender";
-            GV_Gender.Width = 224;
+            GV_ID.HeaderText = "ID";
+            GV_ID.MinimumWidth = 8;
+            GV_ID.Name = "GV_ID";
+            GV_ID.Width = 150;
             // 
             // GV_Name
             // 
@@ -194,38 +178,54 @@ namespace atbmcq_02
             GV_Name.Name = "GV_Name";
             GV_Name.Width = 228;
             // 
-            // GV_ID
+            // GV_Gender
             // 
-            GV_ID.HeaderText = "ID";
-            GV_ID.MinimumWidth = 8;
-            GV_ID.Name = "GV_ID";
-            GV_ID.Width = 150;
+            GV_Gender.HeaderText = "Gender";
+            GV_Gender.MinimumWidth = 8;
+            GV_Gender.Name = "GV_Gender";
+            GV_Gender.Width = 224;
             // 
-            // txtNewPhone
+            // GV_Birthday
             // 
-            txtNewPhone.Location = new Point(159, 66);
-            txtNewPhone.Name = "txtNewPhone";
-            txtNewPhone.Size = new Size(184, 25);
-            txtNewPhone.TabIndex = 11;
+            GV_Birthday.HeaderText = "Birthday";
+            GV_Birthday.MinimumWidth = 8;
+            GV_Birthday.Name = "GV_Birthday";
+            GV_Birthday.Width = 224;
             // 
-            // lblNewPhone
+            // GV_Address
             // 
-            lblNewPhone.AutoSize = true;
-            lblNewPhone.Location = new Point(47, 69);
-            lblNewPhone.Name = "lblNewPhone";
-            lblNewPhone.Size = new Size(81, 20);
-            lblNewPhone.TabIndex = 12;
-            lblNewPhone.Text = "SĐT mới:";
+            GV_Address.HeaderText = "Salary";
+            GV_Address.MinimumWidth = 8;
+            GV_Address.Name = "GV_Address";
+            GV_Address.Width = 224;
             // 
-            // btnEditPhone
+            // GV_Bonus
             // 
-            btnEditPhone.Location = new Point(368, 65);
-            btnEditPhone.Name = "btnEditPhone";
-            btnEditPhone.Size = new Size(133, 29);
-            btnEditPhone.TabIndex = 13;
-            btnEditPhone.Text = "Cập nhật SĐT";
-            btnEditPhone.UseVisualStyleBackColor = true;
-            btnEditPhone.Click += btnEditPhone_Click;
+            GV_Bonus.HeaderText = "Bonus";
+            GV_Bonus.MinimumWidth = 6;
+            GV_Bonus.Name = "GV_Bonus";
+            GV_Bonus.Width = 125;
+            // 
+            // GV_PhoneNumber
+            // 
+            GV_PhoneNumber.HeaderText = "Phone Number";
+            GV_PhoneNumber.MinimumWidth = 8;
+            GV_PhoneNumber.Name = "GV_PhoneNumber";
+            GV_PhoneNumber.Width = 224;
+            // 
+            // GV_Role
+            // 
+            GV_Role.HeaderText = "Role";
+            GV_Role.MinimumWidth = 6;
+            GV_Role.Name = "GV_Role";
+            GV_Role.Width = 125;
+            // 
+            // GV_Unit
+            // 
+            GV_Unit.HeaderText = "Unit";
+            GV_Unit.MinimumWidth = 6;
+            GV_Unit.Name = "GV_Unit";
+            GV_Unit.Width = 200;
             // 
             // tabControl1
             // 
@@ -236,7 +236,7 @@ namespace atbmcq_02
             tabControl1.Size = new Size(1394, 531);
             tabControl1.TabIndex = 4;
             // 
-            // Teacher_Infor
+            // PKT_Infor
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -245,7 +245,7 @@ namespace atbmcq_02
             Controls.Add(pnlBar);
             Controls.Add(lblOfficial);
             Font = new Font("Cascadia Code", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            Name = "Teacher_Infor";
+            Name = "PKT_Infor";
             Size = new Size(1394, 712);
             pnlBar.ResumeLayout(false);
             pnlBar.PerformLayout();

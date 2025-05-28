@@ -2,7 +2,7 @@
 
 namespace atbmcq_02
 {
-    partial class PDT_Infor
+    partial class TCHC_Official
     {
         /// <summary> 
         /// Required designer variable.
@@ -35,10 +35,8 @@ namespace atbmcq_02
             lblBack = new LinkLabel();
             lblSignOut = new LinkLabel();
             lblSlog = new Label();
-            tabPage2 = new TabPage();
-            btnEditPhone = new Button();
-            lblNewPhone = new Label();
-            txtNewPhone = new TextBox();
+            tabControl1 = new TabControl();
+            tabPage3 = new TabPage();
             dtgvOfficial = new DataGridView();
             GV_ID = new DataGridViewTextBoxColumn();
             GV_Name = new DataGridViewTextBoxColumn();
@@ -49,22 +47,24 @@ namespace atbmcq_02
             GV_PhoneNumber = new DataGridViewTextBoxColumn();
             GV_Role = new DataGridViewTextBoxColumn();
             GV_Unit = new DataGridViewTextBoxColumn();
-            tabControl1 = new TabControl();
+            btnDeleteStaff = new Button();
+            btnUpdateStaff = new Button();
+            btnAddStaff = new Button();
             pnlBar.SuspendLayout();
-            tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dtgvOfficial).BeginInit();
             tabControl1.SuspendLayout();
+            tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dtgvOfficial).BeginInit();
             SuspendLayout();
             // 
             // lblOfficial
             // 
             lblOfficial.AutoSize = true;
             lblOfficial.Font = new Font("Microsoft Sans Serif", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblOfficial.Location = new Point(438, 83);
+            lblOfficial.Location = new Point(602, 81);
             lblOfficial.Name = "lblOfficial";
-            lblOfficial.Size = new Size(600, 69);
+            lblOfficial.Size = new Size(221, 69);
             lblOfficial.TabIndex = 1;
-            lblOfficial.Text = "Personal Information";
+            lblOfficial.Text = "Official";
             // 
             // pnlBar
             // 
@@ -112,45 +112,28 @@ namespace atbmcq_02
             lblSlog.TabIndex = 0;
             lblSlog.Text = "Welcome to University X!";
             // 
-            // tabPage2
+            // tabControl1
             // 
-            tabPage2.Controls.Add(btnEditPhone);
-            tabPage2.Controls.Add(lblNewPhone);
-            tabPage2.Controls.Add(txtNewPhone);
-            tabPage2.Controls.Add(dtgvOfficial);
-            tabPage2.Location = new Point(4, 29);
-            tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(1386, 498);
-            tabPage2.TabIndex = 1;
-            tabPage2.Text = "Thông tin cá nhân";
-            tabPage2.UseVisualStyleBackColor = true;
+            tabControl1.Controls.Add(tabPage3);
+            tabControl1.Location = new Point(0, 186);
+            tabControl1.Name = "tabControl1";
+            tabControl1.SelectedIndex = 0;
+            tabControl1.Size = new Size(1394, 531);
+            tabControl1.TabIndex = 4;
             // 
-            // btnEditPhone
+            // tabPage3
             // 
-            btnEditPhone.Location = new Point(368, 65);
-            btnEditPhone.Name = "btnEditPhone";
-            btnEditPhone.Size = new Size(133, 29);
-            btnEditPhone.TabIndex = 13;
-            btnEditPhone.Text = "Cập nhật SĐT";
-            btnEditPhone.UseVisualStyleBackColor = true;
-            btnEditPhone.Click += btnEditPhone_Click;
-            // 
-            // lblNewPhone
-            // 
-            lblNewPhone.AutoSize = true;
-            lblNewPhone.Location = new Point(47, 69);
-            lblNewPhone.Name = "lblNewPhone";
-            lblNewPhone.Size = new Size(81, 20);
-            lblNewPhone.TabIndex = 12;
-            lblNewPhone.Text = "SĐT mới:";
-            // 
-            // txtNewPhone
-            // 
-            txtNewPhone.Location = new Point(159, 66);
-            txtNewPhone.Name = "txtNewPhone";
-            txtNewPhone.Size = new Size(184, 25);
-            txtNewPhone.TabIndex = 11;
+            tabPage3.Controls.Add(dtgvOfficial);
+            tabPage3.Controls.Add(btnDeleteStaff);
+            tabPage3.Controls.Add(btnUpdateStaff);
+            tabPage3.Controls.Add(btnAddStaff);
+            tabPage3.Location = new Point(4, 29);
+            tabPage3.Name = "tabPage3";
+            tabPage3.Padding = new Padding(3);
+            tabPage3.Size = new Size(1386, 498);
+            tabPage3.TabIndex = 2;
+            tabPage3.Text = "Staff List";
+            tabPage3.UseVisualStyleBackColor = true;
             // 
             // dtgvOfficial
             // 
@@ -162,7 +145,7 @@ namespace atbmcq_02
             dtgvOfficial.Name = "dtgvOfficial";
             dtgvOfficial.RowHeadersWidth = 62;
             dtgvOfficial.Size = new Size(1380, 382);
-            dtgvOfficial.TabIndex = 4;
+            dtgvOfficial.TabIndex = 9;
             // 
             // GV_ID
             // 
@@ -227,16 +210,40 @@ namespace atbmcq_02
             GV_Unit.Name = "GV_Unit";
             GV_Unit.Width = 200;
             // 
-            // tabControl1
+            // btnDeleteStaff
             // 
-            tabControl1.Controls.Add(tabPage2);
-            tabControl1.Location = new Point(0, 186);
-            tabControl1.Name = "tabControl1";
-            tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(1394, 531);
-            tabControl1.TabIndex = 4;
+            btnDeleteStaff.BackColor = Color.Red;
+            btnDeleteStaff.Location = new Point(1217, 64);
+            btnDeleteStaff.Name = "btnDeleteStaff";
+            btnDeleteStaff.Size = new Size(94, 29);
+            btnDeleteStaff.TabIndex = 8;
+            btnDeleteStaff.Text = "DELETE";
+            btnDeleteStaff.UseVisualStyleBackColor = false;
+            btnDeleteStaff.Click += btnDeleteStaff_Click;
             // 
-            // PDT_Infor
+            // btnUpdateStaff
+            // 
+            btnUpdateStaff.BackColor = Color.Yellow;
+            btnUpdateStaff.Location = new Point(1091, 64);
+            btnUpdateStaff.Name = "btnUpdateStaff";
+            btnUpdateStaff.Size = new Size(94, 29);
+            btnUpdateStaff.TabIndex = 7;
+            btnUpdateStaff.Text = "UPDATE";
+            btnUpdateStaff.UseVisualStyleBackColor = false;
+            btnUpdateStaff.Click += btnUpdateStaff_Click;
+            // 
+            // btnAddStaff
+            // 
+            btnAddStaff.BackColor = Color.Lime;
+            btnAddStaff.Location = new Point(960, 64);
+            btnAddStaff.Name = "btnAddStaff";
+            btnAddStaff.Size = new Size(94, 29);
+            btnAddStaff.TabIndex = 6;
+            btnAddStaff.Text = "ADD";
+            btnAddStaff.UseVisualStyleBackColor = false;
+            btnAddStaff.Click += btnAddStaff_Click;
+            // 
+            // TCHC_Official
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -245,14 +252,13 @@ namespace atbmcq_02
             Controls.Add(pnlBar);
             Controls.Add(lblOfficial);
             Font = new Font("Cascadia Code", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            Name = "PDT_Infor";
+            Name = "TCHC_Official";
             Size = new Size(1394, 712);
             pnlBar.ResumeLayout(false);
             pnlBar.PerformLayout();
-            tabPage2.ResumeLayout(false);
-            tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dtgvOfficial).EndInit();
             tabControl1.ResumeLayout(false);
+            tabPage3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dtgvOfficial).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -264,10 +270,11 @@ namespace atbmcq_02
         private LinkLabel lblSignOut;
         private Label lblSlog;
         private OracleDbConnection _connection;
-        private TabPage tabPage2;
-        private Button btnEditPhone;
-        private Label lblNewPhone;
-        private TextBox txtNewPhone;
+        private TabControl tabControl1;
+        private TabPage tabPage3;
+        private Button btnDeleteStaff;
+        private Button btnUpdateStaff;
+        private Button btnAddStaff;
         private DataGridView dtgvOfficial;
         private DataGridViewTextBoxColumn GV_ID;
         private DataGridViewTextBoxColumn GV_Name;
@@ -278,6 +285,5 @@ namespace atbmcq_02
         private DataGridViewTextBoxColumn GV_PhoneNumber;
         private DataGridViewTextBoxColumn GV_Role;
         private DataGridViewTextBoxColumn GV_Unit;
-        private TabControl tabControl1;
     }
 }
