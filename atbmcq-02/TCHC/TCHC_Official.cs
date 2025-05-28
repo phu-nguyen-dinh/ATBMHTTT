@@ -74,8 +74,6 @@ namespace atbmcq_02
         {
             try
             {
-                try
-                {
                     var opnd = new AddStaff(_connection);
 
                     opnd.backClicked += opnd_backClicked;
@@ -83,11 +81,6 @@ namespace atbmcq_02
                     this.Controls.Clear();
                     this.Controls.Add(opnd);
                     this.ClientSize = opnd.Size;
-                }
-                catch
-                {
-                    throw new NotImplementedException();
-                }
             }
             catch (Exception ex)
             {
@@ -99,7 +92,13 @@ namespace atbmcq_02
         {
             try
             {
-               
+                var opnd = new UpdateStaff(_connection);
+
+                opnd.backClicked += opnd_backClicked;
+
+                this.Controls.Clear();
+                this.Controls.Add(opnd);
+                this.ClientSize = opnd.Size;
             }
             catch (Exception ex)
             {
@@ -111,6 +110,13 @@ namespace atbmcq_02
         {
             try
             {
+                var opnd = new DeleteStaff(_connection);
+
+                opnd.backClicked += opnd_backClicked;
+
+                this.Controls.Clear();
+                this.Controls.Add(opnd);
+                this.ClientSize = opnd.Size;
             }
             catch (Exception ex)
             {

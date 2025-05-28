@@ -2,7 +2,7 @@
 
 namespace atbmcq_02
 {
-    partial class AddStaff
+    partial class UpdateStaff
     {
         /// <summary> 
         /// Required designer variable.
@@ -62,11 +62,11 @@ namespace atbmcq_02
             // 
             lblTITLE.AutoSize = true;
             lblTITLE.Font = new Font("Microsoft Sans Serif", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblTITLE.Location = new Point(491, 81);
+            lblTITLE.Location = new Point(482, 78);
             lblTITLE.Name = "lblTITLE";
-            lblTITLE.Size = new Size(372, 69);
+            lblTITLE.Size = new Size(492, 69);
             lblTITLE.TabIndex = 1;
-            lblTITLE.Text = "ADD STAFF";
+            lblTITLE.Text = "UPDATE STAFF";
             // 
             // pnlBar
             // 
@@ -286,7 +286,7 @@ namespace atbmcq_02
             comboBoxUnit.Size = new Size(151, 28);
             comboBoxUnit.TabIndex = 32;
             // 
-            // AddStaff
+            // UpdateStaff
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -314,7 +314,7 @@ namespace atbmcq_02
             Controls.Add(pnlBar);
             Controls.Add(lblTITLE);
             Font = new Font("Cascadia Code", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            Name = "AddStaff";
+            Name = "UpdateStaff";
             Size = new Size(1394, 712);
             Load += AddStudent_Load;
             pnlBar.ResumeLayout(false);
