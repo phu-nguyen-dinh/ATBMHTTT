@@ -16,6 +16,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="DeleteStaff.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UpdateStaff.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="AddStaff.cs">
       <SubType>UserControl</SubType>
     </Compile>
