@@ -13,11 +13,12 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
 namespace atbmcq_02
 {
-    public partial class TCHC_Infor : UserControl
+    public partial class TCHC_Official : UserControl
     {
         public event EventHandler<OracleDbConnection> backClicked;
+        private string currentRole = "";
 
-        public TCHC_Infor(OracleDbConnection _connect)
+        public TCHC_Official(OracleDbConnection _connect)
         {
             InitializeComponent();
             _connection = _connect;
@@ -28,17 +29,15 @@ namespace atbmcq_02
         {
             backClicked?.Invoke(this, _connection);
         }
-
-        
+       
         private void LoadOfficial()
         {
             try
             {
-                string username = _connection.Username.ToUpper();
                 using var conn = new OracleConnection(_connection.GetConnectionString());
                 conn.Open();
 
-                string query = "SELECT * FROM C##ADMIN.NHANVIEN WHERE MANLD= '" + username + "'";
+                string query = "SELECT * FROM C##ADMIN.NHANVIEN";
                 using var cmd = new OracleCommand(query, conn);
                 using var reader = cmd.ExecuteReader();
 
@@ -51,58 +50,71 @@ namespace atbmcq_02
                     dtgvOfficial.Rows.Add(row);
                 }
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        
         private void lblSignOut_LinkClicked(Object sender, LinkLabelLinkClickedEventArgs e)
         {
             Application.Restart();
         }
+        
         private void opnd_backClicked(object sender, OracleDbConnection _connect)
         {
             this.Controls.Clear();
             InitializeComponent();
             _connection = _connect;
-
             
             LoadOfficial();
         }
 
-        private void btnEditPhone_Click(object sender, EventArgs e)
+        private void btnAddStaff_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtNewPhone.Text))
-            {
-                MessageBox.Show("Vui lòng nhập số điện thoại mới!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
             try
             {
-
-                using var conn = new OracleConnection(_connection.GetConnectionString());
-                conn.Open();
-
-                string query = "UPDATE C##ADMIN.NHANVIEN SET DT = :phone WHERE MANLD ='"+_connection.Username.ToUpper()+"'";
-                using var cmd = new OracleCommand(query, conn);
-                cmd.Parameters.Add(new OracleParameter("phone", txtNewPhone.Text));
-
-                int result = cmd.ExecuteNonQuery();
-
-                if (result > 0)
+                try
                 {
-                    MessageBox.Show("Cập nhật số điện thoại thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    LoadOfficial(); // Tải lại thông tin sau khi cập nhật
-                    txtNewPhone.Clear();
+                    var opnd = new AddStaff(_connection);
+
+                    opnd.backClicked += opnd_backClicked;
+
+                    this.Controls.Clear();
+                    this.Controls.Add(opnd);
+                    this.ClientSize = opnd.Size;
                 }
-                else
+                catch
                 {
-                    MessageBox.Show("Không thể cập nhật số điện thoại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    throw new NotImplementedException();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"ERROR: {ex.Message}", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnUpdateStaff_Click(object sender, EventArgs e)
+        {
+            try
+            {
+               
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"ERROR: {ex.Message}", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnDeleteStaff_Click(object sender, EventArgs e)
+        {
+            try
+            {
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"ERROR: {ex.Message}", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
