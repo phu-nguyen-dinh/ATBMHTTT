@@ -34,11 +34,10 @@ namespace atbmcq_02
         {
             try
             {
-                string username = _connection.Username.ToUpper();
                 using var conn = new OracleConnection(_connection.GetConnectionString());
                 conn.Open();
 
-                string query = "SELECT * FROM C##ADMIN.NHANVIEN WHERE MANLD= '" + username + "'";
+                string query = "SELECT * FROM C##ADMIN.VW_NHANVIEN_SELF";
                 using var cmd = new OracleCommand(query, conn);
                 using var reader = cmd.ExecuteReader();
 
@@ -135,7 +134,7 @@ namespace atbmcq_02
                 using var conn = new OracleConnection(_connection.GetConnectionString());
                 conn.Open();
 
-                string query = "UPDATE C##ADMIN.NHANVIEN SET DT = :phone";
+                string query = "UPDATE C##ADMIN.VW_NHANVIEN_SELF SET DT = :phone";
                 using var cmd = new OracleCommand(query, conn);
                 cmd.Parameters.Add(new OracleParameter("phone", txtNewPhone.Text));
 
@@ -163,7 +162,7 @@ namespace atbmcq_02
             using var conn = new OracleConnection(_connection.GetConnectionString());
             conn.Open();
             string role = "";
-            string query = "SELECT VAITRO FROM C##ADMIN.NHANHVIEN WHERE MANLD= '"+_connection.Username.ToUpper()+"'";
+            string query = "SELECT VAITRO FROM C##ADMIN.VW_NHANVIEN_SELF";
             using var cmd = new OracleCommand(query, conn);
             using var reader = cmd.ExecuteReader();
             if (reader.Read())

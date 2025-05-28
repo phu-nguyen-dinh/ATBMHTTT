@@ -98,7 +98,7 @@ namespace atbmcq_02
                 using var conn = new OracleConnection(_connection.GetConnectionString());
                 conn.Open();
 
-                string query = "SELECT VAITRO FROM C##ADMIN.NHANVIEN WHERE MANLD= '" + _connection.Username+"'";
+                string query = "SELECT VAITRO FROM C##ADMIN.VW_NHANVIEN_SELF";
                 using var cmd = new OracleCommand(query, conn);
                 using var reader = cmd.ExecuteReader();
 
@@ -132,12 +132,12 @@ namespace atbmcq_02
             }
             else if (username.StartsWith("NV"))
             {
-                // Lấy vai trò từ bảng NHANVIEN
+                // Lấy vai trò từ view VW_NHANVIEN_SELF
                 try
                 {
                     using var conn = new OracleConnection(_connection.GetConnectionString());
                     conn.Open();
-                    string roleQuery = $"SELECT VAITRO FROM C##ADMIN.NHANVIEN WHERE MANLD = '{username}'";
+                    string roleQuery = $"SELECT VAITRO FROM C##ADMIN.VW_NHANVIEN_SELF";
 
                     using var cmd = new OracleCommand(roleQuery, conn);
                     string vaitro = cmd.ExecuteScalar()?.ToString();

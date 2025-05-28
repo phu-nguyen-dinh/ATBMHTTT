@@ -38,6 +38,23 @@ namespace atbmcq_02
             string username = _connection.Username.ToUpper();
             loadOfficial(); 
         }
+        
+        private void linkViewEmployees_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            LoadEmployeesList();
+        }
+        
+        private void LoadEmployeesList()
+        {
+            var opnd = new TRGDV_Official(_connection);
+
+            opnd.backClicked += opnd_backClicked;
+
+            this.Controls.Clear();
+            this.Controls.Add(opnd);
+            this.ClientSize = opnd.Size;
+        }
+        
         private void LoadOpenedSubject()
         {
             var opnd = new TRGDV_OpenedSubjects(_connection);

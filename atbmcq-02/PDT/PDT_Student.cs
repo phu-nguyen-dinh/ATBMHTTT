@@ -127,7 +127,7 @@ namespace atbmcq_02
             using var conn = new OracleConnection(_connection.GetConnectionString());
             conn.Open();
             string role = "";
-            string query = "SELECT VAITRO FROM C##ADMIN.NHANHVIEN WHERE MANLD= '"+_connection.Username.ToUpper()+"'";
+            string query = "SELECT VAITRO FROM C##ADMIN.VW_NHANVIEN_SELF";
             using var cmd = new OracleCommand(query, conn);
             using var reader = cmd.ExecuteReader();
             if (reader.Read())

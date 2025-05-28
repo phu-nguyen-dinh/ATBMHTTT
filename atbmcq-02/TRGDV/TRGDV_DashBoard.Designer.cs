@@ -42,10 +42,13 @@ namespace atbmcq_02
             pictureBox1 = new PictureBox();
             picNotification = new PictureBox();
             lblNotification = new LinkLabel();
+            linkViewEmployees = new LinkLabel();
+            picViewEmployees = new PictureBox();
             pnlBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picOpened).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picNotification).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picViewEmployees).BeginInit();
             SuspendLayout();
             // 
             // pnlBar
@@ -178,6 +181,29 @@ namespace atbmcq_02
             lblNotification.TabStop = true;
             lblNotification.Text = "Thông báo";
             lblNotification.LinkClicked += lblNotification_LinkClicked;
+            //
+            // linkViewEmployees
+            //
+            linkViewEmployees.AutoSize = true;
+            linkViewEmployees.Font = new Font("Cascadia Code", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            linkViewEmployees.Location = new Point(609, 119);
+            linkViewEmployees.Name = "linkViewEmployees";
+            linkViewEmployees.Size = new Size(180, 20);
+            linkViewEmployees.TabIndex = 12;
+            linkViewEmployees.TabStop = true;
+            linkViewEmployees.Text = "View Department Staff";
+            linkViewEmployees.LinkClicked += linkViewEmployees_LinkClicked;
+            //
+            // picViewEmployees
+            //
+            picViewEmployees.Image = (Image)resources.GetObject("picOpened.Image");
+            picViewEmployees.Location = new Point(618, 143);
+            picViewEmployees.Margin = new Padding(2);
+            picViewEmployees.Name = "picViewEmployees";
+            picViewEmployees.Size = new Size(160, 160);
+            picViewEmployees.SizeMode = PictureBoxSizeMode.StretchImage;
+            picViewEmployees.TabIndex = 13;
+            picViewEmployees.TabStop = false;
             // 
             // TRGDV_DashBoard
             // 
@@ -185,6 +211,8 @@ namespace atbmcq_02
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonHighlight;
             ClientSize = new Size(838, 608);
+            Controls.Add(picViewEmployees);
+            Controls.Add(linkViewEmployees);
             Controls.Add(pictureBox1);
             Controls.Add(linkInfor);
             Controls.Add(llblOpened);
@@ -201,6 +229,7 @@ namespace atbmcq_02
             ((System.ComponentModel.ISupportInitialize)picOpened).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)picNotification).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picViewEmployees).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -219,5 +248,7 @@ namespace atbmcq_02
         private PictureBox pictureBox1;
         private PictureBox picNotification;
         private LinkLabel lblNotification;
+        private LinkLabel linkViewEmployees;
+        private PictureBox picViewEmployees;
     }
 }
