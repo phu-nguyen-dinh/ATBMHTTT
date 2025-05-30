@@ -50,6 +50,9 @@ namespace atbmcq_02
             btnDeleteStaff = new Button();
             btnUpdateStaff = new Button();
             btnAddStaff = new Button();
+            lblSearch = new Label();
+            txtSearch = new TextBox();
+            btnSearch = new Button();
             pnlBar.SuspendLayout();
             tabControl1.SuspendLayout();
             tabPage3.SuspendLayout();
@@ -127,6 +130,9 @@ namespace atbmcq_02
             tabPage3.Controls.Add(btnDeleteStaff);
             tabPage3.Controls.Add(btnUpdateStaff);
             tabPage3.Controls.Add(btnAddStaff);
+            tabPage3.Controls.Add(lblSearch);
+            tabPage3.Controls.Add(txtSearch);
+            tabPage3.Controls.Add(btnSearch);
             tabPage3.Location = new Point(4, 29);
             tabPage3.Name = "tabPage3";
             tabPage3.Padding = new Padding(3);
@@ -243,6 +249,36 @@ namespace atbmcq_02
             btnAddStaff.UseVisualStyleBackColor = false;
             btnAddStaff.Click += btnAddStaff_Click;
             // 
+            // lblSearch
+            // 
+            lblSearch.AutoSize = true;
+            lblSearch.Font = new Font("Cascadia Code", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblSearch.Location = new Point(32, 68);
+            lblSearch.Name = "lblSearch";
+            lblSearch.Size = new Size(190, 22);
+            lblSearch.TabIndex = 10;
+            lblSearch.Text = "Tên hoặc ID:";
+            // 
+            // txtSearch
+            // 
+            txtSearch.Font = new Font("Cascadia Code", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtSearch.Location = new Point(228, 65);
+            txtSearch.Name = "txtSearch";
+            txtSearch.Size = new Size(345, 27);
+            txtSearch.TabIndex = 11;
+            // 
+            // btnSearch
+            // 
+            btnSearch.BackColor = Color.RoyalBlue;
+            btnSearch.ForeColor = Color.White;
+            btnSearch.Location = new Point(589, 64);
+            btnSearch.Name = "btnSearch";
+            btnSearch.Size = new Size(94, 29);
+            btnSearch.TabIndex = 12;
+            btnSearch.Text = "Tìm kiếm";
+            btnSearch.UseVisualStyleBackColor = false;
+            btnSearch.Click += btnSearch_Click;
+            // 
             // TCHC_Official
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
@@ -285,5 +321,8 @@ namespace atbmcq_02
         private DataGridViewTextBoxColumn GV_PhoneNumber;
         private DataGridViewTextBoxColumn GV_Role;
         private DataGridViewTextBoxColumn GV_Unit;
+        private Label lblSearch;
+        private TextBox txtSearch;
+        private Button btnSearch;
     }
 }

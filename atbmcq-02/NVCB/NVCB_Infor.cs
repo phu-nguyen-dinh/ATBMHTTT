@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -41,13 +42,54 @@ namespace atbmcq_02
                 using var cmd = new OracleCommand(query, conn);
                 using var reader = cmd.ExecuteReader();
 
-                dtgvOfficial.Rows.Clear();
-
-                while (reader.Read())
+                if (reader.Read())
                 {
-                    object[] row = new object[reader.FieldCount];
-                    reader.GetValues(row);
-                    dtgvOfficial.Rows.Add(row);
+                    // Lấy các giá trị từ dòng kết quả và hiển thị vào các TextBox
+                    txtID.Text = reader["MANLD"].ToString();
+                    txtName.Text = reader["HOTEN"].ToString();
+                    txtGender.Text = reader["PHAI"].ToString();
+                    txtBirthday.Text = reader["NGSINH"].ToString();
+                    
+                    // Định dạng lương với dấu cách phân cách hàng nghìn
+                    if (decimal.TryParse(reader["LUONG"].ToString(), out decimal luong))
+                    {
+                        // Sử dụng NumberFormatInfo để thay đổi dấu phân cách
+                        NumberFormatInfo nfi = new NumberFormatInfo
+                        {
+                            NumberGroupSeparator = " ",
+                            NumberDecimalSeparator = ",",
+                            NumberGroupSizes = new int[] { 3 }
+                        };
+                        txtSalary.Text = luong.ToString("N0", nfi);
+                    }
+                    else
+                    {
+                        txtSalary.Text = reader["LUONG"].ToString();
+                    }
+                    
+                    // Định dạng phụ cấp với dấu cách phân cách hàng nghìn
+                    if (decimal.TryParse(reader["PHUCAP"].ToString(), out decimal phucap))
+                    {
+                        // Sử dụng NumberFormatInfo để thay đổi dấu phân cách
+                        NumberFormatInfo nfi = new NumberFormatInfo
+                        {
+                            NumberGroupSeparator = " ",
+                            NumberDecimalSeparator = ",",
+                            NumberGroupSizes = new int[] { 3 }
+                        };
+                        txtBonus.Text = phucap.ToString("N0", nfi);
+                    }
+                    else
+                    {
+                        txtBonus.Text = reader["PHUCAP"].ToString();
+                    }
+                    
+                    txtPhone.Text = reader["DT"].ToString();
+                    txtRole.Text = reader["VAITRO"].ToString();
+                    
+                    // Lấy tên đơn vị từ mã đơn vị
+                    string madv = reader["MADV"].ToString();
+                    txtUnit.Text = GetDepartmentName(madv);
                 }
             }
             catch (Exception ex)
@@ -55,6 +97,27 @@ namespace atbmcq_02
                 MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private string GetDepartmentName(string madv)
+        {
+            try
+            {
+                using var conn = new OracleConnection(_connection.GetConnectionString());
+                conn.Open();
+
+                string query = "SELECT TENDV FROM C##ADMIN.DONVI WHERE MADV = :madv";
+                using var cmd = new OracleCommand(query, conn);
+                cmd.Parameters.Add(new OracleParameter("madv", madv));
+                
+                object result = cmd.ExecuteScalar();
+                return result != null ? result.ToString() : madv;
+            }
+            catch
+            {
+                return madv; // Nếu không lấy được tên, trả về mã
+            }
+        }
+        
         private void lblSignOut_LinkClicked(Object sender, LinkLabelLinkClickedEventArgs e)
         {
             Application.Restart();

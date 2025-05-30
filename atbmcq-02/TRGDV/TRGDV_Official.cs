@@ -71,6 +71,46 @@ namespace atbmcq_02
             LoadOfficial();
         }
 
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            string searchText = txtSearch.Text.Trim();
+            if (string.IsNullOrEmpty(searchText))
+            {
+                LoadOfficial();
+                return;
+            }
+
+            try
+            {
+                using var conn = new OracleConnection(_connection.GetConnectionString());
+                conn.Open();
+
+                // Tìm kiếm trong view VW_NHANVIEN_NO_SALARY thay vì bảng NHANVIEN
+                string query = "SELECT * FROM C##ADMIN.VW_NHANVIEN_NO_SALARY WHERE UPPER(MANLD) LIKE UPPER(:search) OR UPPER(HOTEN) LIKE UPPER(:search)";
+                using var cmd = new OracleCommand(query, conn);
+                cmd.Parameters.Add(new OracleParameter("search", "%" + searchText + "%"));
+                using var reader = cmd.ExecuteReader();
+
+                dtgvOfficial.Rows.Clear();
+
+                while (reader.Read())
+                {
+                    object[] row = new object[reader.FieldCount];
+                    reader.GetValues(row);
+                    dtgvOfficial.Rows.Add(row);
+                }
+
+                if (dtgvOfficial.Rows.Count == 0)
+                {
+                    MessageBox.Show("Không tìm thấy nhân viên nào phù hợp!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi tìm kiếm: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void btnAddStaff_Click(object sender, EventArgs e)
         {
             try

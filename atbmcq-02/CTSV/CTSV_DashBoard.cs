@@ -60,7 +60,7 @@ namespace atbmcq_02
         }
         private void loadOfficial()
         {
-            var opnd = new CTSV_Infor(_connection);
+            var opnd = new NVCB_Infor(_connection);
 
             opnd.backClicked += opnd_backClicked;
 

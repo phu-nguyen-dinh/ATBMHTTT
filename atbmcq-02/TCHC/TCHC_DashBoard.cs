@@ -48,7 +48,7 @@ namespace atbmcq_02
         }
         private void loadInfor() 
         {
-            var opnd = new TCHC_Infor(_connection);
+            var opnd = new NVCB_Infor(_connection);
 
             opnd.backClicked += opnd_backClicked;
 
