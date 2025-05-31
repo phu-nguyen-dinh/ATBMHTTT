@@ -110,7 +110,6 @@ BEGIN
     END IF;
 EXCEPTION
     WHEN OTHERS THEN
-        -- DBMS_OUTPUT.PUT_LINE('Error in IS_REGISTRATION_PERIOD_OPEN_FUNC: ' || SQLERRM); -- For debugging
         RETURN 0; -- Lỗi thì coi như đóng
 END;
 /
