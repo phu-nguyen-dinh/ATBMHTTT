@@ -35,15 +35,15 @@ namespace atbmcq_02
             lblBack = new LinkLabel();
             lblSignOut = new LinkLabel();
             lblSlog = new Label();
-            dtgvStudent2 = new DataGridView();
-            dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn5 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn6 = new DataGridViewTextBoxColumn();
+            dtgvCourses = new DataGridView();
+            colStudentID = new DataGridViewTextBoxColumn();
+            colCourseID = new DataGridViewTextBoxColumn();
+            colPracticeScore = new DataGridViewTextBoxColumn();
+            colProcessScore = new DataGridViewTextBoxColumn();
+            colFinalScore = new DataGridViewTextBoxColumn();
+            colTotalScore = new DataGridViewTextBoxColumn();
             pnlBar.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dtgvStudent2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dtgvCourses).BeginInit();
             SuspendLayout();
             // 
             // lblRegistration
@@ -54,7 +54,7 @@ namespace atbmcq_02
             lblRegistration.Name = "lblRegistration";
             lblRegistration.Size = new Size(360, 69);
             lblRegistration.TabIndex = 1;
-            lblRegistration.Text = "Registration";
+            lblRegistration.Text = "Course List";
             // 
             // pnlBar
             // 
@@ -102,66 +102,72 @@ namespace atbmcq_02
             lblSlog.TabIndex = 0;
             lblSlog.Text = "Welcome to University X!";
             // 
-            // dtgvStudent2
+            // dtgvCourses
             // 
-            dtgvStudent2.BackgroundColor = SystemColors.ButtonHighlight;
-            dtgvStudent2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgvStudent2.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4, dataGridViewTextBoxColumn5, dataGridViewTextBoxColumn6 });
-            dtgvStudent2.Dock = DockStyle.Bottom;
-            dtgvStudent2.Location = new Point(0, 186);
-            dtgvStudent2.Name = "dtgvStudent2";
-            dtgvStudent2.RowHeadersWidth = 62;
-            dtgvStudent2.Size = new Size(1414, 664);
-            dtgvStudent2.TabIndex = 4;
+            dtgvCourses.BackgroundColor = SystemColors.ButtonHighlight;
+            dtgvCourses.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dtgvCourses.Columns.AddRange(new DataGridViewColumn[] { colStudentID, colCourseID, colPracticeScore, colProcessScore, colFinalScore, colTotalScore });
+            dtgvCourses.Dock = DockStyle.Bottom;
+            dtgvCourses.Location = new Point(0, 186);
+            dtgvCourses.Name = "dtgvCourses";
+            dtgvCourses.RowHeadersWidth = 62;
+            dtgvCourses.Size = new Size(1414, 664);
+            dtgvCourses.TabIndex = 4;
             // 
-            // dataGridViewTextBoxColumn1
+            // colStudentID
             // 
-            dataGridViewTextBoxColumn1.HeaderText = "ID_Student";
-            dataGridViewTextBoxColumn1.MinimumWidth = 8;
-            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            dataGridViewTextBoxColumn1.Width = 150;
+            colStudentID.HeaderText = "Student ID";
+            colStudentID.MinimumWidth = 8;
+            colStudentID.Name = "colStudentID";
+            colStudentID.ReadOnly = true;
+            colStudentID.Width = 150;
             // 
-            // dataGridViewTextBoxColumn2
+            // colCourseID
             // 
-            dataGridViewTextBoxColumn2.HeaderText = "ID_Subject";
-            dataGridViewTextBoxColumn2.MinimumWidth = 8;
-            dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            dataGridViewTextBoxColumn2.Width = 228;
+            colCourseID.HeaderText = "Course ID";
+            colCourseID.MinimumWidth = 8;
+            colCourseID.Name = "colCourseID";
+            colCourseID.ReadOnly = true;
+            colCourseID.Width = 150;
             // 
-            // dataGridViewTextBoxColumn3
+            // colPracticeScore
             // 
-            dataGridViewTextBoxColumn3.HeaderText = "Practice score";
-            dataGridViewTextBoxColumn3.MinimumWidth = 8;
-            dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            dataGridViewTextBoxColumn3.Width = 224;
+            colPracticeScore.HeaderText = "Practice Score";
+            colPracticeScore.MinimumWidth = 8;
+            colPracticeScore.Name = "colPracticeScore";
+            colPracticeScore.ReadOnly = true;
+            colPracticeScore.Width = 150;
             // 
-            // dataGridViewTextBoxColumn4
+            // colProcessScore
             // 
-            dataGridViewTextBoxColumn4.HeaderText = "Process score";
-            dataGridViewTextBoxColumn4.MinimumWidth = 8;
-            dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            dataGridViewTextBoxColumn4.Width = 224;
+            colProcessScore.HeaderText = "Process Score";
+            colProcessScore.MinimumWidth = 8;
+            colProcessScore.Name = "colProcessScore";
+            colProcessScore.ReadOnly = true;
+            colProcessScore.Width = 150;
             // 
-            // dataGridViewTextBoxColumn5
+            // colFinalScore
             // 
-            dataGridViewTextBoxColumn5.HeaderText = "Final score";
-            dataGridViewTextBoxColumn5.MinimumWidth = 8;
-            dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            dataGridViewTextBoxColumn5.Width = 224;
+            colFinalScore.HeaderText = "Final Score";
+            colFinalScore.MinimumWidth = 8;
+            colFinalScore.Name = "colFinalScore";
+            colFinalScore.ReadOnly = true;
+            colFinalScore.Width = 150;
             // 
-            // dataGridViewTextBoxColumn6
+            // colTotalScore
             // 
-            dataGridViewTextBoxColumn6.HeaderText = "Sumary Score";
-            dataGridViewTextBoxColumn6.MinimumWidth = 6;
-            dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            dataGridViewTextBoxColumn6.Width = 200;
+            colTotalScore.HeaderText = "Total Score";
+            colTotalScore.MinimumWidth = 6;
+            colTotalScore.Name = "colTotalScore";
+            colTotalScore.ReadOnly = true;
+            colTotalScore.Width = 150;
             // 
             // Teacher_Registration
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonHighlight;
-            Controls.Add(dtgvStudent2);
+            Controls.Add(dtgvCourses);
             Controls.Add(pnlBar);
             Controls.Add(lblRegistration);
             Font = new Font("Cascadia Code", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -169,7 +175,7 @@ namespace atbmcq_02
             Size = new Size(1414, 850);
             pnlBar.ResumeLayout(false);
             pnlBar.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dtgvStudent2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dtgvCourses).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -181,12 +187,12 @@ namespace atbmcq_02
         private LinkLabel lblSignOut;
         private Label lblSlog;
         private OracleDbConnection _connection;
-        private DataGridView dtgvStudent2;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private DataGridView dtgvCourses;
+        private DataGridViewTextBoxColumn colStudentID;
+        private DataGridViewTextBoxColumn colCourseID;
+        private DataGridViewTextBoxColumn colPracticeScore;
+        private DataGridViewTextBoxColumn colProcessScore;
+        private DataGridViewTextBoxColumn colFinalScore;
+        private DataGridViewTextBoxColumn colTotalScore;
     }
 }

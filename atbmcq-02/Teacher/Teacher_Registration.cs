@@ -18,11 +18,11 @@ namespace atbmcq_02
         public event EventHandler<OracleDbConnection> backClicked;
         public Teacher_Registration(OracleDbConnection _connect)
         {
-            String username = _connect.Username;
             InitializeComponent();
             _connection = _connect;
-
-            LoadRegisteredCoursesForStudent();
+            
+            // Load danh sách đăng ký học phần mà giảng viên phụ trách
+            LoadTeacherCourses();
         }
 
         private void lblBack_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -30,31 +30,63 @@ namespace atbmcq_02
             backClicked?.Invoke(this, _connection);
         }
 
-        private void LoadRegisteredCoursesForStudent()
+        private void LoadTeacherCourses()
         {
             try
             {
                 string username = _connection.Username.ToUpper();
                 using var conn = new OracleConnection(_connection.GetConnectionString());
                 conn.Open();
-                string query = "SELECT * FROM C##ADMIN.DANGKY WHERE MASV= '" + username + "'";
+                
+                // Truy vấn lấy danh sách đăng ký học phần mà giảng viên phụ trách
+                string query = @"
+                    SELECT DK.MASV, DK.MAMM, DK.DIEMTH, DK.DIEMQT, DK.DIEMCK, DK.DIEMTK 
+                    FROM C##ADMIN.DANGKY DK
+                    JOIN C##ADMIN.MOMON MM ON DK.MAMM = MM.MAMM
+                    WHERE MM.MAGV = :username
+                    ORDER BY DK.MASV, DK.MAMM";
+                
                 using var cmd = new OracleCommand(query, conn);
+                cmd.Parameters.Add(new OracleParameter("username", OracleDbType.Varchar2)).Value = username;
                 using var reader = cmd.ExecuteReader();
 
-                dtgvStudent2.Rows.Clear();
+                dtgvCourses.Rows.Clear();
 
                 while (reader.Read())
                 {
-                    object[] row = new object[reader.FieldCount];
-                    reader.GetValues(row);
-                    dtgvStudent2.Rows.Add(row);
+                    // Lấy dữ liệu từ mỗi cột
+                    string masv = reader["MASV"].ToString();
+                    string mamm = reader["MAMM"].ToString();
+                    
+                    // Các cột điểm có thể null
+                    decimal? diemth = reader["DIEMTH"] == DBNull.Value ? null : (decimal?)reader.GetDecimal(reader.GetOrdinal("DIEMTH"));
+                    decimal? diemqt = reader["DIEMQT"] == DBNull.Value ? null : (decimal?)reader.GetDecimal(reader.GetOrdinal("DIEMQT"));
+                    decimal? diemck = reader["DIEMCK"] == DBNull.Value ? null : (decimal?)reader.GetDecimal(reader.GetOrdinal("DIEMCK"));
+                    decimal? diemtk = reader["DIEMTK"] == DBNull.Value ? null : (decimal?)reader.GetDecimal(reader.GetOrdinal("DIEMTK"));
+                    
+                    // Thêm dữ liệu vào DataGridView
+                    dtgvCourses.Rows.Add(
+                        masv,
+                        mamm,
+                        diemth.HasValue ? diemth.ToString() : "",
+                        diemqt.HasValue ? diemqt.ToString() : "",
+                        diemck.HasValue ? diemck.ToString() : "",
+                        diemtk.HasValue ? diemtk.ToString() : ""
+                    );
+                }
+                
+                // Hiển thị thông báo nếu không có lớp nào
+                if (dtgvCourses.Rows.Count == 0)
+                {
+                    MessageBox.Show("You don't have any assigned courses.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        
         private void lblSignOut_LinkClicked(Object sender, LinkLabelLinkClickedEventArgs e)
         {
             Application.Restart();
