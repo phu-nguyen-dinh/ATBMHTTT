@@ -35,15 +35,18 @@ namespace atbmcq_02
             lblBack = new LinkLabel();
             lblSignOut = new LinkLabel();
             lblSlog = new Label();
-            dtgvStudent3 = new DataGridView();
+            dtgvStudent = new DataGridView();
             dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn5 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn6 = new DataGridViewTextBoxColumn();
+            btnDelete = new Button();
+            btnEdit = new Button();
+            btnAdd = new Button();
             pnlBar.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dtgvStudent3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dtgvStudent).BeginInit();
             SuspendLayout();
             // 
             // lblRegistration
@@ -102,17 +105,17 @@ namespace atbmcq_02
             lblSlog.TabIndex = 0;
             lblSlog.Text = "Welcome to University X!";
             // 
-            // dtgvStudent3
+            // dtgvStudent
             // 
-            dtgvStudent3.BackgroundColor = SystemColors.ButtonHighlight;
-            dtgvStudent3.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgvStudent3.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4, dataGridViewTextBoxColumn5, dataGridViewTextBoxColumn6 });
-            dtgvStudent3.Dock = DockStyle.Bottom;
-            dtgvStudent3.Location = new Point(0, 201);
-            dtgvStudent3.Name = "dtgvStudent3";
-            dtgvStudent3.RowHeadersWidth = 62;
-            dtgvStudent3.Size = new Size(1414, 649);
-            dtgvStudent3.TabIndex = 4;
+            dtgvStudent.BackgroundColor = SystemColors.ButtonHighlight;
+            dtgvStudent.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dtgvStudent.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4, dataGridViewTextBoxColumn5, dataGridViewTextBoxColumn6 });
+            dtgvStudent.Dock = DockStyle.Bottom;
+            dtgvStudent.Location = new Point(0, 201);
+            dtgvStudent.Name = "dtgvStudent";
+            dtgvStudent.RowHeadersWidth = 62;
+            dtgvStudent.Size = new Size(1414, 649);
+            dtgvStudent.TabIndex = 4;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -156,20 +159,59 @@ namespace atbmcq_02
             dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             dataGridViewTextBoxColumn6.Width = 200;
             // 
+            // btnDelete
+            // 
+            btnDelete.BackColor = SystemColors.ActiveCaption;
+            btnDelete.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnDelete.Location = new Point(236, 155);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(94, 29);
+            btnDelete.TabIndex = 9;
+            btnDelete.Text = "Delete";
+            btnDelete.UseVisualStyleBackColor = false;
+            btnDelete.Click += btnDelete_Click;
+            // 
+            // btnEdit
+            // 
+            btnEdit.BackColor = SystemColors.ActiveCaption;
+            btnEdit.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnEdit.Location = new Point(136, 155);
+            btnEdit.Name = "btnEdit";
+            btnEdit.Size = new Size(94, 29);
+            btnEdit.TabIndex = 8;
+            btnEdit.Text = "Update";
+            btnEdit.UseVisualStyleBackColor = false;
+            btnEdit.Click += btnEdit_Click;
+            // 
+            // btnAdd
+            // 
+            btnAdd.BackColor = SystemColors.ActiveCaption;
+            btnAdd.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnAdd.Location = new Point(36, 155);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Size = new Size(94, 29);
+            btnAdd.TabIndex = 7;
+            btnAdd.Text = "Add";
+            btnAdd.UseVisualStyleBackColor = false;
+            btnAdd.Click += btnAdd_Click;
+            // 
             // Student_Registration
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonHighlight;
+            Controls.Add(btnDelete);
+            Controls.Add(btnEdit);
+            Controls.Add(btnAdd);
             Controls.Add(pnlBar);
             Controls.Add(lblRegistration);
-            Controls.Add(dtgvStudent3);
+            Controls.Add(dtgvStudent);
             Font = new Font("Cascadia Code", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             Name = "Student_Registration";
             Size = new Size(1414, 850);
             pnlBar.ResumeLayout(false);
             pnlBar.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dtgvStudent3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dtgvStudent).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -181,12 +223,15 @@ namespace atbmcq_02
         private LinkLabel lblSignOut;
         private Label lblSlog;
         private OracleDbConnection _connection;
-        private DataGridView dtgvStudent3;
+        private DataGridView dtgvStudent;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private Button btnDelete;
+        private Button btnEdit;
+        private Button btnAdd;
     }
 }

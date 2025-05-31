@@ -61,9 +61,9 @@ BEGIN
     IF p_hk = '1' THEN -- Học kỳ 1 bắt đầu tháng 9
         v_start_date := TO_DATE('01-09-' || v_start_year, 'DD-MM-YYYY');
     ELSIF p_hk = '2' THEN -- Học kỳ 2 bắt đầu tháng 1 năm kế tiếp của năm học
-        v_start_date := TO_DATE('01-01-' || v_end_year + 1, 'DD-MM-YYYY');
+        v_start_date := TO_DATE('01-01-' || v_start_year + 1, 'DD-MM-YYYY');
     ELSIF p_hk = '3' THEN -- Học kỳ 3 bắt đầu tháng 5 năm kế tiếp của năm học
-        v_start_date := TO_DATE('01-05-' || v_end_year + 1, 'DD-MM-YYYY');
+        v_start_date := TO_DATE('01-05-' || v_start_year + 1, 'DD-MM-YYYY');
     ELSE
         v_start_date := NULL;
     END IF;
