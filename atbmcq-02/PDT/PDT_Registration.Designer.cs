@@ -36,12 +36,12 @@ namespace atbmcq_02
             lblSignOut = new LinkLabel();
             lblSlog = new Label();
             dtgvOfficial = new DataGridView();
-            colMASV = new DataGridViewTextBoxColumn();
-            colMAMM = new DataGridViewTextBoxColumn();
-            colDIEMTH = new DataGridViewTextBoxColumn();
-            colDIEMQT = new DataGridViewTextBoxColumn();
-            colDIEMCK = new DataGridViewTextBoxColumn();
-            colDIEMTK = new DataGridViewTextBoxColumn();
+            colStudentID = new DataGridViewTextBoxColumn();
+            colCourseID = new DataGridViewTextBoxColumn();
+            colPracticeScore = new DataGridViewTextBoxColumn();
+            colProcessScore = new DataGridViewTextBoxColumn();
+            colFinalScore = new DataGridViewTextBoxColumn();
+            colTotalScore = new DataGridViewTextBoxColumn();
             btnAdd = new Button();
             btnEdit = new Button();
             btnDelete = new Button();
@@ -109,7 +109,7 @@ namespace atbmcq_02
             // 
             dtgvOfficial.BackgroundColor = SystemColors.ButtonHighlight;
             dtgvOfficial.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgvOfficial.Columns.AddRange(new DataGridViewColumn[] { colMASV, colMAMM, colDIEMTH, colDIEMQT, colDIEMCK, colDIEMTK });
+            dtgvOfficial.Columns.AddRange(new DataGridViewColumn[] { colStudentID, colCourseID, colPracticeScore, colProcessScore, colFinalScore, colTotalScore });
             dtgvOfficial.Dock = DockStyle.Bottom;
             dtgvOfficial.Location = new Point(0, 177);
             dtgvOfficial.Name = "dtgvOfficial";
@@ -117,47 +117,47 @@ namespace atbmcq_02
             dtgvOfficial.Size = new Size(1414, 673);
             dtgvOfficial.TabIndex = 3;
             // 
-            // colMASV
+            // colStudentID
             // 
-            colMASV.HeaderText = "Mã sinh viên";
-            colMASV.MinimumWidth = 8;
-            colMASV.Name = "colMASV";
-            colMASV.Width = 150;
+            colStudentID.HeaderText = "Student ID";
+            colStudentID.MinimumWidth = 8;
+            colStudentID.Name = "colStudentID";
+            colStudentID.Width = 150;
             // 
-            // colMAMM
+            // colCourseID
             // 
-            colMAMM.HeaderText = "Mã môn học";
-            colMAMM.MinimumWidth = 8;
-            colMAMM.Name = "colMAMM";
-            colMAMM.Width = 150;
+            colCourseID.HeaderText = "Course ID";
+            colCourseID.MinimumWidth = 8;
+            colCourseID.Name = "colCourseID";
+            colCourseID.Width = 150;
             // 
-            // colDIEMTH
+            // colPracticeScore
             // 
-            colDIEMTH.HeaderText = "Điểm thực hành";
-            colDIEMTH.MinimumWidth = 8;
-            colDIEMTH.Name = "colDIEMTH";
-            colDIEMTH.Width = 150;
+            colPracticeScore.HeaderText = "Practice Score";
+            colPracticeScore.MinimumWidth = 8;
+            colPracticeScore.Name = "colPracticeScore";
+            colPracticeScore.Width = 150;
             // 
-            // colDIEMQT
+            // colProcessScore
             // 
-            colDIEMQT.HeaderText = "Điểm quá trình";
-            colDIEMQT.MinimumWidth = 8;
-            colDIEMQT.Name = "colDIEMQT";
-            colDIEMQT.Width = 150;
+            colProcessScore.HeaderText = "Process Score";
+            colProcessScore.MinimumWidth = 8;
+            colProcessScore.Name = "colProcessScore";
+            colProcessScore.Width = 150;
             // 
-            // colDIEMCK
+            // colFinalScore
             // 
-            colDIEMCK.HeaderText = "Điểm cuối kỳ";
-            colDIEMCK.MinimumWidth = 8;
-            colDIEMCK.Name = "colDIEMCK";
-            colDIEMCK.Width = 150;
+            colFinalScore.HeaderText = "Final Score";
+            colFinalScore.MinimumWidth = 8;
+            colFinalScore.Name = "colFinalScore";
+            colFinalScore.Width = 150;
             // 
-            // colDIEMTK
+            // colTotalScore
             // 
-            colDIEMTK.HeaderText = "Điểm tổng kết";
-            colDIEMTK.MinimumWidth = 8;
-            colDIEMTK.Name = "colDIEMTK";
-            colDIEMTK.Width = 150;
+            colTotalScore.HeaderText = "Total Score";
+            colTotalScore.MinimumWidth = 8;
+            colTotalScore.Name = "colTotalScore";
+            colTotalScore.Width = 150;
             // 
             // btnAdd
             // 
@@ -227,11 +227,11 @@ namespace atbmcq_02
         private Button btnAdd;
         private Button btnEdit;
         private Button btnDelete;
-        private DataGridViewTextBoxColumn colMASV;
-        private DataGridViewTextBoxColumn colMAMM;
-        private DataGridViewTextBoxColumn colDIEMTH;
-        private DataGridViewTextBoxColumn colDIEMQT;
-        private DataGridViewTextBoxColumn colDIEMCK;
-        private DataGridViewTextBoxColumn colDIEMTK;
+        private DataGridViewTextBoxColumn colStudentID;
+        private DataGridViewTextBoxColumn colCourseID;
+        private DataGridViewTextBoxColumn colPracticeScore;
+        private DataGridViewTextBoxColumn colProcessScore;
+        private DataGridViewTextBoxColumn colFinalScore;
+        private DataGridViewTextBoxColumn colTotalScore;
     }
 }

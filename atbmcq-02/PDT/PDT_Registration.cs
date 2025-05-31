@@ -88,14 +88,14 @@ namespace atbmcq_02
             addForm.Size = new Size(400, 250);
             addForm.StartPosition = FormStartPosition.CenterParent;
             
-            var lblMaSV = new Label { Text = "Mã sinh viên:", Location = new Point(20, 20) };
+            var lblMaSV = new Label { Text = "Student ID:", Location = new Point(20, 20) };
             var txtMaSV = new TextBox { Location = new Point(150, 20), Width = 200 };
             
-            var lblMaMM = new Label { Text = "Mã môn học:", Location = new Point(20, 60) };
+            var lblMaMM = new Label { Text = "Course ID:", Location = new Point(20, 60) };
             var txtMaMM = new TextBox { Location = new Point(150, 60), Width = 200 };
             
-            var btnSave = new Button { Text = "Lưu", Location = new Point(150, 150), DialogResult = DialogResult.OK };
-            var btnCancel = new Button { Text = "Hủy", Location = new Point(250, 150), DialogResult = DialogResult.Cancel };
+            var btnSave = new Button { Text = "Save", Location = new Point(150, 150), DialogResult = DialogResult.OK };
+            var btnCancel = new Button { Text = "Cancel", Location = new Point(250, 150), DialogResult = DialogResult.Cancel };
             
             addForm.Controls.AddRange(new Control[] { lblMaSV, txtMaSV, lblMaMM, txtMaMM, btnSave, btnCancel });
             addForm.AcceptButton = btnSave;
@@ -108,14 +108,14 @@ namespace atbmcq_02
                 
                 if (string.IsNullOrEmpty(masv) || string.IsNullOrEmpty(mamm))
                 {
-                    MessageBox.Show("Vui lòng nhập đầy đủ thông tin!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Please enter all required information!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 
                 // Kiểm tra thời gian đăng ký
                 if (!IsRegistrationPeriodOpen(mamm))
                 {
-                    MessageBox.Show("Ngoài thời gian đăng ký học phần!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Registration period is closed for this course!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 
@@ -131,13 +131,13 @@ namespace atbmcq_02
                     int rowsAffected = cmd.ExecuteNonQuery();
                     if (rowsAffected > 0)
                     {
-                        MessageBox.Show("Thêm đăng ký học phần thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Registration added successfully!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         LoadAllRegistrations();
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -147,7 +147,7 @@ namespace atbmcq_02
             // Kiểm tra xem có dòng nào được chọn không
             if (dtgvOfficial.SelectedRows.Count == 0)
             {
-                MessageBox.Show("Vui lòng chọn đăng ký cần sửa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Please select a registration to edit!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
             
@@ -158,27 +158,27 @@ namespace atbmcq_02
             // Kiểm tra thời gian đăng ký
             if (!IsRegistrationPeriodOpen(mamm))
             {
-                MessageBox.Show("Ngoài thời gian đăng ký học phần!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Registration period is closed for this course!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             
             // Hiển thị form sửa đăng ký
             using var editForm = new Form();
-            editForm.Text = "Sửa đăng ký học phần";
+            editForm.Text = "Edit Registration";
             editForm.Size = new Size(400, 250);
             editForm.StartPosition = FormStartPosition.CenterParent;
             
-            var lblMaSV = new Label { Text = "Mã sinh viên:", Location = new Point(20, 20) };
+            var lblMaSV = new Label { Text = "Student ID:", Location = new Point(20, 20) };
             var txtMaSV = new TextBox { Location = new Point(150, 20), Width = 200, Text = masv, ReadOnly = true };
             
-            var lblMaMM = new Label { Text = "Mã môn học:", Location = new Point(20, 60) };
+            var lblMaMM = new Label { Text = "Course ID:", Location = new Point(20, 60) };
             var txtMaMM = new TextBox { Location = new Point(150, 60), Width = 200, Text = mamm, ReadOnly = true };
             
-            var lblNewMaMM = new Label { Text = "Mã môn học mới:", Location = new Point(20, 100) };
+            var lblNewMaMM = new Label { Text = "New Course ID:", Location = new Point(20, 100) };
             var txtNewMaMM = new TextBox { Location = new Point(150, 100), Width = 200 };
             
-            var btnSave = new Button { Text = "Lưu", Location = new Point(150, 150), DialogResult = DialogResult.OK };
-            var btnCancel = new Button { Text = "Hủy", Location = new Point(250, 150), DialogResult = DialogResult.Cancel };
+            var btnSave = new Button { Text = "Save", Location = new Point(150, 150), DialogResult = DialogResult.OK };
+            var btnCancel = new Button { Text = "Cancel", Location = new Point(250, 150), DialogResult = DialogResult.Cancel };
             
             editForm.Controls.AddRange(new Control[] { lblMaSV, txtMaSV, lblMaMM, txtMaMM, lblNewMaMM, txtNewMaMM, btnSave, btnCancel });
             editForm.AcceptButton = btnSave;
@@ -190,14 +190,14 @@ namespace atbmcq_02
                 
                 if (string.IsNullOrEmpty(newMamm))
                 {
-                    MessageBox.Show("Vui lòng nhập mã môn học mới!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Please enter new course ID!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 
                 // Kiểm tra thời gian đăng ký cho môn học mới
                 if (!IsRegistrationPeriodOpen(newMamm))
                 {
-                    MessageBox.Show("Ngoài thời gian đăng ký học phần cho môn học mới!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Registration period is closed for the new course!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 
@@ -214,17 +214,17 @@ namespace atbmcq_02
                     int rowsAffected = cmd.ExecuteNonQuery();
                     if (rowsAffected > 0)
                     {
-                        MessageBox.Show("Cập nhật đăng ký học phần thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Registration updated successfully!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         LoadAllRegistrations();
                     }
                     else
                     {
-                        MessageBox.Show("Không thể cập nhật đăng ký học phần!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Could not update registration!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -234,7 +234,7 @@ namespace atbmcq_02
             // Kiểm tra xem có dòng nào được chọn không
             if (dtgvOfficial.SelectedRows.Count == 0)
             {
-                MessageBox.Show("Vui lòng chọn đăng ký cần xóa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Please select a registration to delete!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
             
@@ -245,13 +245,13 @@ namespace atbmcq_02
             // Kiểm tra thời gian đăng ký
             if (!IsRegistrationPeriodOpen(mamm))
             {
-                MessageBox.Show("Ngoài thời gian đăng ký học phần!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Registration period is closed for this course!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             
             // Xác nhận xóa
-            if (MessageBox.Show($"Bạn có chắc chắn muốn xóa đăng ký này?\nMã SV: {masv}\nMã môn học: {mamm}", 
-                               "Xác nhận xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show($"Are you sure you want to delete this registration?\nStudent ID: {masv}\nCourse ID: {mamm}", 
+                               "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 try
                 {
@@ -265,17 +265,17 @@ namespace atbmcq_02
                     int rowsAffected = cmd.ExecuteNonQuery();
                     if (rowsAffected > 0)
                     {
-                        MessageBox.Show("Xóa đăng ký học phần thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Registration deleted successfully!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         LoadAllRegistrations();
                     }
                     else
                     {
-                        MessageBox.Show("Không thể xóa đăng ký học phần!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Could not delete registration!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
