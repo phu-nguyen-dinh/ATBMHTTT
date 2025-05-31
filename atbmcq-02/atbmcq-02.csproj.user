@@ -40,6 +40,9 @@
     <Compile Update="Official.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="TRGDV\TRGDV_Official.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="UpdateForm.cs">
       <SubType>Form</SubType>
     </Compile>

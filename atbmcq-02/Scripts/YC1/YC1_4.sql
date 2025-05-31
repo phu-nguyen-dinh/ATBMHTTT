@@ -46,28 +46,26 @@ CREATE ROLE R_NV_PKT;
 -- Hàm xác định ngày bắt đầu học kỳ
 CREATE OR REPLACE FUNCTION GET_HOCKY_START_DATE(
     p_hk IN VARCHAR2,
-    p_nam IN VARCHAR2 -- Format 'YYYY-YYYY', ví dụ '2023-2024'
+    p_nam IN VARCHAR2 
 ) RETURN DATE
 IS
     v_start_year VARCHAR2(4);
-    v_end_year VARCHAR2(4);
     v_start_date DATE;
 BEGIN
     IF p_nam IS NULL OR p_hk IS NULL THEN
         RETURN NULL;
     END IF;
 
-    v_start_year := SUBSTR(p_nam, 1, 4);
-    v_end_year   := SUBSTR(p_nam, 6, 4);
+    v_start_year := p_nam;
 
     IF p_hk = '1' THEN -- Học kỳ 1 bắt đầu tháng 9
         v_start_date := TO_DATE('01-09-' || v_start_year, 'DD-MM-YYYY');
     ELSIF p_hk = '2' THEN -- Học kỳ 2 bắt đầu tháng 1 năm kế tiếp của năm học
-        v_start_date := TO_DATE('01-01-' || v_end_year, 'DD-MM-YYYY');
+        v_start_date := TO_DATE('01-01-' || v_end_year + 1, 'DD-MM-YYYY');
     ELSIF p_hk = '3' THEN -- Học kỳ 3 bắt đầu tháng 5 năm kế tiếp của năm học
-        v_start_date := TO_DATE('01-05-' || v_end_year, 'DD-MM-YYYY');
+        v_start_date := TO_DATE('01-05-' || v_end_year + 1, 'DD-MM-YYYY');
     ELSE
-        v_start_date := NULL; -- Học kỳ không hợp lệ
+        v_start_date := NULL;
     END IF;
     RETURN v_start_date;
 END;
@@ -76,7 +74,7 @@ END;
 -- Hàm kiểm tra thời gian đăng ký học phần (14 ngày đầu)
 CREATE OR REPLACE FUNCTION IS_REGISTRATION_PERIOD_OPEN_FUNC(
     p_mamm IN DANGKY.MAMM%TYPE
-) RETURN INTEGER -- 1 for open, 0 for closed
+) RETURN INTEGER
 IS
     v_hk MOMON.HK%TYPE;
     v_nam MOMON.NAM%TYPE;
@@ -91,13 +89,13 @@ BEGIN
         WHERE MAMM = p_mamm;
     EXCEPTION
         WHEN NO_DATA_FOUND THEN
-            RETURN 0; -- Không tìm thấy thông tin môn mở
+            RETURN 0;
     END;
 
     v_hocky_start_date := GET_HOCKY_START_DATE(v_hk, v_nam);
 
     IF v_hocky_start_date IS NULL THEN
-        RETURN 0; -- Ngày bắt đầu học kỳ không xác định được
+        RETURN 0;
     END IF;
 
     -- 14 ngày đầu là từ ngày bắt đầu đến ngày bắt đầu + 13 ngày
@@ -110,7 +108,6 @@ BEGIN
     END IF;
 EXCEPTION
     WHEN OTHERS THEN
-        -- DBMS_OUTPUT.PUT_LINE('Error in IS_REGISTRATION_PERIOD_OPEN_FUNC: ' || SQLERRM); -- For debugging
         RETURN 0; -- Lỗi thì coi như đóng
 END;
 /
@@ -136,9 +133,7 @@ BEGIN
     IF v_user = 'C##ADMIN' THEN
         RETURN '1=1';
     END IF;
-
-    -- Lấy vai trò của user. Hàm get_vaitro phải tồn tại và trả về đúng vai trò
-    -- như 'SINHVIEN', 'GV', N'NV PĐT', N'NV PKT'
+    -- Lấy vai trò của người dùng
     v_role := get_vaitro(v_user); 
 
     IF v_role = 'SINHVIEN' THEN
@@ -147,10 +142,10 @@ BEGIN
     ELSIF v_role = 'GV' THEN
         -- Giảng viên thấy đăng ký của các lớp học phần mình dạy
         v_predicate := 'MAMM IN (SELECT MAMM FROM MOMON WHERE MAGV = ''' || v_user || ''')';
-    ELSIF v_role = N'NV PĐT' THEN -- Nhân viên Phòng Đào tạo
+    ELSIF v_role = N'NV PĐT' THEN
         -- NV PĐT thấy tất cả, việc giới hạn thao tác sẽ do trigger đảm nhiệm
         v_predicate := '1=1'; 
-    ELSIF v_role = N'NV PKT' THEN -- Nhân viên Phòng Khảo thí
+    ELSIF v_role = N'NV PKT' THEN
         -- NV PKT thấy tất cả, quyền cập nhật điểm sẽ do GRANT cột đảm nhiệm
         v_predicate := '1=1';
     ELSE
@@ -200,8 +195,6 @@ BEGIN
     v_role := get_vaitro(v_user);
 
     IF v_role = 'SINHVIEN' OR v_role = N'NV PĐT' THEN
-        -- Nếu là SV hoặc NV PĐT thao tác, các cột điểm phải là NULL
-        -- Điều này áp dụng cho cả INSERT và UPDATE
         :NEW.DIEMTH := NULL;
         :NEW.DIEMQT := NULL;
         :NEW.DIEMCK := NULL;
@@ -211,17 +204,10 @@ END;
 /
 
 -- 5. Cấp quyền trên bảng ĐANGKY cho các role
--- SV (Role SINHVIEN đã tạo ở Câu 2)
 GRANT SELECT, INSERT, UPDATE, DELETE ON C##ADMIN.DANGKY TO SINHVIEN;
-
--- NV PĐT (Role NVPDT đã tạo ở Câu 2)
 GRANT SELECT, INSERT, UPDATE, DELETE ON C##ADMIN.DANGKY TO NVPDT;
-
--- NV PKT (Role R_NV_PKT vừa tạo)
 GRANT SELECT ON C##ADMIN.DANGKY TO R_NV_PKT;
 GRANT UPDATE (DIEMTH, DIEMQT, DIEMCK, DIEMTK) ON C##ADMIN.DANGKY TO R_NV_PKT;
-
--- GV (Role GV đã tạo ở Câu 2)
 GRANT SELECT ON C##ADMIN.DANGKY TO GV;
 
 
@@ -233,8 +219,8 @@ BEGIN
     policy_name       => 'dangky_access_policy',
     function_schema   => 'C##ADMIN',
     policy_function   => 'dangky_policy_fn',
-    statement_types   => 'SELECT, INSERT, UPDATE, DELETE', -- Áp dụng cho các thao tác này
-    update_check      => TRUE,  -- Kiểm tra policy sau khi update
+    statement_types   => 'SELECT, INSERT, UPDATE, DELETE',
+    update_check      => TRUE,
     enable            => TRUE
   );
 END;
