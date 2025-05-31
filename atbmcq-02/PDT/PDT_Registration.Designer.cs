@@ -35,15 +35,18 @@ namespace atbmcq_02
             lblBack = new LinkLabel();
             lblSignOut = new LinkLabel();
             lblSlog = new Label();
-            dataGridViewTextBoxColumn6 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn5 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
-            dtgvStudent2 = new DataGridView();
+            dtgvOfficial = new DataGridView();
+            colMASV = new DataGridViewTextBoxColumn();
+            colMAMM = new DataGridViewTextBoxColumn();
+            colDIEMTH = new DataGridViewTextBoxColumn();
+            colDIEMQT = new DataGridViewTextBoxColumn();
+            colDIEMCK = new DataGridViewTextBoxColumn();
+            colDIEMTK = new DataGridViewTextBoxColumn();
+            btnAdd = new Button();
+            btnEdit = new Button();
+            btnDelete = new Button();
             pnlBar.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dtgvStudent2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dtgvOfficial).BeginInit();
             SuspendLayout();
             // 
             // lblRegistration
@@ -102,66 +105,105 @@ namespace atbmcq_02
             lblSlog.TabIndex = 0;
             lblSlog.Text = "Welcome to University X!";
             // 
-            // dataGridViewTextBoxColumn6
+            // dtgvOfficial
             // 
-            dataGridViewTextBoxColumn6.HeaderText = "Sumary Score";
-            dataGridViewTextBoxColumn6.MinimumWidth = 6;
-            dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            dataGridViewTextBoxColumn6.Width = 200;
+            dtgvOfficial.BackgroundColor = SystemColors.ButtonHighlight;
+            dtgvOfficial.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dtgvOfficial.Columns.AddRange(new DataGridViewColumn[] { colMASV, colMAMM, colDIEMTH, colDIEMQT, colDIEMCK, colDIEMTK });
+            dtgvOfficial.Dock = DockStyle.Bottom;
+            dtgvOfficial.Location = new Point(0, 177);
+            dtgvOfficial.Name = "dtgvOfficial";
+            dtgvOfficial.RowHeadersWidth = 62;
+            dtgvOfficial.Size = new Size(1414, 673);
+            dtgvOfficial.TabIndex = 3;
             // 
-            // dataGridViewTextBoxColumn5
+            // colMASV
             // 
-            dataGridViewTextBoxColumn5.HeaderText = "Final score";
-            dataGridViewTextBoxColumn5.MinimumWidth = 8;
-            dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            dataGridViewTextBoxColumn5.Width = 224;
+            colMASV.HeaderText = "Mã sinh viên";
+            colMASV.MinimumWidth = 8;
+            colMASV.Name = "colMASV";
+            colMASV.Width = 150;
             // 
-            // dataGridViewTextBoxColumn4
+            // colMAMM
             // 
-            dataGridViewTextBoxColumn4.HeaderText = "Process score";
-            dataGridViewTextBoxColumn4.MinimumWidth = 8;
-            dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            dataGridViewTextBoxColumn4.Width = 224;
+            colMAMM.HeaderText = "Mã môn học";
+            colMAMM.MinimumWidth = 8;
+            colMAMM.Name = "colMAMM";
+            colMAMM.Width = 150;
             // 
-            // dataGridViewTextBoxColumn3
+            // colDIEMTH
             // 
-            dataGridViewTextBoxColumn3.HeaderText = "Practice score";
-            dataGridViewTextBoxColumn3.MinimumWidth = 8;
-            dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            dataGridViewTextBoxColumn3.Width = 224;
+            colDIEMTH.HeaderText = "Điểm thực hành";
+            colDIEMTH.MinimumWidth = 8;
+            colDIEMTH.Name = "colDIEMTH";
+            colDIEMTH.Width = 150;
             // 
-            // dataGridViewTextBoxColumn2
+            // colDIEMQT
             // 
-            dataGridViewTextBoxColumn2.HeaderText = "ID_Subject";
-            dataGridViewTextBoxColumn2.MinimumWidth = 8;
-            dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            dataGridViewTextBoxColumn2.Width = 228;
+            colDIEMQT.HeaderText = "Điểm quá trình";
+            colDIEMQT.MinimumWidth = 8;
+            colDIEMQT.Name = "colDIEMQT";
+            colDIEMQT.Width = 150;
             // 
-            // dataGridViewTextBoxColumn1
+            // colDIEMCK
             // 
-            dataGridViewTextBoxColumn1.HeaderText = "ID_Student";
-            dataGridViewTextBoxColumn1.MinimumWidth = 8;
-            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            dataGridViewTextBoxColumn1.Width = 150;
+            colDIEMCK.HeaderText = "Điểm cuối kỳ";
+            colDIEMCK.MinimumWidth = 8;
+            colDIEMCK.Name = "colDIEMCK";
+            colDIEMCK.Width = 150;
             // 
-            // dtgvStudent2
+            // colDIEMTK
             // 
-            dtgvStudent2.BackgroundColor = SystemColors.ButtonHighlight;
-            dtgvStudent2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgvStudent2.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4, dataGridViewTextBoxColumn5, dataGridViewTextBoxColumn6 });
-            dtgvStudent2.Dock = DockStyle.Bottom;
-            dtgvStudent2.Location = new Point(0, 193);
-            dtgvStudent2.Name = "dtgvStudent2";
-            dtgvStudent2.RowHeadersWidth = 62;
-            dtgvStudent2.Size = new Size(1414, 657);
-            dtgvStudent2.TabIndex = 4;
+            colDIEMTK.HeaderText = "Điểm tổng kết";
+            colDIEMTK.MinimumWidth = 8;
+            colDIEMTK.Name = "colDIEMTK";
+            colDIEMTK.Width = 150;
+            // 
+            // btnAdd
+            // 
+            btnAdd.BackColor = SystemColors.ActiveCaption;
+            btnAdd.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
+            btnAdd.Location = new Point(100, 142);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Size = new Size(94, 29);
+            btnAdd.TabIndex = 4;
+            btnAdd.Text = "Thêm";
+            btnAdd.UseVisualStyleBackColor = false;
+            btnAdd.Click += btnAdd_Click;
+            // 
+            // btnEdit
+            // 
+            btnEdit.BackColor = SystemColors.ActiveCaption;
+            btnEdit.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
+            btnEdit.Location = new Point(200, 142);
+            btnEdit.Name = "btnEdit";
+            btnEdit.Size = new Size(94, 29);
+            btnEdit.TabIndex = 5;
+            btnEdit.Text = "Sửa";
+            btnEdit.UseVisualStyleBackColor = false;
+            btnEdit.Click += btnEdit_Click;
+            // 
+            // btnDelete
+            // 
+            btnDelete.BackColor = SystemColors.ActiveCaption;
+            btnDelete.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
+            btnDelete.Location = new Point(300, 142);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(94, 29);
+            btnDelete.TabIndex = 6;
+            btnDelete.Text = "Xóa";
+            btnDelete.UseVisualStyleBackColor = false;
+            btnDelete.Click += btnDelete_Click;
             // 
             // PDT_Registration
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonHighlight;
-            Controls.Add(dtgvStudent2);
+            Controls.Add(btnDelete);
+            Controls.Add(btnEdit);
+            Controls.Add(btnAdd);
+            Controls.Add(dtgvOfficial);
             Controls.Add(pnlBar);
             Controls.Add(lblRegistration);
             Font = new Font("Cascadia Code", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -169,7 +211,7 @@ namespace atbmcq_02
             Size = new Size(1414, 850);
             pnlBar.ResumeLayout(false);
             pnlBar.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dtgvStudent2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dtgvOfficial).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -181,12 +223,15 @@ namespace atbmcq_02
         private LinkLabel lblSignOut;
         private Label lblSlog;
         private OracleDbConnection _connection;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private DataGridView dtgvStudent2;
+        private DataGridView dtgvOfficial;
+        private Button btnAdd;
+        private Button btnEdit;
+        private Button btnDelete;
+        private DataGridViewTextBoxColumn colMASV;
+        private DataGridViewTextBoxColumn colMAMM;
+        private DataGridViewTextBoxColumn colDIEMTH;
+        private DataGridViewTextBoxColumn colDIEMQT;
+        private DataGridViewTextBoxColumn colDIEMCK;
+        private DataGridViewTextBoxColumn colDIEMTK;
     }
 }
