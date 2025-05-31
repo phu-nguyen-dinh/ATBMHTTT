@@ -25,3 +25,9 @@ Lưu ý: Phú chỉ làm được phần UI nên các câu truy vấn (query) Ph
 
 Phúc
 * Bắt buộc phải chạy câu 1 yc1 rồi mới chạy code.
+
+
+Tâm: Một vài lưu ý khi sao lưu và khôi phục
+1. thay thế <service name> hay free ở các đường dẫn kết nối tới oracle ở các file bash và sql trong yêu cầu 4.
+2. Tâm viết trên mac nên có thể bị sót vài chỗ mà k chạy đưuọc trên win, nên mọi người chạy thử rồi báo Tâm xem nhé.
+3. Đối với tính năng tự động sao lưu, mọi người có thể thay đổi thời gian ở byhour(Lưu ý: thời gian hệ thống chậm 7 tiếng so với thời gian thực) để test liệu job có được thực hiện hay không.
