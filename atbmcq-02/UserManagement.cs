@@ -315,7 +315,7 @@ namespace atbmcq_02
                 int newId = GetNextThongBaoId(conn);
 
                 // Thêm thông báo mới với nhãn
-                using var cmd = new OracleCommand("INSERT INTO THONGBAO (ID, NOIDUNG, LBL_THONGBAO) VALUES (:id, :noidung, CHAR_TO_LABEL('POL_THONGBAO', :nhan))", conn);
+                using var cmd = new OracleCommand("INSERT INTO C##ADMIN.THONGBAO (ID, NOIDUNG, LBL_THONGBAO) VALUES (:id, :noidung, CHAR_TO_LABEL('POL_THONGBAO', :nhan))", conn);
                 cmd.Parameters.Add(":id", OracleDbType.Int32).Value = newId;
                 cmd.Parameters.Add(":noidung", OracleDbType.NVarchar2).Value = txtNoiDungTB.Text;
                 cmd.Parameters.Add(":nhan", OracleDbType.Varchar2).Value = labelStr;
@@ -333,7 +333,7 @@ namespace atbmcq_02
 
         private int GetNextThongBaoId(OracleConnection conn)
         {
-            using var cmd = new OracleCommand("SELECT NVL(MAX(ID), 0) + 1 FROM THONGBAO", conn);
+            using var cmd = new OracleCommand("SELECT NVL(MAX(ID), 0) + 1 FROM C##ADMIN.THONGBAO", conn);
             return Convert.ToInt32(cmd.ExecuteScalar());
         }
 
@@ -350,7 +350,7 @@ namespace atbmcq_02
                 using var conn = new OracleConnection(_connection.GetConnectionString());
                 conn.Open();
 
-                using var cmd = new OracleCommand("DELETE FROM THONGBAO WHERE ID = :id", conn);
+                using var cmd = new OracleCommand("DELETE FROM C##ADMIN.THONGBAO WHERE ID = :id", conn);
                 cmd.Parameters.Add(":id", OracleDbType.Int32).Value = currentThongBaoId;
 
                 int rowsAffected = cmd.ExecuteNonQuery();

@@ -39,7 +39,7 @@ namespace atbmcq_02
                 _connection.Username = txtUsername.Text;
                 _connection.Password = txtPassword.Text;
                 _connection.Role = cboRole.SelectedItem?.ToString() ?? "default";
-                _connection.ServiceName = "xepdb1";
+                _connection.ServiceName = "project";
 
                 if (_connection.Connect())
                 {
@@ -70,7 +70,7 @@ namespace atbmcq_02
             {
                 this._connection.Hostname = "localhost";
                 this._connection.Port = 1521;
-                _connection.ServiceName = "xepdb1";
+                _connection.ServiceName = "project";
                 this._connection.Username = txtUsername.Text;
                 this._connection.Password = txtPassword.Text;
                 this._connection.Role = cboRole.SelectedItem?.ToString() ?? "default";
@@ -120,7 +120,7 @@ namespace atbmcq_02
             string username = _connection.Username.ToUpper();
             this.Hide();
 
-            if (username == "C##ADMIN" || username == "ADMIN")
+            if (username == "C##ADMIN" || username == "ADMIN_OLS")
             {
                 Home homeForm = new Home(_connection);
                 homeForm.ShowDialog();
