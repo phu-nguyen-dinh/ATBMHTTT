@@ -36,25 +36,17 @@ namespace atbmcq_02
             lblSignOut = new LinkLabel();
             lblSlog = new Label();
             dtgvOfficial = new DataGridView();
-            OID = new DataGridViewTextBoxColumn();
-            OName = new DataGridViewTextBoxColumn();
-            OGender = new DataGridViewTextBoxColumn();
-            Odate = new DataGridViewTextBoxColumn();
-            Osalary = new DataGridViewTextBoxColumn();
-            OBonus = new DataGridViewTextBoxColumn();
-            OPhone = new DataGridViewTextBoxColumn();
-            Orole = new DataGridViewTextBoxColumn();
-            Ounit = new DataGridViewTextBoxColumn();
-            dtgvStudent2 = new DataGridView();
-            dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn5 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn6 = new DataGridViewTextBoxColumn();
+            colMASV = new DataGridViewTextBoxColumn();
+            colMAMM = new DataGridViewTextBoxColumn();
+            colDIEMTH = new DataGridViewTextBoxColumn();
+            colDIEMQT = new DataGridViewTextBoxColumn();
+            colDIEMCK = new DataGridViewTextBoxColumn();
+            colDIEMTK = new DataGridViewTextBoxColumn();
+            btnAdd = new Button();
+            btnEdit = new Button();
+            btnDelete = new Button();
             pnlBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtgvOfficial).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dtgvStudent2).BeginInit();
             SuspendLayout();
             // 
             // lblRegistration
@@ -117,147 +109,109 @@ namespace atbmcq_02
             // 
             dtgvOfficial.BackgroundColor = SystemColors.ButtonHighlight;
             dtgvOfficial.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgvOfficial.Columns.AddRange(new DataGridViewColumn[] { OID, OName, OGender, Odate, Osalary, OBonus, OPhone, Orole, Ounit });
+            dtgvOfficial.Columns.AddRange(new DataGridViewColumn[] { colMASV, colMAMM, colDIEMTH, colDIEMQT, colDIEMCK, colDIEMTK });
             dtgvOfficial.Dock = DockStyle.Bottom;
-            dtgvOfficial.Location = new Point(0, 430);
+            dtgvOfficial.Location = new Point(0, 177);
             dtgvOfficial.Name = "dtgvOfficial";
             dtgvOfficial.RowHeadersWidth = 62;
-            dtgvOfficial.Size = new Size(1414, 420);
+            dtgvOfficial.Size = new Size(1414, 673);
             dtgvOfficial.TabIndex = 3;
             // 
-            // OID
+            // colMASV
             // 
-            OID.HeaderText = "ID";
-            OID.MinimumWidth = 8;
-            OID.Name = "OID";
-            OID.Width = 150;
+            colMASV.HeaderText = "Mã sinh viên";
+            colMASV.MinimumWidth = 8;
+            colMASV.Name = "colMASV";
+            colMASV.Width = 150;
             // 
-            // OName
+            // colMAMM
             // 
-            OName.HeaderText = "Name";
-            OName.MinimumWidth = 8;
-            OName.Name = "OName";
-            OName.Width = 228;
+            colMAMM.HeaderText = "Mã môn học";
+            colMAMM.MinimumWidth = 8;
+            colMAMM.Name = "colMAMM";
+            colMAMM.Width = 150;
             // 
-            // OGender
+            // colDIEMTH
             // 
-            OGender.HeaderText = "Gender";
-            OGender.MinimumWidth = 8;
-            OGender.Name = "OGender";
-            OGender.Width = 224;
+            colDIEMTH.HeaderText = "Điểm thực hành";
+            colDIEMTH.MinimumWidth = 8;
+            colDIEMTH.Name = "colDIEMTH";
+            colDIEMTH.Width = 150;
             // 
-            // Odate
+            // colDIEMQT
             // 
-            Odate.HeaderText = "Date";
-            Odate.MinimumWidth = 8;
-            Odate.Name = "Odate";
-            Odate.Width = 224;
+            colDIEMQT.HeaderText = "Điểm quá trình";
+            colDIEMQT.MinimumWidth = 8;
+            colDIEMQT.Name = "colDIEMQT";
+            colDIEMQT.Width = 150;
             // 
-            // Osalary
+            // colDIEMCK
             // 
-            Osalary.HeaderText = "Salary";
-            Osalary.MinimumWidth = 8;
-            Osalary.Name = "Osalary";
-            Osalary.Width = 224;
+            colDIEMCK.HeaderText = "Điểm cuối kỳ";
+            colDIEMCK.MinimumWidth = 8;
+            colDIEMCK.Name = "colDIEMCK";
+            colDIEMCK.Width = 150;
             // 
-            // OBonus
+            // colDIEMTK
             // 
-            OBonus.HeaderText = "Bonus";
-            OBonus.MinimumWidth = 6;
-            OBonus.Name = "OBonus";
-            OBonus.Width = 200;
+            colDIEMTK.HeaderText = "Điểm tổng kết";
+            colDIEMTK.MinimumWidth = 8;
+            colDIEMTK.Name = "colDIEMTK";
+            colDIEMTK.Width = 150;
             // 
-            // OPhone
+            // btnAdd
             // 
-            OPhone.HeaderText = "Phone";
-            OPhone.MinimumWidth = 6;
-            OPhone.Name = "OPhone";
-            OPhone.Width = 125;
+            btnAdd.BackColor = SystemColors.ActiveCaption;
+            btnAdd.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
+            btnAdd.Location = new Point(100, 142);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Size = new Size(94, 29);
+            btnAdd.TabIndex = 4;
+            btnAdd.Text = "Thêm";
+            btnAdd.UseVisualStyleBackColor = false;
+            btnAdd.Click += btnAdd_Click;
             // 
-            // Orole
+            // btnEdit
             // 
-            Orole.HeaderText = "Role";
-            Orole.MinimumWidth = 6;
-            Orole.Name = "Orole";
-            Orole.Width = 125;
+            btnEdit.BackColor = SystemColors.ActiveCaption;
+            btnEdit.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
+            btnEdit.Location = new Point(200, 142);
+            btnEdit.Name = "btnEdit";
+            btnEdit.Size = new Size(94, 29);
+            btnEdit.TabIndex = 5;
+            btnEdit.Text = "Sửa";
+            btnEdit.UseVisualStyleBackColor = false;
+            btnEdit.Click += btnEdit_Click;
             // 
-            // Ounit
+            // btnDelete
             // 
-            Ounit.HeaderText = "Unit";
-            Ounit.MinimumWidth = 6;
-            Ounit.Name = "Ounit";
-            Ounit.Width = 125;
+            btnDelete.BackColor = SystemColors.ActiveCaption;
+            btnDelete.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
+            btnDelete.Location = new Point(300, 142);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(94, 29);
+            btnDelete.TabIndex = 6;
+            btnDelete.Text = "Xóa";
+            btnDelete.UseVisualStyleBackColor = false;
+            btnDelete.Click += btnDelete_Click;
             // 
-            // dtgvStudent2
-            // 
-            dtgvStudent2.BackgroundColor = SystemColors.ButtonHighlight;
-            dtgvStudent2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgvStudent2.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4, dataGridViewTextBoxColumn5, dataGridViewTextBoxColumn6 });
-            dtgvStudent2.Dock = DockStyle.Bottom;
-            dtgvStudent2.Location = new Point(0, 177);
-            dtgvStudent2.Name = "dtgvStudent2";
-            dtgvStudent2.RowHeadersWidth = 62;
-            dtgvStudent2.Size = new Size(1414, 253);
-            dtgvStudent2.TabIndex = 4;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            dataGridViewTextBoxColumn1.HeaderText = "ID_Student";
-            dataGridViewTextBoxColumn1.MinimumWidth = 8;
-            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            dataGridViewTextBoxColumn1.Width = 150;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            dataGridViewTextBoxColumn2.HeaderText = "ID_Subject";
-            dataGridViewTextBoxColumn2.MinimumWidth = 8;
-            dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            dataGridViewTextBoxColumn2.Width = 228;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            dataGridViewTextBoxColumn3.HeaderText = "Practice score";
-            dataGridViewTextBoxColumn3.MinimumWidth = 8;
-            dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            dataGridViewTextBoxColumn3.Width = 224;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            dataGridViewTextBoxColumn4.HeaderText = "Process score";
-            dataGridViewTextBoxColumn4.MinimumWidth = 8;
-            dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            dataGridViewTextBoxColumn4.Width = 224;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            dataGridViewTextBoxColumn5.HeaderText = "Final score";
-            dataGridViewTextBoxColumn5.MinimumWidth = 8;
-            dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            dataGridViewTextBoxColumn5.Width = 224;
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            dataGridViewTextBoxColumn6.HeaderText = "Sumary Score";
-            dataGridViewTextBoxColumn6.MinimumWidth = 6;
-            dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            dataGridViewTextBoxColumn6.Width = 200;
-            // 
-            // Registration
+            // PDT_Registration
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonHighlight;
-            Controls.Add(dtgvStudent2);
+            Controls.Add(btnDelete);
+            Controls.Add(btnEdit);
+            Controls.Add(btnAdd);
             Controls.Add(dtgvOfficial);
             Controls.Add(pnlBar);
             Controls.Add(lblRegistration);
             Font = new Font("Cascadia Code", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            Name = "Registration";
+            Name = "PDT_Registration";
             Size = new Size(1414, 850);
             pnlBar.ResumeLayout(false);
             pnlBar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dtgvOfficial).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dtgvStudent2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -270,21 +224,14 @@ namespace atbmcq_02
         private Label lblSlog;
         private OracleDbConnection _connection;
         private DataGridView dtgvOfficial;
-        private DataGridView dtgvStudent2;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private DataGridViewTextBoxColumn OID;
-        private DataGridViewTextBoxColumn OName;
-        private DataGridViewTextBoxColumn OGender;
-        private DataGridViewTextBoxColumn Odate;
-        private DataGridViewTextBoxColumn Osalary;
-        private DataGridViewTextBoxColumn OBonus;
-        private DataGridViewTextBoxColumn OPhone;
-        private DataGridViewTextBoxColumn Orole;
-        private DataGridViewTextBoxColumn Ounit;
+        private Button btnAdd;
+        private Button btnEdit;
+        private Button btnDelete;
+        private DataGridViewTextBoxColumn colMASV;
+        private DataGridViewTextBoxColumn colMAMM;
+        private DataGridViewTextBoxColumn colDIEMTH;
+        private DataGridViewTextBoxColumn colDIEMQT;
+        private DataGridViewTextBoxColumn colDIEMCK;
+        private DataGridViewTextBoxColumn colDIEMTK;
     }
 }
