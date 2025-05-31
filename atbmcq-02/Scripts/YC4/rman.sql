@@ -31,6 +31,7 @@ SELECT * FROM C##ADMIN.DONVI;
 -- Bước 1: Mở cmd và chạy RMAN: rman target C##ADMIN/123456@localhost:1521/<service_name>
 -- Bước 2: Chạy lệnh phục hồi:
 -- RMAN> RUN {
+--    SET UNTIL TIME "TO_DATE('2025-05-31 10:00:00','YYYY-MM-DD HH24:MI:SS')"; -- Dòng này để khôi phục đến thời điểm cụ thể(có thể dựa vào audit) và có thể bỏ qua nếu muốn phục hồi đến bản sao lưu mới nhất
 --    RESTORE DATABASE;
 --    RECOVER DATABASE;
 --    ALTER TABLESPACE USERS ONLINE;
