@@ -51,7 +51,7 @@ namespace atbmcq_02
             // grantPrivileges
             // 
             grantPrivileges.AutoSize = true;
-            grantPrivileges.Location = new Point(13, 97);
+            grantPrivileges.Location = new Point(13, 59);
             grantPrivileges.Margin = new Padding(4, 3, 4, 3);
             grantPrivileges.Name = "grantPrivileges";
             grantPrivileges.Size = new Size(216, 39);
@@ -63,7 +63,7 @@ namespace atbmcq_02
             // userManage
             // 
             userManage.AutoSize = true;
-            userManage.Location = new Point(13, 34);
+            userManage.Location = new Point(13, 12);
             userManage.Margin = new Padding(4, 3, 4, 3);
             userManage.Name = "userManage";
             userManage.Size = new Size(216, 41);
@@ -77,14 +77,14 @@ namespace atbmcq_02
             panelContent.Dock = DockStyle.Fill;
             panelContent.Location = new Point(243, 0);
             panelContent.Name = "panelContent";
-            panelContent.Size = new Size(1587, 606);
+            panelContent.Size = new Size(967, 606);
             panelContent.TabIndex = 1;
             // 
             // Home
             // 
             AutoScaleDimensions = new SizeF(14F, 29F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1830, 606);
+            ClientSize = new Size(1210, 606);
             Controls.Add(panelContent);
             Controls.Add(panelMenu);
             Font = new Font("Times New Roman", 13F, FontStyle.Regular, GraphicsUnit.Point, 0);

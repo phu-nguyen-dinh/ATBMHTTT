@@ -4356,7 +4356,7 @@ BEGIN
 END;
 /
 
--- Cấp quyền cho các user để sử dụng context
+-- Cấp quyền cho các user NVPĐT để sử dụng context
 GRANT EXECUTE ON C##ADMIN.set_app_ctx_proc TO NV720;
 GRANT EXECUTE ON C##ADMIN.set_app_ctx_proc TO NV721;
 GRANT EXECUTE ON C##ADMIN.set_app_ctx_proc TO NV722;

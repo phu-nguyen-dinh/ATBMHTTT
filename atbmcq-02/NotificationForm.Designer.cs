@@ -37,24 +37,28 @@ namespace atbmcq_02
             txtNotificationDetail = new TextBox();
             lblDetail = new Label();
             label1 = new Label();
+            btnMarkAllAsRead = new Button();
+            btnMarkAsUnread = new Button();
             SuspendLayout();
             // 
             // lstNotifications
             // 
+            lstNotifications.DrawMode = DrawMode.OwnerDrawFixed;
             lstNotifications.Font = new Font("Segoe UI", 10F);
             lstNotifications.FormattingEnabled = true;
-            lstNotifications.ItemHeight = 17;
+            lstNotifications.ItemHeight = 20;
             lstNotifications.Location = new Point(10, 69);
             lstNotifications.Margin = new Padding(3, 2, 3, 2);
             lstNotifications.Name = "lstNotifications";
             lstNotifications.Size = new Size(263, 242);
             lstNotifications.TabIndex = 0;
+            lstNotifications.DrawItem += lstNotifications_DrawItem;
             lstNotifications.SelectedIndexChanged += lstNotifications_SelectedIndexChanged;
             // 
             // btnClose
             // 
             btnClose.Font = new Font("Segoe UI", 10F);
-            btnClose.Location = new Point(306, 326);
+            btnClose.Location = new Point(587, 326);
             btnClose.Margin = new Padding(3, 2, 3, 2);
             btnClose.Name = "btnClose";
             btnClose.Size = new Size(88, 26);
@@ -104,12 +108,38 @@ namespace atbmcq_02
             label1.TabIndex = 5;
             label1.Text = "Các thông báo";
             label1.Click += label1_Click;
+            //
+            // btnMarkAllAsRead
+            //
+            btnMarkAllAsRead.Font = new Font("Segoe UI", 10F);
+            btnMarkAllAsRead.Location = new Point(207, 326);
+            btnMarkAllAsRead.Margin = new Padding(3, 2, 3, 2);
+            btnMarkAllAsRead.Name = "btnMarkAllAsRead";
+            btnMarkAllAsRead.Size = new Size(177, 26);
+            btnMarkAllAsRead.TabIndex = 6;
+            btnMarkAllAsRead.Text = "Đánh dấu tất cả đã đọc";
+            btnMarkAllAsRead.UseVisualStyleBackColor = true;
+            btnMarkAllAsRead.Click += btnMarkAllAsRead_Click;
+            //
+            // btnMarkAsUnread
+            //
+            btnMarkAsUnread.Font = new Font("Segoe UI", 10F);
+            btnMarkAsUnread.Location = new Point(399, 326);
+            btnMarkAsUnread.Margin = new Padding(3, 2, 3, 2);
+            btnMarkAsUnread.Name = "btnMarkAsUnread";
+            btnMarkAsUnread.Size = new Size(173, 26);
+            btnMarkAsUnread.TabIndex = 7;
+            btnMarkAsUnread.Text = "Đánh dấu là chưa đọc";
+            btnMarkAsUnread.UseVisualStyleBackColor = true;
+            btnMarkAsUnread.Click += btnMarkAsUnread_Click;
             // 
             // NotificationForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(700, 368);
+            Controls.Add(btnMarkAsUnread);
+            Controls.Add(btnMarkAllAsRead);
             Controls.Add(label1);
             Controls.Add(lblDetail);
             Controls.Add(txtNotificationDetail);
@@ -136,5 +166,7 @@ namespace atbmcq_02
         private System.Windows.Forms.TextBox txtNotificationDetail;
         private System.Windows.Forms.Label lblDetail;
         private Label label1;
+        private Button btnMarkAllAsRead;
+        private Button btnMarkAsUnread;
     }
 } 

@@ -76,7 +76,7 @@ namespace atbmcq_02
             grpPrivileges.Margin = new Padding(8, 3, 8, 3);
             grpPrivileges.Name = "grpPrivileges";
             grpPrivileges.Padding = new Padding(8, 3, 8, 3);
-            grpPrivileges.Size = new Size(1592, 535);
+            grpPrivileges.Size = new Size(967, 606);
             grpPrivileges.TabIndex = 0;
             grpPrivileges.TabStop = false;
             grpPrivileges.Text = "Privilege Management";
@@ -84,20 +84,19 @@ namespace atbmcq_02
             // chkUpdate
             // 
             chkUpdate.AutoSize = true;
-            chkUpdate.Location = new Point(595, 180);
+            chkUpdate.Location = new Point(386, 180);
             chkUpdate.Margin = new Padding(4, 3, 4, 3);
             chkUpdate.Name = "chkUpdate";
             chkUpdate.Size = new Size(113, 33);
             chkUpdate.TabIndex = 20;
             chkUpdate.Text = "Update";
             chkUpdate.UseVisualStyleBackColor = true;
-            chkUpdate.CheckedChanged += chkUpdate_CheckedChanged;
             chkUpdate.CheckedChanged += panel_CheckedChanged;
             // 
             // chkDelete
             // 
             chkDelete.AutoSize = true;
-            chkDelete.Location = new Point(406, 180);
+            chkDelete.Location = new Point(271, 180);
             chkDelete.Margin = new Padding(4, 3, 4, 3);
             chkDelete.Name = "chkDelete";
             chkDelete.Size = new Size(107, 33);
@@ -109,7 +108,7 @@ namespace atbmcq_02
             // chkInsert
             // 
             chkInsert.AutoSize = true;
-            chkInsert.Location = new Point(229, 180);
+            chkInsert.Location = new Point(165, 180);
             chkInsert.Margin = new Padding(4, 3, 4, 3);
             chkInsert.Name = "chkInsert";
             chkInsert.Size = new Size(98, 33);
@@ -128,32 +127,31 @@ namespace atbmcq_02
             chkSelect.TabIndex = 17;
             chkSelect.Text = "Select";
             chkSelect.UseVisualStyleBackColor = true;
-            chkSelect.CheckedChanged += chkSelect_CheckedChanged;
             chkSelect.CheckedChanged += panel_CheckedChanged;
             // 
             // pnlColumn
             // 
             pnlColumn.Controls.Add(txtColumn);
             pnlColumn.Controls.Add(lblColumn);
-            pnlColumn.Location = new Point(822, 36);
+            pnlColumn.Location = new Point(515, 36);
             pnlColumn.Margin = new Padding(4, 3, 4, 3);
             pnlColumn.Name = "pnlColumn";
-            pnlColumn.Size = new Size(572, 70);
+            pnlColumn.Size = new Size(281, 70);
             pnlColumn.TabIndex = 12;
             pnlColumn.Visible = false;
             // 
             // txtColumn
             // 
-            txtColumn.Location = new Point(190, 14);
+            txtColumn.Location = new Point(107, 14);
             txtColumn.Margin = new Padding(4, 3, 4, 3);
             txtColumn.Name = "txtColumn";
-            txtColumn.Size = new Size(365, 37);
+            txtColumn.Size = new Size(160, 37);
             txtColumn.TabIndex = 2;
             // 
             // lblColumn
             // 
             lblColumn.AutoSize = true;
-            lblColumn.Location = new Point(47, 17);
+            lblColumn.Location = new Point(4, 17);
             lblColumn.Margin = new Padding(4, 0, 4, 0);
             lblColumn.Name = "lblColumn";
             lblColumn.Size = new Size(95, 29);
@@ -175,7 +173,7 @@ namespace atbmcq_02
             txtGrantee.Location = new Point(343, 48);
             txtGrantee.Margin = new Padding(8, 3, 8, 3);
             txtGrantee.Name = "txtGrantee";
-            txtGrantee.Size = new Size(365, 37);
+            txtGrantee.Size = new Size(160, 37);
             txtGrantee.TabIndex = 1;
             // 
             // lblObject
@@ -193,15 +191,15 @@ namespace atbmcq_02
             txtObject.Location = new Point(343, 109);
             txtObject.Margin = new Padding(8, 3, 8, 3);
             txtObject.Name = "txtObject";
-            txtObject.Size = new Size(365, 37);
+            txtObject.Size = new Size(160, 37);
             txtObject.TabIndex = 5;
             // 
             // btnGrant
             // 
-            btnGrant.Location = new Point(822, 160);
+            btnGrant.Location = new Point(519, 109);
             btnGrant.Margin = new Padding(8, 3, 8, 3);
             btnGrant.Name = "btnGrant";
-            btnGrant.Size = new Size(215, 53);
+            btnGrant.Size = new Size(125, 39);
             btnGrant.TabIndex = 6;
             btnGrant.Text = "Grant";
             btnGrant.Click += GrantPrivilege;
@@ -209,10 +207,10 @@ namespace atbmcq_02
             // btnRevoke
             // 
             btnRevoke.AutoSize = true;
-            btnRevoke.Location = new Point(1179, 160);
+            btnRevoke.Location = new Point(660, 109);
             btnRevoke.Margin = new Padding(8, 3, 8, 3);
             btnRevoke.Name = "btnRevoke";
-            btnRevoke.Size = new Size(215, 53);
+            btnRevoke.Size = new Size(125, 39);
             btnRevoke.TabIndex = 7;
             btnRevoke.Text = "Revoke";
             btnRevoke.Click += RevokePrivilege;
@@ -220,10 +218,10 @@ namespace atbmcq_02
             // lstPrivileges
             // 
             lstPrivileges.Columns.AddRange(new ColumnHeader[] { UserOrRole, Privilege, Target, PType });
-            lstPrivileges.Location = new Point(55, 241);
+            lstPrivileges.Location = new Point(16, 241);
             lstPrivileges.Margin = new Padding(8, 3, 8, 3);
             lstPrivileges.Name = "lstPrivileges";
-            lstPrivileges.Size = new Size(1480, 279);
+            lstPrivileges.Size = new Size(935, 359);
             lstPrivileges.TabIndex = 8;
             lstPrivileges.UseCompatibleStateImageBehavior = false;
             lstPrivileges.View = View.Details;
@@ -249,15 +247,15 @@ namespace atbmcq_02
             PType.Text = "Type";
             PType.Width = 370;
             // 
-            // Grant_Privileges
+            // GrantPrivileges
             // 
             AutoScaleDimensions = new SizeF(14F, 29F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(grpPrivileges);
             Font = new Font("Times New Roman", 13F, FontStyle.Regular, GraphicsUnit.Point, 0);
             Margin = new Padding(4, 3, 4, 3);
-            Name = "Grant_Privileges";
-            Size = new Size(1592, 535);
+            Name = "GrantPrivileges";
+            Size = new Size(967, 606);
             grpPrivileges.ResumeLayout(false);
             grpPrivileges.PerformLayout();
             pnlColumn.ResumeLayout(false);

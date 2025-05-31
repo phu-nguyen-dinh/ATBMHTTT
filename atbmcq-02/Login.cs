@@ -120,14 +120,14 @@ namespace atbmcq_02
             string username = _connection.Username.ToUpper();
             this.Hide();
 
-            if (username == "C##ADMIN" || username == "ADMIN")
+            if (username == "C##ADMIN" || username == "ADMIN_OLS")
             {
                 Home homeForm = new Home(_connection);
                 homeForm.ShowDialog();
             }
             else if (username.StartsWith("SV"))
             {
-                DashBoard dshBrd = new DashBoard(_connection);
+                Student_DashBoard dshBrd = new Student_DashBoard(_connection);
                 dshBrd.ShowDialog();
             }
             else if (username.StartsWith("NV"))

@@ -36,23 +36,34 @@ namespace atbmcq_02
             lblSignOut = new LinkLabel();
             lblSlog = new Label();
             tabPage2 = new TabPage();
+            pnlPersonalInfo = new Panel();
+            lblUnit = new Label();
+            txtUnit = new TextBox();
+            lblRole = new Label();
+            txtRole = new TextBox();
+            lblPhone = new Label();
+            txtPhone = new TextBox();
+            lblBonus = new Label();
+            txtBonus = new TextBox();
+            lblSalary = new Label();
+            txtSalary = new TextBox();
+            lblBirthday = new Label();
+            txtBirthday = new TextBox();
+            lblGender = new Label();
+            txtGender = new TextBox();
+            lblName = new Label();
+            txtName = new TextBox();
+            lblID = new Label();
+            txtID = new TextBox();
+            pnlUpdatePhone = new Panel();
             btnEditPhone = new Button();
             lblNewPhone = new Label();
             txtNewPhone = new TextBox();
-            dtgvOfficial = new DataGridView();
-            GV_ID = new DataGridViewTextBoxColumn();
-            GV_Name = new DataGridViewTextBoxColumn();
-            GV_Gender = new DataGridViewTextBoxColumn();
-            GV_Birthday = new DataGridViewTextBoxColumn();
-            GV_Address = new DataGridViewTextBoxColumn();
-            GV_Bonus = new DataGridViewTextBoxColumn();
-            GV_PhoneNumber = new DataGridViewTextBoxColumn();
-            GV_Role = new DataGridViewTextBoxColumn();
-            GV_Unit = new DataGridViewTextBoxColumn();
             tabControl1 = new TabControl();
             pnlBar.SuspendLayout();
             tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dtgvOfficial).BeginInit();
+            pnlPersonalInfo.SuspendLayout();
+            pnlUpdatePhone.SuspendLayout();
             tabControl1.SuspendLayout();
             SuspendLayout();
             // 
@@ -114,10 +125,8 @@ namespace atbmcq_02
             // 
             // tabPage2
             // 
-            tabPage2.Controls.Add(btnEditPhone);
-            tabPage2.Controls.Add(lblNewPhone);
-            tabPage2.Controls.Add(txtNewPhone);
-            tabPage2.Controls.Add(dtgvOfficial);
+            tabPage2.Controls.Add(pnlPersonalInfo);
+            tabPage2.Controls.Add(pnlUpdatePhone);
             tabPage2.Location = new Point(4, 29);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
@@ -126,20 +135,244 @@ namespace atbmcq_02
             tabPage2.Text = "Thông tin cá nhân";
             tabPage2.UseVisualStyleBackColor = true;
             // 
+            // pnlPersonalInfo
+            // 
+            pnlPersonalInfo.BackColor = Color.WhiteSmoke;
+            pnlPersonalInfo.BorderStyle = BorderStyle.FixedSingle;
+            pnlPersonalInfo.Controls.Add(lblUnit);
+            pnlPersonalInfo.Controls.Add(txtUnit);
+            pnlPersonalInfo.Controls.Add(lblRole);
+            pnlPersonalInfo.Controls.Add(txtRole);
+            pnlPersonalInfo.Controls.Add(lblPhone);
+            pnlPersonalInfo.Controls.Add(txtPhone);
+            pnlPersonalInfo.Controls.Add(lblBonus);
+            pnlPersonalInfo.Controls.Add(txtBonus);
+            pnlPersonalInfo.Controls.Add(lblSalary);
+            pnlPersonalInfo.Controls.Add(txtSalary);
+            pnlPersonalInfo.Controls.Add(lblBirthday);
+            pnlPersonalInfo.Controls.Add(txtBirthday);
+            pnlPersonalInfo.Controls.Add(lblGender);
+            pnlPersonalInfo.Controls.Add(txtGender);
+            pnlPersonalInfo.Controls.Add(lblName);
+            pnlPersonalInfo.Controls.Add(txtName);
+            pnlPersonalInfo.Controls.Add(lblID);
+            pnlPersonalInfo.Controls.Add(txtID);
+            pnlPersonalInfo.Location = new Point(47, 120);
+            pnlPersonalInfo.Name = "pnlPersonalInfo";
+            pnlPersonalInfo.Size = new Size(1293, 363);
+            pnlPersonalInfo.TabIndex = 14;
+            // 
+            // lblUnit
+            // 
+            lblUnit.AutoSize = true;
+            lblUnit.Font = new Font("Cascadia Code", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblUnit.Location = new Point(666, 290);
+            lblUnit.Name = "lblUnit";
+            lblUnit.Size = new Size(60, 22);
+            lblUnit.TabIndex = 17;
+            lblUnit.Text = "Unit:";
+            // 
+            // txtUnit
+            // 
+            txtUnit.BackColor = Color.White;
+            txtUnit.Font = new Font("Cascadia Code", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtUnit.Location = new Point(837, 287);
+            txtUnit.Name = "txtUnit";
+            txtUnit.ReadOnly = true;
+            txtUnit.Size = new Size(371, 27);
+            txtUnit.TabIndex = 16;
+            // 
+            // lblRole
+            // 
+            lblRole.AutoSize = true;
+            lblRole.Font = new Font("Cascadia Code", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblRole.Location = new Point(666, 230);
+            lblRole.Name = "lblRole";
+            lblRole.Size = new Size(60, 22);
+            lblRole.TabIndex = 15;
+            lblRole.Text = "Role:";
+            // 
+            // txtRole
+            // 
+            txtRole.BackColor = Color.White;
+            txtRole.Font = new Font("Cascadia Code", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtRole.Location = new Point(837, 227);
+            txtRole.Name = "txtRole";
+            txtRole.ReadOnly = true;
+            txtRole.Size = new Size(371, 27);
+            txtRole.TabIndex = 14;
+            // 
+            // lblPhone
+            // 
+            lblPhone.AutoSize = true;
+            lblPhone.Font = new Font("Cascadia Code", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblPhone.Location = new Point(666, 170);
+            lblPhone.Name = "lblPhone";
+            lblPhone.Size = new Size(140, 22);
+            lblPhone.TabIndex = 13;
+            lblPhone.Text = "Phone Number:";
+            // 
+            // txtPhone
+            // 
+            txtPhone.BackColor = Color.White;
+            txtPhone.Font = new Font("Cascadia Code", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtPhone.Location = new Point(837, 167);
+            txtPhone.Name = "txtPhone";
+            txtPhone.ReadOnly = true;
+            txtPhone.Size = new Size(371, 27);
+            txtPhone.TabIndex = 12;
+            // 
+            // lblBonus
+            // 
+            lblBonus.AutoSize = true;
+            lblBonus.Font = new Font("Cascadia Code", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblBonus.Location = new Point(666, 110);
+            lblBonus.Name = "lblBonus";
+            lblBonus.Size = new Size(70, 22);
+            lblBonus.TabIndex = 11;
+            lblBonus.Text = "Bonus:";
+            // 
+            // txtBonus
+            // 
+            txtBonus.BackColor = Color.White;
+            txtBonus.Font = new Font("Cascadia Code", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtBonus.Location = new Point(837, 107);
+            txtBonus.Name = "txtBonus";
+            txtBonus.ReadOnly = true;
+            txtBonus.Size = new Size(371, 27);
+            txtBonus.TabIndex = 10;
+            // 
+            // lblSalary
+            // 
+            lblSalary.AutoSize = true;
+            lblSalary.Font = new Font("Cascadia Code", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblSalary.Location = new Point(666, 50);
+            lblSalary.Name = "lblSalary";
+            lblSalary.Size = new Size(80, 22);
+            lblSalary.TabIndex = 9;
+            lblSalary.Text = "Salary:";
+            // 
+            // txtSalary
+            // 
+            txtSalary.BackColor = Color.White;
+            txtSalary.Font = new Font("Cascadia Code", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtSalary.Location = new Point(837, 47);
+            txtSalary.Name = "txtSalary";
+            txtSalary.ReadOnly = true;
+            txtSalary.Size = new Size(371, 27);
+            txtSalary.TabIndex = 8;
+            // 
+            // lblBirthday
+            // 
+            lblBirthday.AutoSize = true;
+            lblBirthday.Font = new Font("Cascadia Code", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblBirthday.Location = new Point(85, 230);
+            lblBirthday.Name = "lblBirthday";
+            lblBirthday.Size = new Size(100, 22);
+            lblBirthday.TabIndex = 7;
+            lblBirthday.Text = "Birthday:";
+            // 
+            // txtBirthday
+            // 
+            txtBirthday.BackColor = Color.White;
+            txtBirthday.Font = new Font("Cascadia Code", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtBirthday.Location = new Point(256, 227);
+            txtBirthday.Name = "txtBirthday";
+            txtBirthday.ReadOnly = true;
+            txtBirthday.Size = new Size(371, 27);
+            txtBirthday.TabIndex = 6;
+            // 
+            // lblGender
+            // 
+            lblGender.AutoSize = true;
+            lblGender.Font = new Font("Cascadia Code", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblGender.Location = new Point(85, 170);
+            lblGender.Name = "lblGender";
+            lblGender.Size = new Size(80, 22);
+            lblGender.TabIndex = 5;
+            lblGender.Text = "Gender:";
+            // 
+            // txtGender
+            // 
+            txtGender.BackColor = Color.White;
+            txtGender.Font = new Font("Cascadia Code", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtGender.Location = new Point(256, 167);
+            txtGender.Name = "txtGender";
+            txtGender.ReadOnly = true;
+            txtGender.Size = new Size(371, 27);
+            txtGender.TabIndex = 4;
+            // 
+            // lblName
+            // 
+            lblName.AutoSize = true;
+            lblName.Font = new Font("Cascadia Code", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblName.Location = new Point(85, 110);
+            lblName.Name = "lblName";
+            lblName.Size = new Size(60, 22);
+            lblName.TabIndex = 3;
+            lblName.Text = "Name:";
+            // 
+            // txtName
+            // 
+            txtName.BackColor = Color.White;
+            txtName.Font = new Font("Cascadia Code", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtName.Location = new Point(256, 107);
+            txtName.Name = "txtName";
+            txtName.ReadOnly = true;
+            txtName.Size = new Size(371, 27);
+            txtName.TabIndex = 2;
+            // 
+            // lblID
+            // 
+            lblID.AutoSize = true;
+            lblID.Font = new Font("Cascadia Code", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblID.Location = new Point(85, 50);
+            lblID.Name = "lblID";
+            lblID.Size = new Size(40, 22);
+            lblID.TabIndex = 1;
+            lblID.Text = "ID:";
+            // 
+            // txtID
+            // 
+            txtID.BackColor = Color.White;
+            txtID.Font = new Font("Cascadia Code", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtID.Location = new Point(256, 47);
+            txtID.Name = "txtID";
+            txtID.ReadOnly = true;
+            txtID.Size = new Size(371, 27);
+            txtID.TabIndex = 0;
+            // 
+            // pnlUpdatePhone
+            // 
+            pnlUpdatePhone.BackColor = Color.LightSteelBlue;
+            pnlUpdatePhone.BorderStyle = BorderStyle.FixedSingle;
+            pnlUpdatePhone.Controls.Add(btnEditPhone);
+            pnlUpdatePhone.Controls.Add(lblNewPhone);
+            pnlUpdatePhone.Controls.Add(txtNewPhone);
+            pnlUpdatePhone.Location = new Point(47, 23);
+            pnlUpdatePhone.Name = "pnlUpdatePhone";
+            pnlUpdatePhone.Size = new Size(542, 75);
+            pnlUpdatePhone.TabIndex = 15;
+            // 
             // btnEditPhone
             // 
-            btnEditPhone.Location = new Point(368, 65);
+            btnEditPhone.BackColor = Color.RoyalBlue;
+            btnEditPhone.FlatStyle = FlatStyle.Flat;
+            btnEditPhone.Font = new Font("Cascadia Code", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnEditPhone.ForeColor = Color.White;
+            btnEditPhone.Location = new Point(389, 22);
             btnEditPhone.Name = "btnEditPhone";
             btnEditPhone.Size = new Size(133, 29);
             btnEditPhone.TabIndex = 13;
             btnEditPhone.Text = "Cập nhật SĐT";
-            btnEditPhone.UseVisualStyleBackColor = true;
+            btnEditPhone.UseVisualStyleBackColor = false;
             btnEditPhone.Click += btnEditPhone_Click;
             // 
             // lblNewPhone
             // 
             lblNewPhone.AutoSize = true;
-            lblNewPhone.Location = new Point(47, 69);
+            lblNewPhone.Font = new Font("Cascadia Code", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblNewPhone.Location = new Point(14, 26);
             lblNewPhone.Name = "lblNewPhone";
             lblNewPhone.Size = new Size(81, 20);
             lblNewPhone.TabIndex = 12;
@@ -147,85 +380,11 @@ namespace atbmcq_02
             // 
             // txtNewPhone
             // 
-            txtNewPhone.Location = new Point(159, 66);
+            txtNewPhone.Font = new Font("Cascadia Code", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtNewPhone.Location = new Point(112, 23);
             txtNewPhone.Name = "txtNewPhone";
-            txtNewPhone.Size = new Size(184, 25);
+            txtNewPhone.Size = new Size(260, 25);
             txtNewPhone.TabIndex = 11;
-            // 
-            // dtgvOfficial
-            // 
-            dtgvOfficial.BackgroundColor = SystemColors.ButtonHighlight;
-            dtgvOfficial.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgvOfficial.Columns.AddRange(new DataGridViewColumn[] { GV_ID, GV_Name, GV_Gender, GV_Birthday, GV_Address, GV_Bonus, GV_PhoneNumber, GV_Role, GV_Unit });
-            dtgvOfficial.Dock = DockStyle.Bottom;
-            dtgvOfficial.Location = new Point(3, 113);
-            dtgvOfficial.Name = "dtgvOfficial";
-            dtgvOfficial.RowHeadersWidth = 62;
-            dtgvOfficial.Size = new Size(1380, 382);
-            dtgvOfficial.TabIndex = 4;
-            // 
-            // GV_ID
-            // 
-            GV_ID.HeaderText = "ID";
-            GV_ID.MinimumWidth = 8;
-            GV_ID.Name = "GV_ID";
-            GV_ID.Width = 150;
-            // 
-            // GV_Name
-            // 
-            GV_Name.HeaderText = "Name";
-            GV_Name.MinimumWidth = 8;
-            GV_Name.Name = "GV_Name";
-            GV_Name.Width = 228;
-            // 
-            // GV_Gender
-            // 
-            GV_Gender.HeaderText = "Gender";
-            GV_Gender.MinimumWidth = 8;
-            GV_Gender.Name = "GV_Gender";
-            GV_Gender.Width = 224;
-            // 
-            // GV_Birthday
-            // 
-            GV_Birthday.HeaderText = "Birthday";
-            GV_Birthday.MinimumWidth = 8;
-            GV_Birthday.Name = "GV_Birthday";
-            GV_Birthday.Width = 224;
-            // 
-            // GV_Address
-            // 
-            GV_Address.HeaderText = "Salary";
-            GV_Address.MinimumWidth = 8;
-            GV_Address.Name = "GV_Address";
-            GV_Address.Width = 224;
-            // 
-            // GV_Bonus
-            // 
-            GV_Bonus.HeaderText = "Bonus";
-            GV_Bonus.MinimumWidth = 6;
-            GV_Bonus.Name = "GV_Bonus";
-            GV_Bonus.Width = 125;
-            // 
-            // GV_PhoneNumber
-            // 
-            GV_PhoneNumber.HeaderText = "Phone Number";
-            GV_PhoneNumber.MinimumWidth = 8;
-            GV_PhoneNumber.Name = "GV_PhoneNumber";
-            GV_PhoneNumber.Width = 224;
-            // 
-            // GV_Role
-            // 
-            GV_Role.HeaderText = "Role";
-            GV_Role.MinimumWidth = 6;
-            GV_Role.Name = "GV_Role";
-            GV_Role.Width = 125;
-            // 
-            // GV_Unit
-            // 
-            GV_Unit.HeaderText = "Unit";
-            GV_Unit.MinimumWidth = 6;
-            GV_Unit.Name = "GV_Unit";
-            GV_Unit.Width = 200;
             // 
             // tabControl1
             // 
@@ -250,8 +409,10 @@ namespace atbmcq_02
             pnlBar.ResumeLayout(false);
             pnlBar.PerformLayout();
             tabPage2.ResumeLayout(false);
-            tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dtgvOfficial).EndInit();
+            pnlPersonalInfo.ResumeLayout(false);
+            pnlPersonalInfo.PerformLayout();
+            pnlUpdatePhone.ResumeLayout(false);
+            pnlUpdatePhone.PerformLayout();
             tabControl1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
@@ -268,16 +429,26 @@ namespace atbmcq_02
         private Button btnEditPhone;
         private Label lblNewPhone;
         private TextBox txtNewPhone;
-        private DataGridView dtgvOfficial;
-        private DataGridViewTextBoxColumn GV_ID;
-        private DataGridViewTextBoxColumn GV_Name;
-        private DataGridViewTextBoxColumn GV_Gender;
-        private DataGridViewTextBoxColumn GV_Birthday;
-        private DataGridViewTextBoxColumn GV_Address;
-        private DataGridViewTextBoxColumn GV_Bonus;
-        private DataGridViewTextBoxColumn GV_PhoneNumber;
-        private DataGridViewTextBoxColumn GV_Role;
-        private DataGridViewTextBoxColumn GV_Unit;
         private TabControl tabControl1;
+        private Panel pnlPersonalInfo;
+        private Label lblID;
+        private TextBox txtID;
+        private Label lblName;
+        private TextBox txtName;
+        private Label lblGender;
+        private TextBox txtGender;
+        private Label lblBirthday;
+        private TextBox txtBirthday;
+        private Label lblSalary;
+        private TextBox txtSalary;
+        private Label lblBonus;
+        private TextBox txtBonus;
+        private Label lblPhone;
+        private TextBox txtPhone;
+        private Label lblRole;
+        private TextBox txtRole;
+        private Label lblUnit;
+        private TextBox txtUnit;
+        private Panel pnlUpdatePhone;
     }
 }

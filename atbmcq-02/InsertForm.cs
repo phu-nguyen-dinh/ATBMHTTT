@@ -40,6 +40,18 @@ namespace atbmcq_02
                     return;
                 }
 
+                if (!System.Text.RegularExpressions.Regex.IsMatch(idcrse, "^[a-zA-Z][a-zA-Z0-9_#$]+$"))
+                {
+                    MessageBox.Show("Invalid characters: included _#$");
+                    return;
+                }
+
+                if (!System.Text.RegularExpressions.Regex.IsMatch(idsbj, "^[a-zA-Z][a-zA-Z0-9_#$]+$"))
+                {
+                    MessageBox.Show("Invalid characters: included _#$");
+                    return;
+                }
+
                 if (!int.TryParse(semes, out int semesprs) || !int.TryParse(year, out int yearprs))
                 {
                     MessageBox.Show($"Semester or Year must be an integer number, at row Suject: {idsbj}");
