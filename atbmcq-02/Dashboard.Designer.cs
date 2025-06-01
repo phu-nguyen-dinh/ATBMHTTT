@@ -90,7 +90,7 @@ namespace atbmcq_02
             lblNotification.Size = new Size(152, 30);
             lblNotification.TabIndex = 2;
             lblNotification.TabStop = true;
-            lblNotification.Text = "Thông báo";
+            lblNotification.Text = "Notification";
             lblNotification.LinkClicked += lblNotification_LinkClicked;
             // 
             // lblSignOut

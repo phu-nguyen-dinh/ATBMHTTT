@@ -96,11 +96,11 @@ namespace atbmcq_02
             // tabManage
             // 
             tabManage.Controls.Add(grpUserRole);
-            tabManage.Location = new Point(4, 38);
+            tabManage.Location = new Point(4, 28);
             tabManage.Margin = new Padding(6, 3, 6, 3);
             tabManage.Name = "tabManage";
             tabManage.Padding = new Padding(6, 3, 6, 3);
-            tabManage.Size = new Size(959, 564);
+            tabManage.Size = new Size(959, 574);
             tabManage.TabIndex = 0;
             tabManage.Text = "User/Role Management";
             // 
@@ -132,7 +132,7 @@ namespace atbmcq_02
             radUser.Location = new Point(44, 66);
             radUser.Margin = new Padding(6, 3, 6, 3);
             radUser.Name = "radUser";
-            radUser.Size = new Size(86, 33);
+            radUser.Size = new Size(61, 24);
             radUser.TabIndex = 0;
             radUser.TabStop = true;
             radUser.Text = "User";
@@ -143,7 +143,7 @@ namespace atbmcq_02
             radRole.Location = new Point(231, 66);
             radRole.Margin = new Padding(6, 3, 6, 3);
             radRole.Name = "radRole";
-            radRole.Size = new Size(86, 33);
+            radRole.Size = new Size(60, 24);
             radRole.TabIndex = 1;
             radRole.Text = "Role";
             // 
@@ -153,7 +153,7 @@ namespace atbmcq_02
             lblName.Location = new Point(42, 135);
             lblName.Margin = new Padding(6, 0, 6, 0);
             lblName.Name = "lblName";
-            lblName.Size = new Size(192, 29);
+            lblName.Size = new Size(133, 20);
             lblName.TabIndex = 2;
             lblName.Text = "User/Role Name:";
             // 
@@ -162,7 +162,7 @@ namespace atbmcq_02
             txtName.Location = new Point(228, 132);
             txtName.Margin = new Padding(6, 3, 6, 3);
             txtName.Name = "txtName";
-            txtName.Size = new Size(418, 37);
+            txtName.Size = new Size(418, 27);
             txtName.TabIndex = 3;
             // 
             // lblUserPass
@@ -171,7 +171,7 @@ namespace atbmcq_02
             lblUserPass.Location = new Point(44, 199);
             lblUserPass.Margin = new Padding(6, 0, 6, 0);
             lblUserPass.Name = "lblUserPass";
-            lblUserPass.Size = new Size(120, 29);
+            lblUserPass.Size = new Size(83, 20);
             lblUserPass.TabIndex = 4;
             lblUserPass.Text = "Password:";
             // 
@@ -181,7 +181,7 @@ namespace atbmcq_02
             txtUserPass.Margin = new Padding(6, 3, 6, 3);
             txtUserPass.Name = "txtUserPass";
             txtUserPass.PasswordChar = '*';
-            txtUserPass.Size = new Size(418, 37);
+            txtUserPass.Size = new Size(418, 27);
             txtUserPass.TabIndex = 5;
             // 
             // chkExisting
@@ -190,7 +190,7 @@ namespace atbmcq_02
             chkExisting.Location = new Point(44, 288);
             chkExisting.Margin = new Padding(6, 3, 6, 3);
             chkExisting.Name = "chkExisting";
-            chkExisting.Size = new Size(188, 33);
+            chkExisting.Size = new Size(131, 24);
             chkExisting.TabIndex = 6;
             chkExisting.Text = "Existing User?";
             chkExisting.Visible = false;
@@ -232,11 +232,11 @@ namespace atbmcq_02
             tabList.Controls.Add(btnRefresh);
             tabList.Controls.Add(txtSearch);
             tabList.Controls.Add(lblSearch);
-            tabList.Location = new Point(4, 34);
+            tabList.Location = new Point(4, 28);
             tabList.Margin = new Padding(6, 3, 6, 3);
             tabList.Name = "tabList";
             tabList.Padding = new Padding(6, 3, 6, 3);
-            tabList.Size = new Size(959, 568);
+            tabList.Size = new Size(959, 574);
             tabList.TabIndex = 1;
             tabList.Text = "User/Role List";
             // 
@@ -248,7 +248,7 @@ namespace atbmcq_02
             cboFilter.Location = new Point(20, 14);
             cboFilter.Margin = new Padding(6, 3, 6, 3);
             cboFilter.Name = "cboFilter";
-            cboFilter.Size = new Size(200, 37);
+            cboFilter.Size = new Size(200, 27);
             cboFilter.TabIndex = 0;
             // 
             // lstUsers
@@ -299,7 +299,7 @@ namespace atbmcq_02
             // 
             txtSearch.Location = new Point(360, 14);
             txtSearch.Name = "txtSearch";
-            txtSearch.Size = new Size(400, 37);
+            txtSearch.Size = new Size(400, 27);
             txtSearch.TabIndex = 4;
             // 
             // lblSearch
@@ -307,7 +307,7 @@ namespace atbmcq_02
             lblSearch.AutoSize = true;
             lblSearch.Location = new Point(246, 21);
             lblSearch.Name = "lblSearch";
-            lblSearch.Size = new Size(114, 29);
+            lblSearch.Size = new Size(80, 20);
             lblSearch.TabIndex = 3;
             lblSearch.Text = "Tìm kiếm";
             // 
@@ -317,11 +317,11 @@ namespace atbmcq_02
             tabThongBao.Controls.Add(lstThongBao);
             tabThongBao.Controls.Add(txtTimKiemTB);
             tabThongBao.Controls.Add(lblTimKiemTB);
-            tabThongBao.Location = new Point(4, 38);
+            tabThongBao.Location = new Point(4, 28);
             tabThongBao.Margin = new Padding(6, 3, 6, 3);
             tabThongBao.Name = "tabThongBao";
             tabThongBao.Padding = new Padding(6, 3, 6, 3);
-            tabThongBao.Size = new Size(959, 564);
+            tabThongBao.Size = new Size(959, 574);
             tabThongBao.TabIndex = 2;
             tabThongBao.Text = "Quản lý Thông báo";
             // 
@@ -353,13 +353,13 @@ namespace atbmcq_02
             lblNoiDungTB.Location = new Point(23, 70);
             lblNoiDungTB.Margin = new Padding(6, 0, 6, 0);
             lblNoiDungTB.Name = "lblNoiDungTB";
-            lblNoiDungTB.Size = new Size(115, 29);
+            lblNoiDungTB.Size = new Size(79, 20);
             lblNoiDungTB.TabIndex = 0;
             lblNoiDungTB.Text = "Nội dung:";
             // 
             // txtNoiDungTB
             // 
-            txtNoiDungTB.Location = new Point(155, 42);
+            txtNoiDungTB.Location = new Point(155, 26);
             txtNoiDungTB.Margin = new Padding(6, 3, 6, 3);
             txtNoiDungTB.Multiline = true;
             txtNoiDungTB.Name = "txtNoiDungTB";
@@ -369,10 +369,10 @@ namespace atbmcq_02
             // lblLevelTB
             // 
             lblLevelTB.AutoSize = true;
-            lblLevelTB.Location = new Point(23, 141);
+            lblLevelTB.Location = new Point(37, 129);
             lblLevelTB.Margin = new Padding(6, 0, 6, 0);
             lblLevelTB.Name = "lblLevelTB";
-            lblLevelTB.Size = new Size(62, 29);
+            lblLevelTB.Size = new Size(43, 20);
             lblLevelTB.TabIndex = 2;
             lblLevelTB.Text = "Cho:";
             // 
@@ -381,9 +381,9 @@ namespace atbmcq_02
             cboLevelTB.DropDownStyle = ComboBoxStyle.DropDownList;
             cboLevelTB.FormattingEnabled = true;
             cboLevelTB.Items.AddRange(new object[] { "SINHVIEN", "NHANVIEN", "TRGDV" });
-            cboLevelTB.Location = new Point(155, 138);
+            cboLevelTB.Location = new Point(155, 122);
             cboLevelTB.Name = "cboLevelTB";
-            cboLevelTB.Size = new Size(200, 37);
+            cboLevelTB.Size = new Size(200, 27);
             cboLevelTB.TabIndex = 3;
             // 
             // lblCompartmentTB
@@ -392,7 +392,7 @@ namespace atbmcq_02
             lblCompartmentTB.Location = new Point(23, 199);
             lblCompartmentTB.Margin = new Padding(6, 0, 6, 0);
             lblCompartmentTB.Name = "lblCompartmentTB";
-            lblCompartmentTB.Size = new Size(123, 29);
+            lblCompartmentTB.Size = new Size(85, 20);
             lblCompartmentTB.TabIndex = 4;
             lblCompartmentTB.Text = "Khoa/BM:";
             // 
@@ -401,9 +401,9 @@ namespace atbmcq_02
             chkListCompartment.CheckOnClick = true;
             chkListCompartment.FormattingEnabled = true;
             chkListCompartment.Items.AddRange(new object[] { "TOAN", "LY", "HOA", "HC" });
-            chkListCompartment.Location = new Point(155, 190);
+            chkListCompartment.Location = new Point(155, 171);
             chkListCompartment.Name = "chkListCompartment";
-            chkListCompartment.Size = new Size(250, 38);
+            chkListCompartment.Size = new Size(250, 48);
             chkListCompartment.TabIndex = 5;
             // 
             // lblGroupTB
@@ -412,7 +412,7 @@ namespace atbmcq_02
             lblGroupTB.Location = new Point(23, 253);
             lblGroupTB.Margin = new Padding(6, 0, 6, 0);
             lblGroupTB.Name = "lblGroupTB";
-            lblGroupTB.Size = new Size(81, 29);
+            lblGroupTB.Size = new Size(57, 20);
             lblGroupTB.TabIndex = 6;
             lblGroupTB.Text = "Cơ sở:";
             // 
@@ -421,9 +421,9 @@ namespace atbmcq_02
             chkListGroup.CheckOnClick = true;
             chkListGroup.FormattingEnabled = true;
             chkListGroup.Items.AddRange(new object[] { "CS1", "CS2" });
-            chkListGroup.Location = new Point(155, 244);
+            chkListGroup.Location = new Point(155, 234);
             chkListGroup.Name = "chkListGroup";
-            chkListGroup.Size = new Size(250, 38);
+            chkListGroup.Size = new Size(250, 48);
             chkListGroup.TabIndex = 7;
             // 
             // btnThemTB
@@ -464,7 +464,7 @@ namespace atbmcq_02
             lstThongBao.Columns.AddRange(new ColumnHeader[] { colID, colNoiDung, colNhan });
             lstThongBao.FullRowSelect = true;
             lstThongBao.GridLines = true;
-            lstThongBao.Location = new Point(12, 358);
+            lstThongBao.Location = new Point(12, 354);
             lstThongBao.Margin = new Padding(6, 3, 6, 3);
             lstThongBao.Name = "lstThongBao";
             lstThongBao.Size = new Size(931, 200);
@@ -491,7 +491,7 @@ namespace atbmcq_02
             // 
             txtTimKiemTB.Location = new Point(167, 312);
             txtTimKiemTB.Name = "txtTimKiemTB";
-            txtTimKiemTB.Size = new Size(600, 37);
+            txtTimKiemTB.Size = new Size(600, 27);
             txtTimKiemTB.TabIndex = 13;
             // 
             // lblTimKiemTB
@@ -499,13 +499,13 @@ namespace atbmcq_02
             lblTimKiemTB.AutoSize = true;
             lblTimKiemTB.Location = new Point(12, 315);
             lblTimKiemTB.Name = "lblTimKiemTB";
-            lblTimKiemTB.Size = new Size(114, 29);
+            lblTimKiemTB.Size = new Size(80, 20);
             lblTimKiemTB.TabIndex = 12;
             lblTimKiemTB.Text = "Tìm kiếm";
             // 
             // UserManagement
             // 
-            AutoScaleDimensions = new SizeF(14F, 29F);
+            AutoScaleDimensions = new SizeF(9F, 19F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(tabControl);
             Font = new Font("Times New Roman", 13F, FontStyle.Regular, GraphicsUnit.Point, 0);

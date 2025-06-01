@@ -39,7 +39,23 @@ namespace atbmcq_02
             // Thêm sự kiện cho btnRefresh nếu chưa có
             btnRefresh.Click += LoadUserList;
 
-            // Load danh sách thông báo
+            // Thêm sự kiện cho các button trong quản lý user/role
+            btnCreate.Click += CreateUserOrRole;
+            btnDelete.Click += DeleteUserOrRole;
+            btnUpdate.Click += UpdateUserOrRole;
+
+            // Thêm sự kiện cho các button trong quản lý thông báo
+            btnThemTB.Click += ThemThongBao;
+            btnXoaTB.Click += XoaThongBao;
+            btnCapNhatTB.Click += CapNhatThongBao;
+            
+            // Thêm sự kiện tìm kiếm thông báo
+            txtTimKiemTB.TextChanged += TimKiemThongBao_Changed;
+            
+            // Thêm sự kiện chọn thông báo
+            lstThongBao.SelectedIndexChanged += ThongBao_Selected;
+
+            // Load dữ liệu
             LoadThongBao();
         }
 
@@ -410,7 +426,7 @@ namespace atbmcq_02
                 string labelStr = $"{level}:{compartmentStr}:{groupStr}";
 
                 // Cập nhật thông báo với nhãn mới
-                using var cmd = new OracleCommand("UPDATE THONGBAO SET NOIDUNG = :noidung, LBL_THONGBAO = CHAR_TO_LABEL('POL_THONGBAO', :nhan) WHERE ID = :id", conn);
+                using var cmd = new OracleCommand("UPDATE C##ADMIN.THONGBAO SET NOIDUNG = :noidung, LBL_THONGBAO = CHAR_TO_LABEL('POL_THONGBAO', :nhan) WHERE ID = :id", conn);
                 cmd.Parameters.Add(":noidung", OracleDbType.NVarchar2).Value = txtNoiDungTB.Text;
                 cmd.Parameters.Add(":nhan", OracleDbType.Varchar2).Value = labelStr;
                 cmd.Parameters.Add(":id", OracleDbType.Int32).Value = currentThongBaoId;

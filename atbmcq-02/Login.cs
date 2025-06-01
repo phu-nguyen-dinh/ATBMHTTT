@@ -39,7 +39,7 @@ namespace atbmcq_02
                 _connection.Username = txtUsername.Text;
                 _connection.Password = txtPassword.Text;
                 _connection.Role = cboRole.SelectedItem?.ToString() ?? "default";
-                _connection.ServiceName = "project";
+                _connection.ServiceName = "xepdb1";
 
                 if (_connection.Connect())
                 {
@@ -70,7 +70,7 @@ namespace atbmcq_02
             {
                 this._connection.Hostname = "localhost";
                 this._connection.Port = 1521;
-                _connection.ServiceName = "project";
+                _connection.ServiceName = "xepdb1";
                 this._connection.Username = txtUsername.Text;
                 this._connection.Password = txtPassword.Text;
                 this._connection.Role = cboRole.SelectedItem?.ToString() ?? "default";
@@ -127,7 +127,7 @@ namespace atbmcq_02
             }
             else if (username.StartsWith("SV"))
             {
-                DashBoard dshBrd = new DashBoard(_connection);
+                Student_DashBoard dshBrd = new Student_DashBoard(_connection);
                 dshBrd.ShowDialog();
             }
             else if (username.StartsWith("NV"))
