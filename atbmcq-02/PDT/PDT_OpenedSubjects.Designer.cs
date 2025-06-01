@@ -170,6 +170,7 @@ namespace atbmcq_02
             cbbSemes.Name = "cbbSemes";
             cbbSemes.Size = new Size(282, 28);
             cbbSemes.TabIndex = 5;
+            cbbSemes.SelectedIndex = 0;
             // 
             // cbbYear
             // 
@@ -179,6 +180,7 @@ namespace atbmcq_02
             cbbYear.Name = "cbbYear";
             cbbYear.Size = new Size(282, 28);
             cbbYear.TabIndex = 6;
+            cbbYear.SelectedIndex = 0;
             // 
             // btnInsert
             // 

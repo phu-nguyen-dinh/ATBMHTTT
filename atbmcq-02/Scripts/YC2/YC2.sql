@@ -1,4 +1,3 @@
-ALTER SESSION SET CONTAINER = XEPDB1;
 -- Chạy lệnh này với SYS trong PDB hiện tại
 SELECT VALUE FROM v$option WHERE parameter = 'Oracle Label Security';
 SELECT status FROM dba_ols_status WHERE name = 'OLS_CONFIGURE_STATUS';
