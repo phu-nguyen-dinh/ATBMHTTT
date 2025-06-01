@@ -8,13 +8,17 @@ ALTER DATABASE OPEN;
 ARCHIVE LOG LIST;
 */
 
+-- Tạo thư mục để chứa các tệp sao lưu
+-- mkdir -p /opt/oracle/backup_rman/test
+
 -- ===========================================================
 --                   Sao lưu bằng RMAN
 -- ===========================================================
 
 -- Bước 1: Mở cmd và chạy RMAN: rman target C##ADMIN/123456@localhost:1521/<service_name>
 -- Bước 2: Thực hiện sao lưu toàn bộ database:
--- RMAN> BACKUP DATABASE PLUS ARCHIVELOG;
+-- RMAN> BACKUP DATABASE FORMAT '/opt/oracle/backup_rman/testfulldb_test.bkp';
+-- RAMN> BACKUP ARCHIVELOG ALL FORMAT '/opt/oracle/backup_rman/test/archlog_test.bkp';
 -- Bước 3: Kiểm tra danh sách các bản sao lưu:
 -- RMAN> LIST BACKUP OF DATABASE;
  
