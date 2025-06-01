@@ -44,7 +44,7 @@ namespace atbmcq_02
                 using var conn = new OracleConnection(_connection.GetConnectionString());
                 conn.Open();
 
-                string query = "SELECT * FROM C##ADMIN.NHANVIEN WHERE MANLD= '" + username + "'";
+                string query = "SELECT VAITRO FROM C##ADMIN.VW_NHANVIEN_SELF";
                 using var cmd = new OracleCommand(query, conn);
                 using var reader = cmd.ExecuteReader();
 
@@ -77,7 +77,7 @@ namespace atbmcq_02
                 conn.Open();
 
                 string Username = _connection.Username;
-                string query = $"SELECT VAITRO FROM C##ADMIN.NHANVIEN WHERE USERNAME = '{Username}'";
+                string query = "SELECT VAITRO FROM C##ADMIN.VW_NHANVIEN_SELF";
                 string role = "";
 
                 using (var roleCmd = new OracleCommand(query, conn))
