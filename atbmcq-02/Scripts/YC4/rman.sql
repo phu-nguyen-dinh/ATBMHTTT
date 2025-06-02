@@ -26,18 +26,32 @@ ARCHIVE LOG LIST;
 ALTER TABLESPACE USERS OFFLINE IMMEDIATE;
 ALTER DATABASE DATAFILE '/opt/oracle/oradata/FREE/users01.dbf' OFFLINE DROP;
 
--- thử truy vấn bảng trong USERS(C##ADMIN) sẽ báo lỗi
+-- Thử truy vấn bảng trong USERS(C##ADMIN) sẽ báo lỗi
 SELECT * FROM C##ADMIN.DONVI;
+
+-- Tắt database và đưa về chế độ MOUNT
+SHUTDOWN IMMEDIATE;
+STARTUP MOUNT;
  
- -- ============================================================
+-- ============================================================
 --                   Phục hồi bằng RMAN
 -- ============================================================
 -- Bước 1: Mở cmd và chạy RMAN: rman target /
 -- Bước 2: Chạy lệnh phục hồi:
+RMAN> RUN {
+    RESTORE DATABASE;
+    RECOVER DATABASE;
+    ALTER DATABASE OPEN;
+    ALTER TABLESPACE USERS ONLINE;
+}
+--    SET UNTIL TIME "TO_DATE('2025-05-31 10:00:00','YYYY-MM-DD HH24:MI:SS')"; 
+-- Dòng này để khôi phục đến thời điểm cụ thể(có thể dựa vào audit) và có thể bỏ qua nếu muốn phục hồi đến bản sao lưu mới nhất.
+-- Thêm dòng này vào khối RUN nếu muốn phục hồi đến thời điểm cụ thể:
 -- RMAN> RUN {
---    SET UNTIL TIME "TO_DATE('2025-05-31 10:00:00','YYYY-MM-DD HH24:MI:SS')"; -- Dòng này để khôi phục đến thời điểm cụ thể(có thể dựa vào audit) và có thể bỏ qua nếu muốn phục hồi đến bản sao lưu mới nhất
+--    SET UNTIL TIME "TO_DATE('2025-05-31 10:00:00','YYYY-MM-DD HH24:MI:SS')";
 --    RESTORE DATABASE;
 --    RECOVER DATABASE;
+--    ALTER DATABASE OPEN;
 --    ALTER TABLESPACE USERS ONLINE;
 -- }
 -- Bước 3: Kiểm tra dữ liệu sau phục hồi
